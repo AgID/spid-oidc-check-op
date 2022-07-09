@@ -1,0 +1,9 @@
+.breadcrumb {
+    padding: 12px;
+}
+
+@media print {
+    .breadcrumbs {
+        display: none!important;
+    }
+}
