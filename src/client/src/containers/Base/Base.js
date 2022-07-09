@@ -6,7 +6,7 @@ import ReduxStore from "../../redux/store";
 import Utility from '../../utility';
   
 
-class Empty extends Component {
+class Base extends Component {
 
 	constructor(props) {
 		super(props);
@@ -59,7 +59,7 @@ class Empty extends Component {
 
 	render() {    
     	return (
-			<section id="main"  className="container-empty">   
+			<section id="main"  className="container-base">   
 				<BlockUi tag="div" blocking={this.state.blocking}> 
 					<div className="app">
 						<Container fluid>
@@ -89,4 +89,4 @@ class Empty extends Component {
   
 }
 
-export default Empty; 
+export default Base; 

@@ -133,7 +133,7 @@ class Main extends Component {
 			Utility.log("AUTH CHECK", "User authenticated, you can continue");
 
 			return (
-				<div id="main">
+				<div id="main" className="container-main">
 					<BlockUi tag="div" blocking={this.state.blocking}> 
 						<div className="app">
 							<Header />
