@@ -1,7 +1,6 @@
 import React from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import BlockUi from 'react-block-ui'; 
-import './switches.css';
 import "./style.css";
 
 function view(me) { 

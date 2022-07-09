@@ -1,5 +1,16 @@
+body {
+    background-color: #330063; /*#e4e5e6*/
+}
+
+#Worksave .img-logo {
+    max-width: 200px;
+    display: block;
+    margin: -80px auto 50px;
+}
+
 #Worksave .title {
     width: 100%;
+    color: #FFFFFF;
     text-align: center;
     font-size: 1.3em;
     font-weight: 500;

@@ -17,6 +17,7 @@ import Services from '../../services';
 var moment = require('moment');
 moment.locale('it');
 
+import './switches.css'; 
 import "./style.css";
 
 

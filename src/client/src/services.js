@@ -197,6 +197,24 @@ class MainService {
 			callback_error((error.response!=null) ? error.response.data : "Service not available");
 		});
 	}
+
+	getReport(callback_response, callback_notfound, callback_error) {  
+		Utility.log("GET /api/oidc/report");
+		axios.get('api/oidc/report' + '?apikey=' + Utility.getApikey(), {timeout: 900000})
+		.then(function(response) {
+			Utility.log("getReport Success", response.data);
+			callback_response(response.data);
+		})
+		.catch(function(error) {
+			Utility.log("getReport Error", error);
+			if(error.response.status==404) {
+				Utility.log("getReport Not Found");
+				callback_notfound();
+			} else {
+				callback_error((error.response!=null) ? error.response.data : "Service not available");
+			}
+		});
+	}
 	
 	getServerInfo(callback_response, callback_error) {
 		Utility.log("GET /api/server-info");
