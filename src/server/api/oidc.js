@@ -20,8 +20,9 @@ module.exports = function(app, checkAuthorisation, database) {
         }
 
         let testcase = req.params.testcase;
-        let user = (authorisation=='API')? req.body.user : req.session.user;
+        let user = (authorisation=='API')? req.query.user : req.session.user;
         let store_type = (authorisation=='API')? req.query.store_type : (req.session.store_type)? req.session.store_type : 'test';
+        let external_code = (authorisation=='API')? req.query.external_code : req.session.external_code;
 
         if(!store_type) { return res.status(400).send("Parameter store_type is missing"); }
 
@@ -44,10 +45,16 @@ module.exports = function(app, checkAuthorisation, database) {
             let TestAuthRequestClass = require("../../test/" + tests[t]);
             test = new TestAuthRequestClass(metadata, authrequest);
             if(test.hook==hook) {
-                authrequest = await test.getResult();
+                authrequest = await test.getAuthRequest();
 
                 // save request
                 database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+
+                // save single test to store
+                result = await test.getResult();
+                database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                console.log(result);
             }
         }
 
@@ -147,7 +154,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 let TestTokenRequestClass = require("../../test/" + tests[t]);
                 test = new TestTokenRequestClass(metadata, authrequest, authresponse, tokenrequest);
                 if(test.hook==hook) {
-                    tokenrequest = await test.getResult();
+                    tokenrequest = await test.getTokenRequest();
 
                     switch(test.validation) {
                         case 'self': num_warning++; break;
@@ -156,6 +163,13 @@ module.exports = function(app, checkAuthorisation, database) {
                     
                     // save request
                     //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+
+                    // save single test to store
+                    result = await test.getResult();
+                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                    console.log(result);
+                    report.push(result);
                 }
             }
 
@@ -240,7 +254,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 let TestUserinfoRequestClass = require("../../test/" + tests[t]);
                 test = new TestUserinfoRequestClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest);
                 if(test.hook==hook) {
-                    userinforequest = await test.getResult();
+                    userinforequest = await test.getUserinfoRequest();
 
                     switch(test.validation) {
                         case 'self': num_warning++; break;
@@ -249,6 +263,13 @@ module.exports = function(app, checkAuthorisation, database) {
 
                     // save request
                     //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+
+                    // save single test to store
+                    result = await test.getResult();
+                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                    console.log(result);
+                    report.push(result);
                 }
             }
 
@@ -326,7 +347,7 @@ module.exports = function(app, checkAuthorisation, database) {
         }
         
 
-        res.status(200).json({
+        let log = {
             summary: {
                 result: summary_result,
                 num_success: num_success,
@@ -344,36 +365,38 @@ module.exports = function(app, checkAuthorisation, database) {
                 report: report,
                 report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
             }
-        });
+        };
 
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, log);
 
-
-
-        // make refresh request
-        // send refresh request
-
-        // get refresh response
-        // assert refresh response
-
+        res.status(200).json(log);
     });
 
 
+    app.get("//api/oidc/report", async function(req, res) {
+        
+        // check if apikey is correct
+        let authorisation = checkAuthorisation(req);
+        if(!authorisation) {
+            error = {code: 401, msg: "Unauthorized"};
+            res.status(error.code).send(error.msg);
+            return null;
+        }
+
+        let user = (authorisation=='API')? req.body.user : req.session.user;
+        let store_type = (authorisation=='API')? req.query.store_type : (req.session.store_type)? req.session.store_type : 'test';
+        if(!store_type) { return res.status(400).send("Parameter store_type is missing"); }
+                
+        // get report
+        let testsuite = "oidc-core";
+        let report = database.getReport(user, store_type, testsuite);
+
+        console.log("Report", report);
+        if(!report || report=={}) {
+            res.status(404).send();
+        } else {
+            res.status(200).send(report);
+        }
+    });
 }
-
-
-/*
-
-    HOOK
-
-    metadata                        t = new TestMetadata(metadata); result = t.exec() 
-    authentication-request          h = new AuthenticationRequestHook(data); request = h.exec()
-    authentication-response         h = new AuthenticationResponseHook(response); result = h.exec();
-    token-request                   
-    token-response
-    userinfo-request
-    userinfo-response
-
-
-
-
-*/

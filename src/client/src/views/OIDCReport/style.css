@@ -98,11 +98,14 @@
 
 #OIDCReport .detail-num {
     width: 50px;
+    max-width: 50px;
 }
 
-#OIDCReport .detail-result {
+#OIDCReport .detail-description,
+#OIDCReport .detail-result,
+#OIDCReport .detail-notes {
     width: 25%;
-    max-width: 300px;
+    max-width: 200px;
     word-wrap: break-word;
 }
 

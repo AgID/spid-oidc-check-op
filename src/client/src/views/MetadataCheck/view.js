@@ -16,9 +16,9 @@ function view(me) {
                             <div className="row testset"> 
                                 <div className="col-sm-12">
                                     <p>
-                                        <div>Check: <b><span className="first-upper">{me.state.testcase}</span></b></div> 
-                                        {me.state.description!=null && <div>Descrizione<b>: {me.state.description}</b></div> }
-                                        {me.state.referements!=null && <div>Riferimenti<b>: {me.state.referements}</b></div> }
+                                        <div>Check: <span className="first-upper">{me.state.testcase}</span></div> 
+                                        {me.state.description!=null && <div>Descrizione: {me.state.description}</div> }
+                                        {me.state.referements!=null && <div>Riferimenti: {me.state.referements}</div> }
                                     </p>
 
                                     {me.state.report.map((t, i)=> {

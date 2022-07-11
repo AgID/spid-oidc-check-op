@@ -228,6 +228,8 @@ class Database {
     }
 
     setMetadata(user, external_code, store_type, metadata) {
+        if(!this.checkdb()) return;
+
         let store = this.getStore(user, store_type);
         if(!store) store = {};
         store.metadata = metadata;
@@ -260,6 +262,8 @@ class Database {
     }
 
     setTest(user, external_code, store_type, testsuite, testcase, hook, test) {
+        if(!this.checkdb()) return;
+
         let store = this.getStore(user, store_type);
 
         if(!store) throw new Error("Store is not found");
@@ -276,25 +280,70 @@ class Database {
             };   
         }
   
+        if(!store.test[testsuite]['cases'][testcase]) {
+            store.test[testsuite]['cases'][testcase] = {};
+        }
+
+        if(!store.test[testsuite]['cases'][testcase]['hook']) {
+            store.test[testsuite]['cases'][testcase]['hook'] = {};
+        }
+
+        if(!store.test[testsuite]['cases'][testcase]['hook'][hook]) {
+            store.test[testsuite]['cases'][testcase]['hook'][hook] = {};
+        }
+
+        let store_hook = store.test[testsuite]['cases'][testcase]['hook'];
+
         // always update on the last check
         store.test[testsuite]['cases'][testcase] = {
             name: config_test[testsuite]['cases'][testcase].name,
             description: config_test[testsuite]['cases'][testcase].description,
             ref: config_test[testsuite]['cases'][testcase].ref,
             datetime: moment().format('YYYY-MM-DD HH:mm:ss'),
-            hook: {}
+            hook: store_hook
         };
-
-        if(!store.test[testsuite]['cases'][testcase]['hook'][hook]) {
-            store.test[testsuite]['cases'][testcase]['hook'][hook] = {};
-        }
-
+        
         store.test[testsuite]['cases'][testcase]['hook'][hook][test.num] = test;
 
         let organization = store.metadata.configuration.op_name;
         let issuer = store.metadata.configuration.issuer;
     
         this.saveStore(user, organization, issuer, external_code, store_type, store);
+    }
+
+    setLastLog(user, external_code, store_type, testsuite, log) {
+        if(!this.checkdb()) return;
+
+        let store = this.getStore(user, store_type);
+
+        if(!store) throw new Error("Store is not found");
+        if(!store.metadata) throw new Error("Metadata is not found");
+        if(!store.metadata.configuration) throw new Error("Metadata Configuration is not found");
+        if(!store.metadata.configuration.op_name) throw new Error("op_name configuration is not found");
+        if(!store.metadata.configuration.issuer) throw new Error("issuer configuration is not found");
+
+        let organization = store.metadata.configuration.op_name;
+        let issuer = store.metadata.configuration.issuer;
+
+        store.test[testsuite]['lastlog'] = log;
+        this.saveStore(user, organization, issuer, external_code, store_type, store);
+    }
+
+    getReport(user, store_type, testsuite) {
+        if(!this.checkdb()) return;
+        
+        try {
+            let report = {};
+            let store = this.getStore(user, store_type);
+            if(store) {
+                report = store.test[testsuite];
+            }
+            return report; 
+
+        } catch(exception) {
+            utility.log("DATABASE EXCEPTION (getReport)", exception.toString());
+            throw(exception);
+        }
     }
 
     deleteStore(user, store_type) {

@@ -13,7 +13,11 @@ class OIDCReport extends Component {
     super(props);
     
     this.state = {
-        report: {},
+        report: {
+          description: null,
+          cases: {},
+          lastlog: {}
+        },
         detailview: false
     };  
   }	
@@ -30,6 +34,11 @@ class OIDCReport extends Component {
         Utility.blockUI(false); 
         this.setState({
           report: report
+        }, ()=> {
+          console.log(this.state);
+          Object.keys(this.state.report.cases).map((c)=> {
+            console.log(c);
+          });
         });
       }, 
       () => {

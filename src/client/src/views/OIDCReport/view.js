@@ -2,52 +2,111 @@ import React from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import BlockUi from 'react-block-ui';
 import AceEditor from '../../components/AceEditor/';
+import moment from 'moment';
 import "./style.css";
 
 function view(me) { 
     return (
         <div id="OIDCReport" className="animated fadeIn">
             <p className="title h3">Authorization Code Flow Report</p>
-            <p className="subtitle h4">Data Validazione: <strong>{me.state.datetime}</strong></p>
             <div className="row">
+                
+                <div className="col-md-8">
+                    <div className="row">
+                        {!me.state.detailview &&
+                            <div className="col-md-12 main">
+                                {me.state.report.cases!=null && 
+                                    <div className="row testset">
+                                    {Object.keys(me.state.report.cases).map((c, i)=> {
+                                        return (
+                                            <div className="col-sm-12" key={i} >
+                                                <p className="h4">{me.state.report.cases[c].name}</p>
+                                                <br/><span>Description:</span> {me.state.report.cases[c].description}
+                                                <br/><span>Referements:</span> {me.state.report.cases[c].ref}
+                                                <br/><span>Validation datetime:</span> {moment(me.state.report.cases[c].datetime).format('DD/MM/YYYY HH:mm:ss')}
+                                                <div className="col-sm-12 mt-3">
+                                                    {Object.keys(me.state.report.cases[c].hook).map((h)=> {
+                                                        return (
+                                                            Object.keys(me.state.report.cases[c].hook[h]).map((t, i)=> {
+                                                                return(
+                                                                    <a key={i} 
+                                                                        className={(me.state.report.cases[c].hook[h][t].result=="success")? "test-success" : (me.state.report.cases[c].hook[h][t].result=="warning")? "test-warning" : "test-fail" }
+                                                                        title={me.state.report.cases[c].hook[h][t].description + (me.state.report.cases[c].hook[h][t].notes? ": " + JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : "")}> {me.state.report.cases[c].hook[h][t].num} 
+                                                                    </a> 
+                                                                );
+                                                            })
+                                                        );
+                                                    })}
 
-                {!me.state.detailview &&
-                    <div className="col-md-8 main">
-                        {me.state.test_cases!=null && 
+                                                </div>  
+                                            </div> 
+                                        );                                   
+                                    })}
+                                    </div> 
+                                }
+                            </div>
+                        }
+                        {me.state.detailview &&
+                            <div className="col-md-12 main">
+                                {me.state.report.cases!=null && 
+                                    <div className="row testset">      
+                                        {Object.keys(me.state.report.cases).map((c, i)=> {
+                                        return (
+                                            <div className="col-sm-12 table-responsive" key={i} >
+                                                <p className="h4">{me.state.report.cases[c].name}</p>
+                                                <br/><span>Description:</span> {me.state.report.cases[c].description}
+                                                <br/><span>Referements:</span> {me.state.report.cases[c].ref}
+                                                <br/><span>Validation datetime:</span> {moment(me.state.report.cases[c].datetime).format('DD/MM/YYYY HH:mm:ss')}
+                                                <table className="table detail-table mt-3">
+                                                    <thead>
+                                                    <tr className="detail-header">
+                                                        <th className="detail-num">#</th>
+                                                        <th className="detail-description">Test</th>
+                                                        <th className="detail-result">Result</th>
+                                                        <th className="detail-note">Note</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {Object.keys(me.state.report.cases[c].hook).map((h)=> {
+                                                        return (
+                                                            Object.keys(me.state.report.cases[c].hook[h]).map((t, i)=> {
+                                                                return(
+                                                                    <tr key={i} className="detail-row">
+                                                                        <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-num test-success-dm" : 
+                                                                                            (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm" }>{me.state.report.cases[c].hook[h][t].num}</td>
+                                                                        <td className="detail-description">{me.state.report.cases[c].hook[h][t].description}</td>
+                                                                        <td className="detail-result">
+                                                                            {me.state.report.cases[c].hook[h][t].result? me.state.report.cases[c].hook[h][t].result : ''}
+                                                                        </td>
+                                                                        <td className="detail-notes">
+                                                                            {me.state.report.cases[c].hook[h][t].notes? JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : ''}
+                                                                        </td>
+                                                                    </tr>
+                                                            );
+                                                            })
+                                                        );
+                                                    })}
+                                                    </tbody>
+                                                </table>  
+                                            </div> 
+                                        );                                   
+                                        })}
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
                             <div className="row testset"> 
                                 <div className="col-sm-12">
-                                    {Object.keys(me.state.test_cases).map((t)=> {
-                                        return(
-                                            <a key={t} className={me.state.test_cases[t].classColor}
-                                                title={me.state.test_cases[t].name +
-                                                         ": " + me.state.test_cases[t].success}>{t}</a> 
-                                        );
-                                    })}
-
-                                </div>                                      
-                            </div> 
-                        }
+                                    <p className="h4">Last execution log</p>
+                                    <AceEditor code={me.state.report.lastlog.details} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                }
-
-                {me.state.detailview &&
-                    <div className="col-md-8 main">
-                        {me.state.test_cases!=null && 
-                            <table className="detail-table">
-                                <tr className="detail-header"><th className="detail-num">#</th><th className="detail-description">Test</th><th className="detail-result">Test Result</th></tr>
-                                {Object.keys(me.state.test_cases).map((t)=> {
-                                    return(
-                                         <tr key={t} className="detail-row">
-                                            <td className={'detail-num ' + me.state.test_cases[t].classColor + '-dm'}>{t}</td>
-                                            <td className="detail-description">{me.state.test_cases[t].name}</td>
-                                            <td className={'detail-result ' + me.state.test_cases[t].classColor + '-dm'}>{me.state.test_cases[t].result}<br/>{me.state.test_cases[t].note}</td>
-                                         </tr>
-                                    );
-                                })}
-                            </table>
-                        }
-                    </div>
-                }
+                </div>
 
                 <div className="col-md-4">   
                     <div className="tools">
