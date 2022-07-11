@@ -13,7 +13,7 @@ class TestMetadata extends Test {
         super.exec();
     }
 
-    printResult() {
+    async printResult() {
         let result = this.setFailure();
         try {
             result = this.setSuccess();
@@ -28,7 +28,7 @@ class TestMetadata extends Test {
         }
     }
 
-    getResult() {
+    async getResult() {
         let test = {
             num: this.num,
             hook: this.hook,
@@ -41,8 +41,8 @@ class TestMetadata extends Test {
         }
 
         try {
+            await this.exec();
             test.result = this.setSuccess();
-            this.exec();
             test.message = "SUCCESS";
         } catch(error) {
             test.result = this.setFailure();

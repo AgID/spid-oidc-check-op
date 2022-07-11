@@ -392,13 +392,18 @@ class Database {
             'state': state
         });
 
-        return {
-            'user':         result[0]['user'],
-            'type':         result[0]['type'],
-            'testsuite':    result[0]['testsuite'],
-            'testcase':     result[0]['testcase'],
-            'authrequest':  JSON.parse(result[0]['authrequest'])
-        };
+        let request = null;
+        if(result.length==1) {
+            request = {
+                'user':         result[0]['user'],
+                'type':         result[0]['type'],
+                'testsuite':    result[0]['testsuite'],
+                'testcase':     result[0]['testcase'],
+                'authrequest':  JSON.parse(result[0]['authrequest'])
+            }
+        }
+
+        return request;
     }
 
     /*

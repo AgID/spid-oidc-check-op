@@ -132,7 +132,7 @@ module.exports = function(app, checkAuthorisation, database) {
     });
     
     // execute test for metadata
-    app.get("//api/metadata/check/:testcase", function(req, res) {
+    app.get("//api/metadata/check/:testcase", async function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -174,7 +174,7 @@ module.exports = function(app, checkAuthorisation, database) {
             let TestClass = require("../../test/" + tests[t]);
             let test = new TestClass(metadata);
             if(test.hook==hook) {
-                let result = test.getResult();
+                let result = await test.getResult();
                 
                 // save single test to store
                 database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);

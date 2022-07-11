@@ -29,6 +29,7 @@ class TestTokenRequest extends Test {
         }
 
         try {
+            //do not await here but exec requested. TODO 
             this.exec();
             test.result = this.setSuccess();
             test.message = "SUCCESS";
