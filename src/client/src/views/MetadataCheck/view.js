@@ -25,7 +25,7 @@ function view(me) {
                                         return(
                                             <a key={i} 
                                                 className={(t.result=="success")? "test-success" : (t.result=="warning")? "test-warning" : "test-fail" }
-                                                title={t.description + (t.notes? ": " + t.notes : "")}> {t.num} 
+                                                title={t.description + (t.message? ": " + t.message : "")}> {t.num} 
                                             </a> 
                                         );
                                     })}
@@ -40,27 +40,27 @@ function view(me) {
                     <div className="col-md-8 main">
                         {me.state.report!=null && 
                             <div className="row testset"> 
-                                <div className="col-sm-12">
+                                <div className="col-sm-12 table-responsive">
                                 <p>
                                     <div>Check: <b><span className="first-upper">{me.state.testcase}</span></b></div> 
                                     {me.state.description!=null && <div>Descrizione<b>: {me.state.description}</b></div> }
                                     {me.state.referements!=null && <div>Riferimenti<b>: {me.state.referements}</b></div> }
                                 </p>
                                     
-                                    <table className="detail-table">
+                                    <table className="table detail-table">
                                         <tr className="detail-header">
                                             <th className="detail-num">#</th>
                                             <th className="detail-description">Test</th>
-                                            <th className="detail-result">Test Result</th>
+                                            <th className="detail-result">Result</th>
+                                            <th className="detail-result">Notes</th>
                                         </tr>
                                         {me.state.report.map((t, i)=> {
                                             return(
                                                 <tr key={i} className="detail-row">
                                                     <td className={(t.result=="success")? "detail-num test-success-dm" : (t.result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm"}>{t.num}</td>
                                                     <td className="detail-description">{t.description}</td>
-                                                    <td className={(t.result=="success")? "detail-result test-success-dm" : (t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm"}>
-                                                        {t.result + (t.notes? " - value: " + t.notes : "")}
-                                                    </td>
+                                                    <td className={(t.result=="success")? "detail-result test-success-dm" : (t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm"}>{t.message}</td>
+                                                    <td>{JSON.stringify(t.notes)}</td>
                                                 </tr>
                                             );
                                         })}
