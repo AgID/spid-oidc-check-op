@@ -17,7 +17,7 @@ class Test_1_4_8 extends TestMetadata {
             return true;
         } 
 
-        if(!(this.metadata.configuration.claims_supported.length==2
+        if(!(this.metadata.configuration.claims_supported.length==17
             && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/spid_code')
             && this.metadata.configuration.claims_supported.includes('given_name')
             && this.metadata.configuration.claims_supported.includes('family_name')
@@ -25,7 +25,7 @@ class Test_1_4_8 extends TestMetadata {
             && this.metadata.configuration.claims_supported.includes('birthdate')
             && this.metadata.configuration.claims_supported.includes('gender')
             && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/company_name')
-            && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/registeredoffice')
+            && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/registered_office')
             && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/fiscal_number')
             && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/company_fiscal_number')
             && this.metadata.configuration.claims_supported.includes('https://attributes.eid.gov.it/vat_number')

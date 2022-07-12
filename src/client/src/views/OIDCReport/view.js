@@ -75,10 +75,11 @@ function view(me) {
                                                                         <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-num test-success-dm" : 
                                                                                             (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm" }>{me.state.report.cases[c].hook[h][t].num}</td>
                                                                         <td className="detail-description">{me.state.report.cases[c].hook[h][t].description}</td>
-                                                                        <td className="detail-result">
-                                                                            {me.state.report.cases[c].hook[h][t].result? me.state.report.cases[c].hook[h][t].result : ''}
+                                                                        <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-result test-success-dm" : 
+                                                                                            (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm" }>
+                                                                            {me.state.report.cases[c].hook[h][t].message? me.state.report.cases[c].hook[h][t].message : ''}
                                                                         </td>
-                                                                        <td className="detail-notes">
+                                                                        <td className="detail-notes"> 
                                                                             {me.state.report.cases[c].hook[h][t].notes? JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : ''}
                                                                         </td>
                                                                     </tr>

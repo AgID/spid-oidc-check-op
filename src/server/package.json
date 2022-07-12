@@ -15,6 +15,7 @@
     "fs-extra": "^8.1.0",
     "helmet": "^3.10.0",
     "html-entities": "^1.2.1",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "node-jose": "^2.1.1",
     "openid-client": "^5.1.7",
