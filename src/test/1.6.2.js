@@ -12,7 +12,7 @@ class Test_1_6_2 extends TestMetadata {
     async exec() {
         super.exec();
         
-        this.notes = "";
+        this.notes = "TODO automatic";
         return true;
 
     }

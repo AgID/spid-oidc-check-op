@@ -21,7 +21,7 @@ class Test_3_3_13 extends TestTokenResponse {
             throw("claim at_hash is not present");
         }
 
-        this.notes = "automatic TO DO";
+        this.notes = "TODO automatic";
         return true;
     }
 
