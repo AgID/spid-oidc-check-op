@@ -1,5 +1,6 @@
 const TestTokenResponse = require('../server/lib/test/TestTokenResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
+const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 
 class Test_3_3_26 extends TestTokenResponse {
@@ -11,16 +12,16 @@ class Test_3_3_26 extends TestTokenResponse {
         this.validation = "automatic";
     }
 
-    exec() {
+    async exec() {
         super.exec();
-
+ 
         let id_token = this.tokenresponse.data.id_token;
 
         let op_jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
         
         if(op_jwks.keys==null || op_jwks.keys=='') {
             this.notes = op_jwks;
-            throw("JWKS of OP not found");
+            throw("JWKS of OP not found"); 
         }
 
         let keystore_op = jose.JWK.createKeyStore();

@@ -1,5 +1,6 @@
 const TestTokenResponse = require('../server/lib/test/TestTokenResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
+const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 
 class Test_3_4_15 extends TestTokenResponse {
@@ -11,7 +12,7 @@ class Test_3_4_15 extends TestTokenResponse {
         this.validation = "automatic";
     }
 
-    exec() {
+    async exec() {
         super.exec();
 
         let access_token = this.tokenresponse.data.access_token;
