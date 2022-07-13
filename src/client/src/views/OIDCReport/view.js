@@ -31,7 +31,8 @@ function view(me) {
                                                                 return(
                                                                     <a key={i} 
                                                                         className={(me.state.report.cases[c].hook[h][t].result=="success")? "test-success" : (me.state.report.cases[c].hook[h][t].result=="warning")? "test-warning" : "test-fail" }
-                                                                        title={me.state.report.cases[c].hook[h][t].description + (me.state.report.cases[c].hook[h][t].notes? ": " + JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : "")}> {me.state.report.cases[c].hook[h][t].num} 
+                                                                        title={me.state.report.cases[c].hook[h][t].description + (me.state.report.cases[c].hook[h][t].notes? ": " + JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : "")}> 
+                                                                        {me.state.report.cases[c].hook[h][t].num} 
                                                                     </a> 
                                                                 );
                                                             })
@@ -77,7 +78,7 @@ function view(me) {
                                                                         <td className="detail-description">{me.state.report.cases[c].hook[h][t].description}</td>
                                                                         <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-result test-success-dm" : 
                                                                                             (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm" }>
-                                                                            {me.state.report.cases[c].hook[h][t].message? me.state.report.cases[c].hook[h][t].message : ''}
+                                                                            {me.state.report.cases[c].hook[h][t].message? JSON.stringify(me.state.report.cases[c].hook[h][t].message) : ''}
                                                                         </td>
                                                                         <td className="detail-notes"> 
                                                                             {me.state.report.cases[c].hook[h][t].notes? JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : ''}
