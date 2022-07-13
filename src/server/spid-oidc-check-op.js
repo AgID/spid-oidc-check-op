@@ -114,11 +114,11 @@ require('./api/server-info')	(app);
 
 
 // routes all to React Router
-/*
 app.get('*', (req, res)=> {
+    console.log("Route to front-end");
     res.sendFile(path.resolve(__dirname + '/../client/build/index.html'));    
 });
-*/
+
 
 // start
 if(useHttps) app = https.createServer(httpsCredentials, app);

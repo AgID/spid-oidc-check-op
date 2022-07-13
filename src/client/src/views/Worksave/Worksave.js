@@ -108,9 +108,9 @@ class Worksave extends Component {
             (data)=> {
                 Utility.log("Started Workspace", data);
                 if(data.configuration==null) {
-                    window.location = '#/metadata/download';
+                    window.location = 'metadata/download';
                 } else {
-                    window.location = '#/test';
+                    window.location = 'oidc/check';
                 }
                 Utility.blockUI(false);
             },

@@ -41,7 +41,7 @@ export default {
       name: 'Logout',
       icon: 'fa fa-sign-out',
       sessionRequired: false,
-      url: 'logout'
+      url: '/logout'
     }
   ]
 };

@@ -4,6 +4,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const ProgressPlugin = require('progress-webpack-plugin');
+const config_rp = require('../config/rp.json');
 
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
     },
     entry: "./src/index.js",
     output: {
+        publicPath: config_rp.basepath + 'assets/',  
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, 'build/assets'),
         clean: true

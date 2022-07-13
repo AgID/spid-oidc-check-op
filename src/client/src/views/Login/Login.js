@@ -24,7 +24,7 @@ class Login extends Component {
 			Utility.setApikey(data.apikey);
 			Utility.log("Login result", Utility.isAuthenticated());	
 			if(Utility.isAuthenticated()) {
-				window.location="#/worksave";
+				window.location="worksave";
 			}
 		}, 
 		(tologin)=> {
@@ -62,7 +62,7 @@ class Login extends Component {
 				Utility.setApikey(apikey);
 				Utility.log("Login result", Utility.isAuthenticated());	
 				if(Utility.isAuthenticated()) {
-					window.location="#/worksave";
+					window.location="worksave";
 				}			
 			}, 
 			(error)=> {

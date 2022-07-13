@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
@@ -21,11 +21,12 @@ import MetadataCheck from './views/MetadataCheck/';
 import OIDCCheck from './views/OIDCCheck/';
 import OIDCReport from './views/OIDCReport/';
 import OIDCLog from './views/OIDCLog/';
+import config from "./config.json";
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <HashRouter> 
+  <BrowserRouter basename={config.basepath}> 
     <Routes>
       <Route path="/" element={<Base/>}>
         <Route path="/" element={<Login/>}/>
@@ -42,6 +43,7 @@ root.render(
         <Route path="/oidc/report" element={<OIDCReport />}/>
         <Route path="/oidc/log" element={<OIDCLog />}/> 
       </Route>
+      <Route path='/logout' element={<Login/>} />
     </Routes>
-  </HashRouter>
+  </BrowserRouter>
 ); 
