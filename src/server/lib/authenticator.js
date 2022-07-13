@@ -35,7 +35,7 @@ class AgIDLoginAuthenticator {
 
     }
 
-    setIssuer(show='agid,google') {
+    setIssuer(show='spid,cie,agid,microsoft,google') {
 
         let issuer = new Issuer({ 
             issuer: this.issuer,
@@ -49,7 +49,7 @@ class AgIDLoginAuthenticator {
         this.client = new issuer.Client({
             client_id: this.client_id,
             client_secret: this.client_secret,
-            token_endpoint_auth_method: 'client_secret_post'
+            token_endpoint_auth_method: 'client_secret_basic'
         });
 
         this.client.CLOCK_TOLERANCE = 5 * 60; // to allow a 5 min skew
@@ -72,7 +72,7 @@ class AgIDLoginAuthenticator {
     }
 
     getUserInfo(authorizationPostData, state, result, error) {
-        this.client.authorizationCallback(
+        this.client.callback(
             this.redirect_uri, 
             {
                 state: state,

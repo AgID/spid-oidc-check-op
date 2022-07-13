@@ -64,54 +64,18 @@ module.exports = function(app, checkAuthorisation, authenticator) {
             let fromnow = now.diff(validfrom, 'days');
             let nowto = validto.diff(now, 'days');
     
-            Utility.log("AgID Login USER", userinfo);
+            console.log("AgID Login USER", userinfo);
     
-    
-            if(policy.validator && fromnow>-1 && nowto>-1) {
-                req.session.apikey = req.session.apikey? req.session.apikey : Utility.getUUID();
-                req.session.entity = entity;
-                req.session.policy = policy;
-                req.session.user = userinfo.sub;
-    
-                if(userinfo.entity!=null && state!=null && state!="") {
-                    Utility.log("SOB API " + state, {user: userinfo.sub, code: userinfo.entity.code});
-                }
-    
-                // STATE custom selection
-                /*
-                if(userinfo.entity!=null && state!=null && state=="state1") {
-                    //...
-                    
-                } else if(userinfo.entity!=null && state!=null && state=="state2") {
-                    //...
-    
-                } else {
-    
-                    res.sendFile(path.resolve(__dirname, "../..", "client/build", "index.html"));
-                }
-                */
+            req.session.user = userinfo.email;
+            let apikey = sha256(userinfo.sub).toString();
+            req.session.apikey = apikey;
 
-
-                res.sendFile(path.resolve(__dirname, "../..", "client/build", "index.html"));
-    
-            } else {
-                let msg = "Accesso non autorizzato. Contattare l'amministratore di sistema.";
-    
-                //if(fromnow<0) msg+= "Your accounts is valid from " + userpolicy.valid_from;
-                //if(nowto<0) msg+= "Your accounts has expired on " + userpolicy.valid_to;
-    
-                if(fromnow<0 || nowto<0) msg+= "Your accounts has expired.";
-    
-                req.session.destroy();
-                error = {code: 401, msg: msg}
-                res.status(error.code).send(error.msg);
-                return null;
-            }
+            res.redirect(config_rp.basepath + "worksave");
     
         }, (error)=> {
             Utility.log("Error", error);
-            //res.status(500).send(error);
-            res.sendFile(path.resolve(__dirname, "../..", "client/view", "error.html"));
+            res.status(500).send(error);
+            //res.sendFile(path.resolve(__dirname, "../..", "client/view", "error.html"));
             //res.redirect("/");
         });
     });
