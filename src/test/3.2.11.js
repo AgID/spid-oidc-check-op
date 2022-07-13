@@ -13,7 +13,7 @@ class Test_3_2_11 extends TestTokenResponse {
         this.validation = "self";
     }
 
-    exec() {
+    async exec() {
         super.exec();
 
         if(!this.authrequest.scope.includes('offline_access')) {

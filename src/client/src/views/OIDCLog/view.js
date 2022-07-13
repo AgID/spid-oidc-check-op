@@ -9,8 +9,8 @@ function view(me) {
     return (
         <div id="OIDCReport" className="animated fadeIn">
             <p className="title h3">Authorization Code Flow Log</p>
+            { me.state.report.lastlog.details && (
             <div className="row">
-                
                 <div className="col-md-8">
                     <div className="row">
                         <div className="col-md-12">
@@ -46,6 +46,7 @@ function view(me) {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     );
 }
