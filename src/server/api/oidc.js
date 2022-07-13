@@ -213,7 +213,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 let TestTokenResponseClass = require("../../test/" + tests[t]);
                 test = new TestTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
                 if(test.hook==hook) {
-                    result = test.getResult();
+                    result = await test.getResult();
 
                     switch(test.validation) {
                         case 'automatic':
@@ -315,7 +315,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 let TestUserinfoResponseClass = require("../../test/" + tests[t]);
                 test = new TestUserinfoResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse);
                 if(test.hook==hook) {
-                    result = test.getResult();
+                    result = await test.getResult();
 
                     switch(test.validation) {
                         case 'automatic':

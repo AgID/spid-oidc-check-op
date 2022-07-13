@@ -14,10 +14,10 @@ class Test_3_2_1 extends TestTokenResponse {
         if(this.tokenresponse.status!=200) {
             this.notes = this.tokenresponse.status;
             throw("HTTP Status Code is different from 200 OK");
-        } else {
-            this.notes = this.tokenresponse.status;
-            return true;
         }
+
+        this.notes = this.tokenresponse.status;
+        return true;
     }
 
 }

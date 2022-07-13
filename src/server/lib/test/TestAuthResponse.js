@@ -15,7 +15,7 @@ class TestAuthResponse extends Test {
         super.exec();
     }
 
-    getResult() {
+    async getResult() {
         let test = {
             num: this.num,
             hook: this.hook,
@@ -28,7 +28,7 @@ class TestAuthResponse extends Test {
         }
 
         try {
-            this.exec();
+            await this.exec();
             test.result = this.setSuccess();
             test.message = "SUCCESS";
         } catch(error) {

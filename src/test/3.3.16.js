@@ -32,7 +32,7 @@ class Test_3_3_16 extends TestTokenResponse {
             throw("the value of iat is not a valid unix time");
         }
 
-        this.notes = this.notes = moment.unix(id_token_payload.iat).format('DD/MM/YYYY HH:mm:ss') + " < " + moment().add(3, 'm').format('DD/MM/YYYY HH:mm:ss');
+        this.notes = moment.unix(id_token_payload.iat).format('DD/MM/YYYY HH:mm:ss') + " < " + moment().add(3, 'm').format('DD/MM/YYYY HH:mm:ss');
         return true;
     }
 
