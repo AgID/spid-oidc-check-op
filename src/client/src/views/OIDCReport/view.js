@@ -98,6 +98,7 @@ function view(me) {
                             </div>
                         }
                     </div>
+                    {/*
                     <div className="row">
                         <div className="col-md-12">
                             <div className="row testset"> 
@@ -108,6 +109,7 @@ function view(me) {
                             </div>
                         </div>
                     </div>
+                    */}
                 </div>
 
                 <div className="col-md-4">   

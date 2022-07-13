@@ -30,6 +30,10 @@ export default {
         {
           name: 'Report',  
           url: '/oidc/report',      
+        },
+        {
+          name: 'Log',  
+          url: '/oidc/log',      
         }
       ]
     },

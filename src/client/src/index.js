@@ -20,6 +20,7 @@ import MetadataDownload from './views/MetadataDownload/';
 import MetadataCheck from './views/MetadataCheck/';
 import OIDCCheck from './views/OIDCCheck/';
 import OIDCReport from './views/OIDCReport/';
+import OIDCLog from './views/OIDCLog/';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -39,6 +40,7 @@ root.render(
       <Route path="/oidc" element={<Main/>}>
         <Route path="/oidc/check" element={<OIDCCheck />}/>
         <Route path="/oidc/report" element={<OIDCReport />}/>
+        <Route path="/oidc/log" element={<OIDCLog />}/> 
       </Route>
     </Routes>
   </HashRouter>

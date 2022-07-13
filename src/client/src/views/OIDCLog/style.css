@@ -1,0 +1,19 @@
+#OIDCLog button {
+    margin: 5px!important; 
+}
+
+#OIDCLog .tools {
+    padding: 30px 20px;
+    background: #FFFFFF;
+    margin-left: 15px;
+}
+
+#OIDCLog .align-super {
+    vertical-align: super;
+}
+
+@media print {
+    #OIDCLog .tools {
+        display: none!important;
+    }
+}

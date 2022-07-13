@@ -1,15 +1,31 @@
-.title {
+#MetadataDownload .title {
     margin-bottom: 30px!important;
 }
 
-input.metadata {
-    width: 70%;
+#MetadataDownload input.metadata {
+    width: 100%;
 }
 
-.code {
+#MetadataDownload .code {
     margin-top: 20px;
 }
 
-button {
-    margin: 0 5px!important;
+#MetadataDownload button {
+    margin: 5px!important; 
+}
+
+#MetadataDownload .tools {
+    padding: 30px 20px;
+    background: #FFFFFF;
+    margin-left: 15px;
+}
+
+#MetadataDownload .align-super {
+    vertical-align: super;
+}
+
+@media print {
+    #MetadataDownload .tools {
+        display: none!important;
+    }
 }

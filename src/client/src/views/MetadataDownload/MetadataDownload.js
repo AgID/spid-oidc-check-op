@@ -90,6 +90,10 @@ class MetadataDownload extends Component {
     );
   }
 
+  print() {
+    Utility.print("response");
+  }
+
 }
 
 export default MetadataDownload;
