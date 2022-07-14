@@ -15,6 +15,7 @@ import Empty from './containers/Empty'
 import Main from './containers/Main'
 
 import Login from './views/Login/';
+import Redirect from './views/Redirect/';
 import Worksave from './views/Worksave/';
 import MetadataDownload from './views/MetadataDownload/';
 import MetadataCheck from './views/MetadataCheck/';
@@ -43,7 +44,7 @@ root.render(
         <Route path="/oidc/report" element={<OIDCReport />}/>
         <Route path="/oidc/log" element={<OIDCLog />}/> 
       </Route>
-      <Route path='/logout' element={<Login/>} />
+      <Route path='/logout' element={<Redirect redirect={config.basepath + '/logout'}/>} />
     </Routes>
   </BrowserRouter>
 ); 

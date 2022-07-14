@@ -21,32 +21,40 @@ class Worksave extends Component {
         let service = Services.getMainService();
         let store = ReduxStore.getMain();
 
-        service.loadAllWorkspace(
-            (data)=> {
-                if(data.length==0) {
-                    this.startWorkspace('test');
-                } else {
-                    this.setState({ 
-                        available_stores: data,
-                        selected_type: data[0].store_type,
-                        workspace: data[0]
-                    });
-                }
-            },
-            (error)=> {
-                // no session
-                Utility.showModal({
-                    title: "Attenzione, la sessione è scaduta",
-                    body: error,
-                    isOpen: true
-                });
-            },
-            (error)=> {
-                Utility.showModal({
-                    title: "Attenzione, si è verificato un errore",
-                    body: error,
-                    isOpen: true
-                });
+        service.assert( 
+            (data)=>{
+                Utility.setApikey(data.apikey);
+                service.loadAllWorkspace(
+                    (data)=> {
+                        if(data.length==0) {
+                            this.startWorkspace('test');
+                        } else {
+                            this.setState({ 
+                                available_stores: data,
+                                selected_type: data[0].store_type,
+                                workspace: data[0]
+                            });
+                        }
+                    },
+                    (error)=> {
+                        // no session
+                        Utility.showModal({
+                            title: "Attenzione, la sessione è scaduta",
+                            body: error,
+                            isOpen: true
+                        });
+                    },
+                    (error)=> {
+                        Utility.showModal({
+                            title: "Attenzione, si è verificato un errore",
+                            body: error,
+                            isOpen: true
+                        });
+                    }
+                );
+            }, 
+            (tologin)=> {
+                if(tologin.remote) window.location=config.basepath; 
             }
         );
     }
