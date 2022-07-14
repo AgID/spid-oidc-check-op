@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import view from "./view.js";
 
 class Redirect extends Component {
 
@@ -10,8 +11,7 @@ class Redirect extends Component {
 	}	
   
 	render() {
-		let render = "";
-
+		let render = view(this);
 		return render;
 	}
 }
