@@ -11,16 +11,17 @@ copy and edit configurations
 ```
 cp -R config_sample config
 ```
+create directory for database
+```
+mkdir data
+```
 compile and build the client
 ```
-cd client
-npm i
-npm run build
+cd client && npm i && npm run build && cd ..
 ```
 compile the server
 ```
-cd ../server
-npm i
+cd server && npm i && cd ..
 ```
 
 ## Run
