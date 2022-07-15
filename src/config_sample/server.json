@@ -1,0 +1,8 @@
+{
+  "host": "http://localhost",
+  "port": 8084,
+  "useProxy": false,
+  "useHttps": false,
+	"httpsPrivateKey": "./config/spid-oidc-check-op.key",
+	"httpsCertificate": "./config/spid-oidc-check-op.crt"
+}
