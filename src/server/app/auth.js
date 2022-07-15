@@ -70,7 +70,7 @@ module.exports = function(app, checkAuthorisation, authenticator) {
             let apikey = sha256(userinfo.sub).toString();
             req.session.apikey = apikey;
 
-            res.redirect(config_rp.basepath + "worksave");
+            res.redirect(config_rp.basepath + "/worksave");
     
         }, (error)=> {
             Utility.log("Error", error);

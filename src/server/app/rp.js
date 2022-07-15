@@ -14,7 +14,8 @@ module.exports = function(app, checkAuthorisation) {
 
         let client_id = config_rp.client_id;
         let redirect_uris = [ config_rp.redirect_uri ];
-        let jwks_uri = config_rp.client_id + "/" + config_rp.basepath + "/certs";
+        let jwks_uri_host = (client_id.substring(-1)=='/')? client_id.substring(0, client_id.length-1) : client_id;
+        let jwks_uri = jwks_uri_host + "/" + config_rp.basepath + "/certs";
         let response_types = "code";
         let grant_types = ["authorization_code", "refresh_token"];
         let client_name = "Agenzia per l'Italia Digitale";
