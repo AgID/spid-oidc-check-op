@@ -60,8 +60,8 @@ class OIDCCheck extends Component {
           cases: []
         });
         Utility.showModal({
-            title: "Errore",
-            body: error,
+            title: "Error",  
+            body: error, 
             isOpen: true
         });
       }
@@ -86,7 +86,7 @@ class OIDCCheck extends Component {
       (error) => { 
         Utility.blockUI(false);
         Utility.showModal({
-            title: "Errore",
+            title: "Error",
             body: error,
             isOpen: true
         });

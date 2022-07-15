@@ -2,9 +2,17 @@ import React from 'react';
 import {Routes, Route, Link} from 'react-router-dom';
 import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import routes from '../../routes';
+import config from '../../config.json';
 import "./style.css";
 
-const findRouteName = url => routes[url];
+const findRouteName = (url) => {
+  let routes_keys = Object.keys(routes);
+  for(let r in routes_keys) {
+    if(config.basepath + routes_keys[r] == url) {
+      return routes[routes_keys[r]];
+    }
+  }
+}
 
 const getPaths = (pathname) => {
   const paths = ['/'];
@@ -40,12 +48,15 @@ const BreadcrumbsItem = (props) => {
 };
 
 const Breadcrumbs = (props) => {
-  let pathname=window.location.hash.substring(1);
+  let pathname=window.location.pathname;
   const paths = getPaths(pathname);
   const items = paths.map((path, i) => <BreadcrumbsItem key={i++} url={path} isExact={true} />);
+
   return (
     <Breadcrumb className="breadcrumbs">
       {items}
+
+      <li className="info-user">{props.user}</li>
     </Breadcrumb>
   );
 };

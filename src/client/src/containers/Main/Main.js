@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import ScrollToTop from 'react-scroll-up';
+import ScrollToTop from "react-scroll-to-top";
 import BlockUi from 'react-block-ui';
 
 import Header from '../../components/Header/';
@@ -13,6 +13,7 @@ import Footer from '../../components/Footer/';
 import ReduxStore from "../../redux/store";
 import Utility from '../../utility';
 import Services from '../../services';
+import config from '../../config.json';
 
 var moment = require('moment');
 moment.locale('it');
@@ -30,18 +31,19 @@ class Main extends Component {
 			blocking: false,
 			modal_open: false,
             modal_hide_buttons: false,
-			modal_title: "Attendere prego",
+			modal_title: "Please wait",
 			modal_subtitle: "",
-			modal_body: "Elaborazione in corso... Si prega di attendere. Grazie.",
+			modal_body: "working in progress",
 			modal_btn_primary_func: ()=> {Utility.showModal({isOpen: false})},
-			modal_btn_primary_text: "Chiudi",
+			modal_btn_primary_text: "Close",
 			modal_btn_secondary_func: null,
 			modal_btn_secondary_text: "",
 
 			print: false,
             infoprint_issuer: "-",
             infoprint_metadata: "-",
-            infoprint_datetime: "-"
+			infoprint_datetime: "-",
+			user: ""
 		};
 
 		this.utilStore = ReduxStore.getUtil();		
@@ -49,6 +51,33 @@ class Main extends Component {
 		this.unsubscribeUtil = this.utilStore.subscribe(()=>this.onUtilStoreUpdate());
 		this.unsubscribeModal = this.modalStore.subscribe(()=>this.onModalStoreUpdate());
 	}	
+
+	componentDidMount() {
+		let service = Services.getMainService();
+		service.getInfo(
+			(info)=> { 
+				this.setState({user: info.user});
+			},
+			(info)=> {
+				this.setState({user: info.user});
+
+				// here let to enter even if metadata configuration is not present
+				/*
+				Utility.showModal({
+					title: "Warning",
+					body: "Session is expired. Please reauthenticate",
+					isOpen: true,
+					btnPrimaryFunc: ()=> {
+						window.location = config.basepath;
+					}
+				});
+				*/
+			},
+			(error)=> {
+				console.log(error);
+			}
+		);
+	}
 	
 	onUtilStoreUpdate() {
 		let utilState = this.utilStore.getState(); 
@@ -126,7 +155,7 @@ class Main extends Component {
 		
 		if(!Utility.isAuthenticated()) {
 			Utility.log("AUTH CHECK", "User not authenticated, redirect to login");
-			window.location="/#/login";
+			window.location="/login";
 			return null;
 			
 		} else {
@@ -139,22 +168,24 @@ class Main extends Component {
 							<Header />
 							<div className="app-body">
 								<Sidebar {...this.props}/> 
+								
 								<main className="main">
-                                <img className="agid-logo-print" src="img/spid-agid-logo-lb.png" />
+									<img className="agid-logo-print" src="img/spid-agid-logo-lb.png" />
 
-								<Breadcrumb {...this.props} />	
-								<Container fluid>
-									<Outlet />
-								</Container>
-								
-								<div className="info-print">
-                                    Metadata: {this.state.infoprint_metadata} <br/>
-                                    Report generato il: {this.state.infoprint_datetime}
-                                </div>
-								
-								<ScrollToTop showUnder={160}>
-									<button className="btn btn-lg btn-primary"><span className="fa fa-chevron-up"></span></button>
-								</ScrollToTop>		
+									<Breadcrumb {...this.props} user={this.state.user}/>	
+									<Container fluid>
+										<Outlet />
+									</Container>
+									
+									<div className="info-print">
+										User: {this.state.user}
+										Metadata: {this.state.infoprint_metadata} <br/>
+										Report generato il: {this.state.infoprint_datetime}
+									</div>
+									
+									<ScrollToTop smooth className="btn-scroll" component={
+										<button className="btn btn-lg btn-primary"><span className="fa fa-chevron-up"></span></button>	
+									} />		
 												
 								</main>
 								<Aside />

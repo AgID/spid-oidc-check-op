@@ -22,9 +22,10 @@ class MetadataDownload extends Component {
     let store = ReduxStore.getMain();
     let storeState = store.getState();
 
+    Utility.blockUI(true);
     service.getInfo(
       (info) => {
-
+        Utility.blockUI(false);
         if(info.metadata && info.metadata.url && info.metadata.configuration) {
           this.setState({ url: info.metadata.url, configuration: info.metadata.configuration });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
@@ -38,7 +39,7 @@ class MetadataDownload extends Component {
       },
 
       (info)=> { // no session
-
+        Utility.blockUI(false);
         if(info.metadata && info.metadata.url && info.metadata.configuration) {
           this.setState({ url: info.metadata.url, configuration: info.metadata.configuration });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
@@ -52,6 +53,7 @@ class MetadataDownload extends Component {
       },
 
       (error)=> {
+        Utility.blockUI(false);
         Utility.showModal({
             title: "Errore",
             body: error,
@@ -61,7 +63,7 @@ class MetadataDownload extends Component {
     );
   }
   
-    render() {    
+  render() {    
 		return view(this);
   }
   
@@ -71,14 +73,17 @@ class MetadataDownload extends Component {
     let store = ReduxStore.getMain();
     let util = ReduxStore.getUtil();
 
+    Utility.blockUI(true);
     service.downloadMetadata(url,
       (metadata) => { 
+        Utility.blockUI(false);
         this.setState({ url: metadata.url, configuration: metadata.configuration });
         store.dispatch(Actions.setMetadataURL(url)); 
         store.dispatch(Actions.setMetadataConfiguration(metadata.configuration)); 
         util.dispatch(UtilActions.updateSidebar(true));
       }, 
       (error)   => { 
+        Utility.blockUI(false);
         store.dispatch(Actions.setMetadataURL(""));
         store.dispatch(Actions.setMetadataConfiguration(""));
         Utility.showModal({

@@ -1,46 +1,41 @@
-.panel-send {
-    background: #FFFFFF;
-    padding: 20px;
-    border: 1px solid #C2CFD6;
+#OIDCCheck .title {
+    margin-bottom: 30px!important;
 }
 
-form {
-    text-align: center;
+#OIDCCheck .main {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
-.btn-send {
-    margin:20px 0;
+#OIDCCheck .testcase-diagram {
     width: 100%;
-    max-width: 300px;
-    color: #FFFFFF;
 }
 
-.param {
-    width:100%;
-    margin-bottom:15px;
+#OIDCCheck .table-test-num {
+    width: 100px;
 }
 
-.checkAttribute {
-    margin-right: 10px;
-}
-
-.switch {
+#OIDCCheck .switch {
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
 }
 
-/*
-.main {
-    margin-bottom: 30px;
-}
-*/
-
-.Select {
+#OIDCCheck .Select {
     z-index:999;
     margin-bottom: 20px;
 }
 
-.test-description {
+#OIDCCheck .test-description {
     width:100%;
 }
+
+#OIDCCheck .tools {
+    padding: 30px 20px;
+    background: #FFFFFF;
+}
+
+#OIDCCheck .align-super {
+    vertical-align: super;
+} 

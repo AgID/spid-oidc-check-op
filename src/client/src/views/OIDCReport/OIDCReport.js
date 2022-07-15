@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from '../../withRouter';
 import view from "./view.js";
 import Utility from '../../utility';
 import Services from '../../services';
@@ -44,12 +45,12 @@ class OIDCReport extends Component {
       () => {
         Utility.blockUI(false); 
         Utility.showModal({
-            title: "Attenzione",
-            body: "Non è possibile consultare il report perchè ancora non è stato eseguito alcun caso di test di flusso. \
-                    Eseguire prima un caso di test selezionandolo dalla lista e inviando la richiesta di autenticazione.",
+            title: "Warning",
+            body: "It's not possible to show the report because a flow test has not been yet executed. \
+                  Please first select a test case from the list and send the authentication request.",
             isOpen: true
         });
-        window.location = "#/oidc/check";
+        this.props.navigate("/oidc/check");
       }, 
       (error) => { 
         Utility.blockUI(false); 
@@ -58,7 +59,7 @@ class OIDCReport extends Component {
             detailview: false
         });
         Utility.showModal({
-            title: "Errore",
+            title: "Error",
             body: error,
             isOpen: true
         });
@@ -81,4 +82,4 @@ class OIDCReport extends Component {
   }
 }
 
-export default OIDCReport;
+export default withRouter(OIDCReport);

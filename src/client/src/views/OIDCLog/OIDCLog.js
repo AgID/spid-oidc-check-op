@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from '../../withRouter';
 import view from "./view.js";
 import Utility from '../../utility';
 import Services from '../../services';
@@ -9,14 +10,15 @@ import config_test from '../../../../config/test.json';
 
 class OIDCLog extends Component {
 
-  constructor(props) {
+  constructor(props, context) {
     super(props);
-    
+
     this.state = {
         report: {
           lastlog: {}
         },
-        detailview: false
+        detailview: false,
+        redirect: false
     };  
   }	
 
@@ -42,12 +44,15 @@ class OIDCLog extends Component {
       () => {
         Utility.blockUI(false); 
         Utility.showModal({
-            title: "Attenzione",
-            body: "Non è possibile consultare il log perchè ancora non è stato eseguito alcun caso di test di flusso. \
-                    Eseguire prima un caso di test selezionandolo dalla lista e inviando la richiesta di autenticazione.",
+            title: "Warning",
+            body: "It's not possible to show the log because a flow test case has not been executed yet. \
+                    Please first select a test case from the list and send the authentication request.",
             isOpen: true
         });
-        window.location = "#/oidc/check";
+        //window.location = "oidc/check";
+
+        this.props.navigate('/oidc/check');
+
       }, 
       (error) => { 
         Utility.blockUI(false); 
@@ -56,7 +61,7 @@ class OIDCLog extends Component {
             detailview: false
         });
         Utility.showModal({
-            title: "Errore",
+            title: "Error",
             body: error,
             isOpen: true
         });
@@ -75,8 +80,13 @@ class OIDCLog extends Component {
     }
 
   render() {    
-	return view(this);
+    if(this.state.redirect) {
+      const navigate = useNavigate();
+      navigate(this.state.redirect, { replace: true });
+    }
+
+	  return view(this);
   }
 }
 
-export default OIDCLog;
+export default withRouter(OIDCLog);

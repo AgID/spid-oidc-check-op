@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import{ withRouter } from '../../withRouter';
 import view from "./view.js";
 import Utility from '../../utility';
 import Services from '../../services';
@@ -24,8 +25,10 @@ class Worksave extends Component {
         service.assert( 
             (data)=>{
                 Utility.setApikey(data.apikey);
+                //Utility.blockUI(true);
                 service.loadAllWorkspace(
                     (data)=> {
+                        Utility.blockUI(false);
                         if(data.length==0) {
                             this.startWorkspace('test');
                         } else {
@@ -37,16 +40,18 @@ class Worksave extends Component {
                         }
                     },
                     (error)=> {
+                        Utility.blockUI(false);
                         // no session
                         Utility.showModal({
-                            title: "Attenzione, la sessione è scaduta",
+                            title: "Warning, the session is expired",
                             body: error,
                             isOpen: true
                         });
                     },
                     (error)=> {
+                        Utility.blockUI(false);
                         Utility.showModal({
-                            title: "Attenzione, si è verificato un errore",
+                            title: "Error",
                             body: error,
                             isOpen: true
                         });
@@ -96,11 +101,10 @@ class Worksave extends Component {
     startNew() {
         let store_type = "";
         switch(this.state.selected_type) {
-            case 'test': store_type = " di TEST"; break;
-            case 'prod': store_type = " di PRODUZIONE"; break;
+            case 'test': store_type = " TEST"; break;
+            case 'prod': store_type = " PRODUCTION"; break;
         }
-        if(confirm("Sei sicuro di voler iniziare una nuova sessione di validazione per il metadata" + store_type
-                 + "? Il metadata caricato e tutti gli esiti dei test salvati andranno persi.")) {
+        if(confirm("Are you sure to want to start a new session? The stored metadata and all your previous stored results will be deleted.")) {
             Utility.log("WorkSave", "Start NEW");
             let service = Services.getMainService();
             service.resetWorkspace(this.state.selected_type, ()=> {
@@ -110,22 +114,22 @@ class Worksave extends Component {
     }
 
     startWorkspace(store_type) {
-        Utility.blockUI(true);
+        //Utility.blockUI(true);
         let service = Services.getMainService();
         service.loadWorkspace(store_type,
             (data)=> {
                 Utility.log("Started Workspace", data);
                 if(data.configuration==null) {
-                    window.location = 'metadata/download';
+                    this.props.navigate('/metadata/download')
                 } else {
-                    window.location = 'oidc/check';
+                    this.props.navigate('/oidc/check');
                 }
                 Utility.blockUI(false);
             },
             (error)=> {
                 // no session
                 Utility.showModal({
-                    title: "Attenzione, la sessione è scaduta",
+                    title: "Warning, the session is expired",
                     body: error,
                     isOpen: true
                 });
@@ -133,7 +137,7 @@ class Worksave extends Component {
             (error)=> {
                 Utility.blockUI(false);
                 Utility.showModal({
-                    title: "Attenzione, si è verificato un errore",
+                    title: "Error",
                     body: error,
                     isOpen: true
                 });
@@ -145,10 +149,10 @@ class Worksave extends Component {
 		if(this.state.workspace!=false) {
             return view(this);
         } else return (
-            <div>Loading...</div>
+            <div></div>
         );
 	}
   
 }
 
-export default Worksave;
+export default withRouter(Worksave);

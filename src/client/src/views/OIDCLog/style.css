@@ -1,3 +1,13 @@
+#OIDCLog .title {
+    margin-bottom: 30px!important;
+}
+
+#OIDCLog .main {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
 #OIDCLog button {
     margin: 5px!important; 
 }
@@ -5,7 +15,6 @@
 #OIDCLog .tools {
     padding: 30px 20px;
     background: #FFFFFF;
-    margin-left: 15px;
 }
 
 #OIDCLog .align-super {

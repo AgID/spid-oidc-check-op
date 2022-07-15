@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from '../../withRouter';
 import view from './view.js';
 import Utility from '../../utility';
 import Services from '../../services';
@@ -53,7 +54,7 @@ class MetadataCheck extends Component {
           datetime: null
         });
         Utility.showModal({
-            title: "Errore",
+            title: "Error",
             body: error,
             isOpen: true
         });
@@ -88,10 +89,11 @@ class MetadataCheck extends Component {
           datetime: null
         });
         Utility.showModal({
-            title: "Errore",
+            title: "Error",
             body: error,
             isOpen: true
         });
+        this.props.navigate('/metadata/download');
       }
     );
   }
@@ -113,4 +115,4 @@ class MetadataCheck extends Component {
   }
 }
 
-export default MetadataCheck;
+export default withRouter(MetadataCheck);

@@ -43,8 +43,9 @@
     "react-block-ui": "^1.3.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-scroll-up": "^1.3.7",
+    "react-scroll-to-top": "^1.0.9",
     "react-select": "^5.4.0",
+    "react-sticky-el": "^2.0.9",
     "reactstrap": "^9.1.1",
     "redux": "^4.2.0"
   }

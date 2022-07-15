@@ -16,6 +16,7 @@ module.exports = function(app, checkAuthorisation) {
     
         if(req.session!=null) {
             let info = {
+                user: req.session.user,
                 store_type: req.session.store_type,
                 metadata: req.session.store.metadata
             }

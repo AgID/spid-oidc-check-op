@@ -1,11 +1,15 @@
-#OIDCReport button {
-    margin: 5px!important; 
+#OIDCReport .title {
+    margin-bottom: 30px!important;
 }
 
-#OIDCReport .testset {
+#OIDCReport .main {
     background: #fff;
     padding: 15px;
     margin-bottom: 20px;
+}
+
+#OIDCReport button {
+    margin: 5px!important; 
 }
 
 #OIDCReport .test-none {
@@ -135,7 +139,6 @@
 #OIDCReport .tools {
     padding: 30px 20px;
     background: #FFFFFF;
-    margin-left: 15px;
 }
 
 #OIDCReport .align-super {

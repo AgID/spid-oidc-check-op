@@ -11,6 +11,7 @@ import Utility from '../../utility';
 import Services from '../../services';
 import ReduxStore from "../../redux/store";
 import UtilActions from "../../redux/util/actions";
+import Sticky from 'react-sticky-el';
 
 
 class Sidebar extends Component {
@@ -189,9 +190,11 @@ class Sidebar extends Component {
         <SidebarHeader/>
         <SidebarForm/>
         <nav className="sidebar-nav">
+          <Sticky stickyClassName="sticky-menu" topOffset={-100}>
           <Nav>
             {navList(nav.items)}
           </Nav>
+          </Sticky>
         </nav>
         <SidebarFooter/>
         {/*<SidebarMinimizer/>*/}

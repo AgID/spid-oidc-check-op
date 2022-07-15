@@ -1,7 +1,7 @@
 const routes = {
   '/': 'Home',
-  '/metadata/download':             'Metadata OIDC Provider / Download',
-  '/metadata/check':                'Metadata OIDC Provider / Check',
+  '/metadata/download':             'Metadata / Download',
+  '/metadata/check':                'Metadata / Check',
   '/oidc/check':                    'Authorization Code Flow / Check',
   '/oidc/report':                   'Authorization Code Flow / Report',
   '/oidc/log':                      'Authorization Code Flow / Log',
