@@ -1,6 +1,8 @@
 # spid-oidc-check-op
 SPID OIDC Conformance Test Tool for OP
 
+<img src="doc/spid-oidc-check-op.gif" />
+
 ## Setup
 clone the repository
 ```
