@@ -14,8 +14,13 @@ class Test_1_5_1 extends TestMetadata {
         
         if(this.metadata.configuration.id_token_encryption_alg_values_supported==null
             || this.metadata.configuration.id_token_encryption_alg_values_supported=='') {
-            this.notes = this.metadata.configuration.id_token_encryption_alg_values_supported;
-            throw("the claim id_token_encryption_alg_values_supported is not present");
+            
+            // encryption of id_token is optional
+            this.notes = "the claim id_token_encryption_alg_values_supported is not present";
+            return true;
+
+            //this.notes = this.metadata.configuration.id_token_encryption_alg_values_supported;
+            //throw("the claim id_token_encryption_alg_values_supported is not present");
         } 
 
         if(!(this.metadata.configuration.id_token_encryption_alg_values_supported.length==2
