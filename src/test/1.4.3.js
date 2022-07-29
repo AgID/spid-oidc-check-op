@@ -19,7 +19,7 @@ class Test_1_4_3 extends TestMetadata {
 
         if(!(this.metadata.configuration.grant_types_supported.length==2
             && this.metadata.configuration.grant_types_supported.includes('authorization_code')
-            && this.metadata.configuration.grant_types_supported.includes('refresh_token’')
+            && this.metadata.configuration.grant_types_supported.includes('refresh_token')
         )) {
             this.notes = this.metadata.configuration.grant_types_supported;
             throw("the grant_types_supported is not ['authorization_code','refresh_token']");

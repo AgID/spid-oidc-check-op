@@ -5,7 +5,7 @@ class Test_1_4_1 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.4.1";
-        this.description = "If present, the scopes_supported MUST be ['openid','offline_access']";
+        this.description = "If present, the scopes_supported MUST be ['openid','offline_access','profile','email']";
         this.validation = "automatic";
     }
 
@@ -17,12 +17,14 @@ class Test_1_4_1 extends TestMetadata {
             return true;
         } 
 
-        if(!(this.metadata.configuration.scopes_supported.length==2
+        if(!(this.metadata.configuration.scopes_supported.length==4
             && this.metadata.configuration.scopes_supported.includes('openid')
             && this.metadata.configuration.scopes_supported.includes('offline_access')
+            && this.metadata.configuration.scopes_supported.includes('profile')
+            && this.metadata.configuration.scopes_supported.includes('email')
         )) {
             this.notes = this.metadata.configuration.scopes_supported;
-            throw("the scopes_supported is not ['openid','offline_access']");
+            throw("the scopes_supported is not ['openid','offline_access','profile','email']");
         }
 
         this.notes = this.metadata.configuration.scopes_supported;
