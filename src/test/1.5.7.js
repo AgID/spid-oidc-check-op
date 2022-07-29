@@ -14,8 +14,13 @@ class Test_1_5_7 extends TestMetadata {
         
         if(this.metadata.configuration.request_object_encryption_alg_values_supported==null
             || this.metadata.configuration.request_object_encryption_alg_values_supported=='') {
-            this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
-            throw("the claim request_object_encryption_alg_values_supported is not present");
+
+            // the encryption of request object is optional
+            this.notes = "the claim request_object_encryption_alg_values_supported is not present";
+            return true;
+
+            //this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
+            //throw("the claim request_object_encryption_alg_values_supported is not present");
         } 
 
         if(!(this.metadata.configuration.request_object_encryption_alg_values_supported.length==2

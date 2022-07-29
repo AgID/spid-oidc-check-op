@@ -6,7 +6,7 @@ class Test_1_3_24 extends TestMetadata {
         super(metadata);
         this.num = "1.3.24";
         this.description = "The metadata MUST contain the claim request_object_encryption_enc_values_supported";
-        this.validation = "automatic";
+        this.validation = "self";
     }
 
     async exec() {
@@ -14,8 +14,13 @@ class Test_1_3_24 extends TestMetadata {
         
         if(this.metadata.configuration.request_object_encryption_enc_values_supported==null
             || this.metadata.configuration.request_object_encryption_enc_values_supported=='') {
-            this.notes = this.metadata.configuration.request_object_encryption_enc_values_supported;
-            throw("the claim request_object_encryption_enc_values_supported is not present");
+
+            // the encryption of request object is optional
+            this.notes = "the claim request_object_encryption_enc_values_supported is not present";
+            return true;
+
+            //this.notes = this.metadata.configuration.request_object_encryption_enc_values_supported;
+            //throw("the claim request_object_encryption_enc_values_supported is not present");
         } 
 
         this.notes = this.metadata.configuration.request_object_encryption_enc_values_supported;
