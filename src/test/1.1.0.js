@@ -12,14 +12,19 @@ class Test_1_1_0 extends TestMetadata {
 
     async exec() {
         super.exec();
+        let issuer = this.metadata.configuration.issuer;
+        if(issuer.substring(issuer.length-1)=='/') {
+            issuer = issuer.substring(0, issuer.length-1);
+        }
+
         if(
-            this.metadata.url==(this.metadata.configuration.issuer + "/.well-known/openid-configuration")
-            || this.metadata.url==(this.metadata.configuration.issuer + "/.well-known/openid-configuration/")
+            this.metadata.url==(issuer + "/.well-known/openid-configuration")
+            || this.metadata.url==(issuer + "/.well-known/openid-configuration/")
         ) {
-            this.notes = this.metadata.url;
+            this.notes = issuer + "/.well-known/openid-configuration";
             return true;
         } else {
-            this.notes = this.metadata.url;
+            this.notes = this.metadata.url + " != " + issuer + "/.well-known/openid-configuration";
             throw("Document URL is not <issuer>/.well-known/openid-configuration");
         }
     }
