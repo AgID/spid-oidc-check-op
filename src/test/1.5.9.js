@@ -14,8 +14,11 @@ class Test_1_5_9 extends TestMetadata {
         
         if(this.metadata.configuration.token_endpoint_auth_signing_alg_values_supported==null
             || this.metadata.configuration.token_endpoint_auth_signing_alg_values_supported=='') {
-            this.notes = this.metadata.configuration.token_endpoint_auth_signing_alg_values_supported;
-            throw("the claim token_endpoint_auth_signing_alg_values_supported is not present");
+            //this.notes = this.metadata.configuration.token_endpoint_auth_signing_alg_values_supported;
+            //throw("the claim token_endpoint_auth_signing_alg_values_supported is not present");
+
+            this.notes = "the claim token_endpoint_auth_signing_alg_values_supported is not present, it's recommended but not mandatory";
+            return true;
         } 
 
         if(!(this.metadata.configuration.token_endpoint_auth_signing_alg_values_supported.length==2
