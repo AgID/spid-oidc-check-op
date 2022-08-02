@@ -10,7 +10,7 @@ function view(me) {
     return (
         <div id="OIDCLog" className="animated fadeIn">
             <p className="title h3">Authorization Code Flow Log</p>
-            { me.state.report.lastlog.details && (
+            { me.state.report && me.state.report.lastlog && me.state.report.lastlog.details && (
             <div className="row">
                 <div className="col-md-8">
                     <div className="main">
@@ -49,6 +49,16 @@ function view(me) {
                             </div>
                         </div>
                     </Sticky>
+                </div>
+            </div>
+            )}
+
+            { (!me.state.report || !me.state.report.lastlog || !me.state.report.lastlog.details) && (
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="main">
+                        <i>The log is empty. Check if the authentication request was successfully completed.</i> 
+                    </div>
                 </div>
             </div>
             )}
