@@ -112,8 +112,8 @@ module.exports = function(app, checkAuthorisation, database) {
             
             if(!validator.isJSON(JSON.stringify(configuration), 
                 { allow_primitives: true })) {
-                Utility.log("Error while parsing JSON", err);
-                throw err; 
+                Utility.log("Error while parsing JSON");
+                throw "Error while parsing JSON"; 
             }
 
             let metadata = {
