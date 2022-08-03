@@ -3,7 +3,7 @@ const jwt_decode = require("../server/node_modules/jwt-decode");
 const validator = require("../server/node_modules/validator");
 const jose = require('../server/node_modules/node-jose');
 const fs = require('fs');
-const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op.key','utf8');
+const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op-enc.key','utf8');
 
 class Test_4_4_0 extends TestUserinfoResponse {
 

@@ -1,5 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const x509 = require("../server/node_modules/@peculiar/x509");
+const base64url = require('../server/node_modules/base64url');
 const moment = require('../server/node_modules/moment');
 const jose = require('../server/node_modules/node-jose');
 const pkceChallenge = require("../server/node_modules/pkce-challenge").default;
@@ -17,6 +19,9 @@ class Test_2_0_0 extends TestAuthRequest {
     }
 
     async exec() {
+        const crt = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.crt'));
+        const x5c = new x509.X509Certificate(crt);
+
         this.authrequest.client_id = config_rp.client_id;
         this.authrequest.response_type = "code";
         this.authrequest.scope = "openid";
@@ -38,13 +43,15 @@ class Test_2_0_0 extends TestAuthRequest {
         this.authrequest.state = Utility.getUUID();
 
 
-        const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op.key'));
+        const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));
         const keystore = jose.JWK.createKeyStore();
 
         let key = await keystore.add(config_key, 'pem');
+        let thumbprint = await key.thumbprint('SHA-256');
 
         let header = {
-        
+            kid: base64url.encode(thumbprint),
+            x5c: [x5c.toString("base64")]
         }
 
         let iat = moment();

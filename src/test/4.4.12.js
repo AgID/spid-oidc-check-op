@@ -4,7 +4,7 @@ const validator = require("../server/node_modules/validator");
 const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 const fs = require('fs');
-const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op.key','utf8');
+const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op-enc.key','utf8');
 const config_rp = require("../config/rp.json");
 
 class Test_4_4_12 extends TestUserinfoResponse {

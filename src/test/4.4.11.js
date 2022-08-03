@@ -5,14 +5,14 @@ const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 const moment = require("../server/node_modules/moment");
 const fs = require('fs');
-const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op.key','utf8');
+const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op-enc.key','utf8');
 const config_rp = require("../config/rp.json");
 
-class Test_4_4_10 extends TestUserinfoResponse {
+class Test_4_4_11 extends TestUserinfoResponse {
 
     constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse);
-        this.num = "4.4.10";
+        this.num = "4.4.11";
         this.description = "Userinfo Signed Token Payload: the value of iat MUST be < current date + 3min";
         this.validation = "automatic";
     }
@@ -77,4 +77,4 @@ class Test_4_4_10 extends TestUserinfoResponse {
 
 }
 
-module.exports = Test_4_4_10
+module.exports = Test_4_4_11

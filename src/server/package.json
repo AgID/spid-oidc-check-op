@@ -7,7 +7,9 @@
   "license": "ISC",
   "repository": "https://github.com/AgID/spid-oidc-check-op",
   "dependencies": {
+    "@peculiar/x509": "^1.8.1",
     "axios": "^0.27.2",
+    "base64url": "^3.0.1",
     "better-sqlite3": "^5.4.0",
     "express": "^4.15.2",
     "express-session": "^1.15.5",
