@@ -13,6 +13,10 @@ copy and edit configurations
 ```
 cp -R config_sample config
 ```
+create Relaying Party signing and encryption certificates
+```
+cd config && sh make_cert.sh && cd .. 
+```
 create directory for database
 ```
 mkdir data
