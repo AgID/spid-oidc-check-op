@@ -180,7 +180,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 tokenresponse = await axios.post(
                     metadata.configuration.token_endpoint, 
                     tokenrequest, 
-                    {headers: { 'Content-Type': 'application/json'}}
+                    {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
                 );
                 
             } catch(error) {
