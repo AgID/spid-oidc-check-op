@@ -20,7 +20,7 @@ function view(me) {
                                         <div className="row">
                                         {Object.keys(me.state.report.cases).map((c, i)=> {
                                             return (
-                                                <div className="col-sm-12" key={i} >
+                                                <div className="col-sm-12 mb-5" key={i} >
                                                     <p className="h4">{me.state.report.cases[c].name}</p>
                                                     <br/><span>Description:</span> {me.state.report.cases[c].description}
                                                     <br/><span>Referements:</span> {me.state.report.cases[c].ref}
@@ -54,7 +54,7 @@ function view(me) {
                                         <div className="row">      
                                             {Object.keys(me.state.report.cases).map((c, i)=> {
                                             return (
-                                                <div className="col-sm-12 table-responsive" key={i} >
+                                                <div className="col-sm-12 mb-5 table-responsive" key={i} >
                                                     <p className="h4">{me.state.report.cases[c].name}</p>
                                                     <br/><span>Description:</span> {me.state.report.cases[c].description}
                                                     <br/><span>Referements:</span> {me.state.report.cases[c].ref}
