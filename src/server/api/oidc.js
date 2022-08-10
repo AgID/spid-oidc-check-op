@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const axios = require('axios');
+const qs = require('qs');
 const moment = require('moment');
 const validator = require('validator');
 const Utility = require('../lib/utils');
@@ -174,12 +175,12 @@ module.exports = function(app, checkAuthorisation, database) {
             }
 
             // send token request
-            console.log("Token Request", tokenrequest);
+            console.log("Token Request", qs.stringify(tokenrequest));
 
             try {
                 tokenresponse = await axios.post(
                     metadata.configuration.token_endpoint, 
-                    tokenrequest, 
+                    qs.stringify(tokenrequest), 
                     {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
                 );
                 
