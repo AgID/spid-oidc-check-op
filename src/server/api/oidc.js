@@ -278,7 +278,7 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Userinfo Request", userinforequest);
 
             try {
-                userinforesponse = await axios.post(
+                userinforesponse = await axios.get(
                     metadata.configuration.userinfo_endpoint, 
                     {}, 
                     {headers: userinforequest}
