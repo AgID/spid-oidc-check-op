@@ -31,8 +31,8 @@ class Test_3_2_16 extends TestTokenResponse {
         }
 
         let keystore_op = jose.JWK.createKeyStore();
-        for(let k in op_jwks) {
-            await keystore_op.add(op_jwks[k], 'json');
+        for(let k in op_jwks.keys) {
+            await keystore_op.add(op_jwks.keys[k], 'json');
         }
         
         let id_token_verified = await jose.JWS.createVerify(keystore_op).verify(id_token);

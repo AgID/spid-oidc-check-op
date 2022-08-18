@@ -38,7 +38,7 @@ class Test_3_4_5 extends TestTokenResponse {
             throw("the value of iss not match the metadata URL of the OP");
         }
 
-        this.notes = id_token_payload.iss;
+        this.notes = access_token_payload.iss;
         return true;
     }
 
