@@ -2,10 +2,13 @@ const fs = require('fs-extra');
 const axios = require('axios');
 const qs = require('qs');
 const moment = require('moment');
+const jose = require('node-jose');
 const validator = require('validator');
+const jwt_decode = require("jwt-decode");
 const Utility = require('../lib/utils');
 const config_dir = require('../../config/dir.json');
 const config_test = require("../../config/test.json");
+const private_key = fs.readFileSync(__dirname + '/../../config/spid-oidc-check-op-enc.key','utf8');
 
  
 module.exports = function(app, checkAuthorisation, database) {
@@ -337,6 +340,15 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
 
+        // grab userinfo claims
+        let userinfo_data = {};
+        if(userinforesponse.data) {
+            let keystore_rp = jose.JWK.createKeyStore();
+            await keystore_rp.add(private_key, 'pem');
+            let userinfo_sig_token_obj = await jose.JWE.createDecrypt(keystore_rp).decrypt(userinforesponse.data);
+            userinfo_data = jwt_decode(userinfo_sig_token_obj.payload.toString());
+        }
+
         let summary_result = "";
         if(num_failure>0) {
             summary_result = "failure";
@@ -354,6 +366,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 num_warning: num_warning,
                 num_failure: num_failure
             },
+            userinfo: userinfo_data,
             details: {
                 metadata: metadata,
                 authrequest: authrequest,
@@ -362,6 +375,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 tokenresponse: tokenresponse.data,
                 userinforequest: userinforequest,
                 userinforesponse: userinforesponse.data,
+                userinfo: userinfo_data,
                 report: report,
                 report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
             }

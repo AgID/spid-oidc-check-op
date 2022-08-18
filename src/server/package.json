@@ -1,6 +1,6 @@
 {
   "name": "spid-oidc-check-op",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "SPID OIDC Conformance Test Tool for OP",
   "main": "spid-oidc-check-op",
   "author": "Michele D'Amico (damikael) - AgID",
