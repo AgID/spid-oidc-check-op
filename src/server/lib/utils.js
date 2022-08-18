@@ -5,6 +5,7 @@ const child_process = require('child_process');
 const UUID = require("uuidjs");
 const moment = require("moment");
 const CryptoJS = require("crypto-js");
+const validator = require("validator");
 //const config_dir = require("../../config/dir.json");
 //const config_idp = require("../../config/idp.json");
 const fs = require("fs-extra");
@@ -72,6 +73,26 @@ class Utils {
 
     static atob(buffer) {
         return Buffer.from(buffer, 'base64').toString('ascii');
+    }
+
+    // patch to validator.isJWT for JWE compatibility
+    // move to validator.isJWT when PR will be merged 
+    // https://github.com/validatorjs/validator.js/pull/2031
+    static isJWT(str, jwe = false) {
+        let dotSplit = str.split('.');
+        let len = dotSplit.length;
+      
+        if(!jwe) {
+            if (len > 3 || len < 2) {
+                return false;
+            }
+        } else {
+            if (len < 5 || len > 5) {
+                return false; 
+            }
+        }
+      
+        return dotSplit.reduce((acc, currElem) => acc && validator.isBase64(currElem, { urlSafe: true }), true);
     }
 }
 
