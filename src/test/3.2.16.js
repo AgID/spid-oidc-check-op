@@ -37,7 +37,7 @@ class Test_3_2_16 extends TestTokenResponse {
         
         let id_token_verified = await jose.JWS.createVerify(keystore_op).verify(id_token);
 
-        this.notes = id_token_verified; 
+        this.notes = id_token; 
         return true;
     }
 
