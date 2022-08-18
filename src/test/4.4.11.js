@@ -1,6 +1,7 @@
 const TestUserinfoResponse = require('../server/lib/test/TestUserinfoResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
 const validator = require("../server/node_modules/validator");
+const utility = require('../server/lib/utils');
 const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 const moment = require("../server/node_modules/moment");
@@ -27,14 +28,15 @@ class Test_4_4_11 extends TestUserinfoResponse {
             throw("the content of body is not a valid JWT string");
         }
         
-        if(!validator.isJWT(userinfo_token)) {
+        if(!utility.isJWT(userinfo_token, true)) {
             this.notes = userinfo_token;
             throw("userinfo data is not a valid JWT");
         }
 
         let keystore_rp = jose.JWK.createKeyStore();
         await keystore_rp.add(private_key, 'pem');
-        let userinfo_sig_token = jose.JWE.createDecrypt(keystore_rp).decrypt(userinfo_token);
+        let userinfo_sig_token_obj = await jose.JWE.createDecrypt(keystore_rp).decrypt(userinfo_token);
+        let userinfo_sig_token = userinfo_sig_token_obj.payload.toString();
  
         if(!validator.isJWT(userinfo_sig_token)) {
             this.notes = userinfo_sig_token;
@@ -49,11 +51,12 @@ class Test_4_4_11 extends TestUserinfoResponse {
         }
 
         let keystore_op = jose.JWK.createKeyStore();
-        for(let k in op_jwks) {
-            await keystore_op.add(op_jwks[k], 'json');
+        for(let k in op_jwks.keys) {
+            await keystore_op.add(op_jwks.keys[k], 'json');
         }
         
         let userinfo_sig_token_verified = await jose.JWS.createVerify(keystore_op).verify(userinfo_sig_token);
+        userinfo_sig_token_verified.payload = JSON.parse(userinfo_sig_token_verified.payload.toString());
         
         if(userinfo_sig_token_verified.payload.iat==null || userinfo_sig_token_verified.payload.iat=='') {
             this.notes = userinfo_sig_token_verified.payload;
