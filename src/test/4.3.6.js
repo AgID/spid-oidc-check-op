@@ -1,6 +1,7 @@
 const TestUserinfoResponse = require('../server/lib/test/TestUserinfoResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
 const validator = require("../server/node_modules/validator");
+const utility = require('../server/lib/utils');
 const jose = require('../server/node_modules/node-jose');
 const fs = require('fs');
 const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op-enc.key','utf8');
@@ -24,7 +25,7 @@ class Test_4_3_6 extends TestUserinfoResponse {
             throw("the content of body is not a valid JWT string");
         }
         
-        if(!validator.isJWT(userinfo_token)) {
+        if(!utility.isJWT(userinfo_token, true)) {
             this.notes = userinfo_token;
             throw("userinfo data is not a valid JWT");
         }
