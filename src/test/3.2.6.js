@@ -24,20 +24,20 @@ class Test_3_2_6 extends TestTokenResponse {
         }
 
         let op_jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
-        
+
         if(op_jwks.keys==null || op_jwks.keys=='') {
             this.notes = op_jwks;
             throw("JWKS of OP not found");
         }
 
         let keystore_op = jose.JWK.createKeyStore();
-        for(let k in op_jwks) {
-            await keystore_op.add(op_jwks[k], 'json');
+        for(let k in op_jwks.keys) {
+            await keystore_op.add(op_jwks.keys[k]);
         }
-        
+
         let access_token_verified = await jose.JWS.createVerify(keystore_op).verify(access_token);
 
-        this.notes = access_token_verified; 
+        this.notes = access_token; 
         return true;
     }
 

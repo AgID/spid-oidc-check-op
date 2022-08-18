@@ -280,7 +280,6 @@ module.exports = function(app, checkAuthorisation, database) {
             try {
                 userinforesponse = await axios.get(
                     metadata.configuration.userinfo_endpoint, 
-                    {}, 
                     {headers: userinforequest}
                 );
                 
