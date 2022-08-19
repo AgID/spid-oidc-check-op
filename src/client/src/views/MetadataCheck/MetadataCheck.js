@@ -62,7 +62,6 @@ class MetadataCheck extends Component {
     );
   }
 
-
   checkMetadata() {
     let service = Services.getMainService();
     let store = ReduxStore.getMain();
@@ -97,7 +96,6 @@ class MetadataCheck extends Component {
       }
     );
   }
-
   
   setDetailView(detailed) {
       this.setState({
@@ -109,6 +107,44 @@ class MetadataCheck extends Component {
       Utility.print("metadata-" + this.state.testcase);
   }
   
+  selectTest(test) {
+    console.log(test);
+
+    let body = "<p><b>Description</b>: <br/>" + test.description + "</p>";
+    if(test.result=='failure') {
+      body += "<p><b>Error message</b>: <br/>" + test.message + "</p>";
+    }
+
+    Utility.showModal({
+      title: "Test " + test.hook + " " + test.num,
+      subtitle: "Result: " + ((test.validation=='automatic')? test.result.toUpperCase() : test.message),
+      body: body,
+      switch1: test.result=='success' || test.result=='failure',
+      switch1Text: "Test EXECUTED",
+      switch1Func: (test.validation=='self')? (e)=> {this.setTestExecuted(test, e)} : null, 
+      switch2: test.result=='success',
+      switch2Text: "Test PASSED",
+      switch2Func: (test.validation=='self')? (e)=> {this.setTestPassed(test, e)} : null, 
+      input: test.notes,
+      inputVisible: true,
+      inputEnabled: true, 
+      inputFunc: (e)=> {this.setNotes(test, e)},
+      isOpen: true
+    });
+  }
+
+  setTestExecuted(test, executed) {
+    console.log("TEST EXECUTED", executed);
+  }
+
+  setTestPassed(test, passed) {
+    console.log("TEST PASSED", passed);
+  }
+
+  setNotes(test, notes) {
+    console.log("TEST Notes", notes);
+  }
+
 
   render() {    
 	  return view(this);

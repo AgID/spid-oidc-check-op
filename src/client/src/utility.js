@@ -24,7 +24,17 @@ class Utility {
                 btnPrimaryFunc: data.btnPrimaryFunc,
                 btnPrimaryText: data.btnPrimaryText,
                 btnSecondaryFunc: data.btnSecondaryFunc,
-                btnSecondaryText: data.btnSecondaryText
+                btnSecondaryText: data.btnSecondaryText,
+                switch1: data.switch1,
+                switch1Func: data.switch1Func,
+                switch1Text: data.switch1Text,
+                switch2: data.switch2,
+                switch2Func: data.switch2Func,
+                switch2Text: data.switch2Text,
+                inputVisible: data.inputVisible,
+                inputEnabled: data.inputEnabled,
+                input: data.input, 
+                inputFunc: data.inputFunc
             })
         );        
     }

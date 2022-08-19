@@ -38,6 +38,16 @@ class Main extends Component {
 			modal_btn_primary_text: "Close",
 			modal_btn_secondary_func: null,
 			modal_btn_secondary_text: "",
+			modal_switch1: false,
+			modal_switch1_func: null,
+			modal_switch1_text: "",
+			modal_switch2: false,
+			modal_switch2_func: null,
+			modal_switch2_text: "",
+			modal_input_visible: false,
+			modal_input_enabled: false,
+			modal_input: "",
+			modal_input_func: null,
 
 			print: false,
             infoprint_issuer: "-",
@@ -111,6 +121,16 @@ class Main extends Component {
 			modal_btn_primary_text: (modalState.btnPrimaryFunc!=null && modalState.btnPrimaryText!=null && modalState.btnPrimaryText!="")? modalState.btnPrimaryText : this.state.modal_btn_primary_text,
 			modal_btn_secondary_func: (modalState.btnSecondaryFunc!=null)? modalState.btnSecondaryFunc : this.state.modal_btn_secondary_func,
 			modal_btn_secondary_text: (modalState.btnSecondaryFunc!=null && modalState.btnSecondaryText!=null && modalState.btnSecondaryText!="")? modalState.btnSecondaryText : this.state.modal_btn_secondary_text,
+			modal_switch1: modalState.switch1,
+			modal_switch1_func: modalState.switch1Func,
+			modal_switch1_text: modalState.switch1Text,
+			modal_switch2: modalState.switch2,
+			modal_switch2_func: modalState.switch2Func,
+			modal_switch2_text: modalState.switch2Text,
+			modal_input_visible: modalState.inputVisible,
+			modal_input_enabled: modalState.inputEnabled,
+			modal_input: modalState.input,
+			modal_input_func: modalState.inputFunc,
 		}, ()=>{
 			//Utility.log("Updated state", this.state);
 		});
@@ -200,6 +220,47 @@ class Main extends Component {
 						</ModalHeader>
 						<ModalBody>
 							<div dangerouslySetInnerHTML={{__html: this.state.modal_body}}></div>
+
+							{(this.state.modal_switch1_func!=null || this.state.modal_switch2_func!=null) &&
+								<p><b>Assessment</b>:</p>
+							}
+
+							{(this.state.modal_switch1_func!=null) &&
+								<div>
+									<label className="switch switch-success me-3">
+										<input type="checkbox" className="switch-input" 
+											checked={this.state.modal_switch1}
+											onChange={(e)=>{this.state.modal_switch1_func(e.target.checked)}}>
+										</input>
+										<span className="switch-slider"></span>
+									</label>
+									<span className="align-super">{this.state.modal_switch1_text}</span>
+								</div>
+							}
+
+							{(this.state.modal_switch2_func!=null) &&
+								<div>  
+									<label className="switch switch-success me-3">
+										<input type="checkbox" className="switch-input" 
+											checked={this.state.modal_switch2}
+											onChange={(e)=>{this.state.modal_switch2_func(e.target.checked)}}>
+										</input>
+										<span className="switch-slider"></span>
+									</label>
+									<span className="align-super">{this.state.modal_switch2_text}</span>
+								</div>
+							}
+
+							{this.state.modal_input_visible &&
+								<div>
+									<p className="mt-3"><b>Notes</b><br/>
+									<textarea class="modal-textarea" disabled={!this.state.modal_input_enabled || !this.state.modal_input_func}
+										value={this.state.modal_input}
+										onChange={(e)=> {this.state.modal_input_func(e.target.value)}} />
+									</p>
+								</div>
+							}
+
 						</ModalBody>
                         {(!this.state.modal_hide_buttons) &&
 						    <ModalFooter>

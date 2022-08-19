@@ -31,7 +31,10 @@ function view(me) {
                                             return(
                                                 <a key={i} 
                                                     className={(t.result=="success")? "test-success" : (t.result=="warning")? "test-warning" : "test-fail" }
-                                                    title={t.description + (t.message? ": " + t.message : "")}> {t.num} 
+                                                    title={t.description + (t.message? ": " + t.message : "")}
+                                                    onClick={()=>me.selectTest(t)}
+                                                    > 
+                                                    {t.num} 
                                                 </a> 
                                             );
                                         })}

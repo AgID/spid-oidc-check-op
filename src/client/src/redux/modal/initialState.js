@@ -7,7 +7,17 @@ let state = {
     btnPrimaryFunc: null,
     btnPrimaryText: "Ok",
     btnSecondaryFunc: null,
-    btnSecondaryText: "Annulla"
+    btnSecondaryText: "Annulla",
+    switch1: false,
+    switch1Func: null,
+    switch1Text: "",
+    switch2: false,
+    switch2Func: null,
+    switch2Text: "",
+    inputVisible: false,
+    inputEnabled: false,
+    input: "",
+    inputFunc: null
 }
 
-export default state;
+export default state; 
