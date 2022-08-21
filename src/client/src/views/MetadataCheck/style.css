@@ -47,6 +47,22 @@
     text-decoration: none;
 }
 
+#MetadataCheck .test-success-self {
+    display: block;
+    float: left;
+    width: 50px;
+    line-height: 23px;
+    margin: 1px;
+    border: 1px solid #000;
+    background-color: #006000;
+    color: #fff!important;
+    font-size: 11px;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 #MetadataCheck .test-warning {
     display: block;
     float: left;
@@ -94,6 +110,7 @@
 
 #MetadataCheck .detail-row {
     border:1px solid #000;
+    cursor: pointer;
 }
 
 #MetadataCheck .detail-row:hover {
@@ -111,6 +128,12 @@
 #MetadataCheck .test-success-dm {
     background: green!important;
     color: #FFFFFF;
+    font-weight: bold;
+}
+
+#MetadataCheck .test-success-self-dm {
+    background-color: #006000!important;
+    color: #fff;
     font-weight: bold;
 }
 

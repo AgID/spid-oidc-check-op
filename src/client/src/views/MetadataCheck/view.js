@@ -21,16 +21,16 @@ function view(me) {
                             {me.state.report!=null && 
                                 <div className="row"> 
                                     <div className="col-sm-12">
-                                        <p>
+                                        <div>
                                             <div>Check: <span className="first-upper">{me.state.testcase}</span></div> 
                                             {me.state.description!=null && <div>Description: {me.state.description}</div> }
                                             {me.state.referements!=null && <div>Referements: {me.state.referements}</div> }
-                                        </p>
+                                        </div>
 
                                         {me.state.report.map((t, i)=> {
                                             return(
                                                 <a key={i} 
-                                                    className={(t.result=="success")? "test-success" : (t.result=="warning")? "test-warning" : "test-fail" }
+                                                    className={(t.result=="success")? ((t.validation=="self")? "test-success-self" : "test-success") : ((t.result=="warning")? "test-warning" : "test-fail")}
                                                     title={t.description + (t.message? ": " + t.message : "")}
                                                     onClick={()=>me.selectTest(t)}
                                                     > 
@@ -52,11 +52,11 @@ function view(me) {
                             {me.state.report!=null && 
                                 <div className="row"> 
                                     <div className="col-sm-12 table-responsive">
-                                    <p>
+                                    <div>
                                         <div>Check: <b><span className="first-upper">{me.state.testcase}</span></b></div> 
                                         {me.state.description!=null && <div>Description<b>: {me.state.description}</b></div> }
                                         {me.state.referements!=null && <div>Referements<b>: {me.state.referements}</b></div> }
-                                    </p>
+                                    </div>
                                         
                                         <table className="table detail-table">
                                             <tr className="detail-header">
@@ -67,10 +67,11 @@ function view(me) {
                                             </tr>
                                             {me.state.report.map((t, i)=> {
                                                 return(
-                                                    <tr key={i} className="detail-row">
-                                                        <td className={(t.result=="success")? "detail-num test-success-dm" : (t.result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm"}>{t.num}</td>
+                                                    <tr key={i} className="detail-row"
+                                                        onClick={()=>me.selectTest(t)}>
+                                                        <td className={(t.result=="success")? ((t.validation=="self")? "detail-num test-success-self-dm" : "detail-num test-success-dm") : ((t.result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm")}>{t.num}</td>
                                                         <td className="detail-description">{t.description}</td>
-                                                        <td className={(t.result=="success")? "detail-result test-success-dm" : (t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm"}>{t.message}</td>
+                                                        <td className={(t.result=="success")? ((t.validation=="self")? "detail-result test-success-self-dm" : "detail-result test-success-dm") : ((t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm")}>{t.message}</td>
                                                         <td>{JSON.stringify(t.notes)}</td>
                                                     </tr>
                                                 );

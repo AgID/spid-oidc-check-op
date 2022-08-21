@@ -248,7 +248,7 @@ module.exports = function(app, checkAuthorisation, database) {
 
     /*
     // delete metadata
-    app.delete("/api/metadata-sp", function(req, res) {
+    app.delete("//api/metadata", function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -276,7 +276,74 @@ module.exports = function(app, checkAuthorisation, database) {
         }
         
     });
-
     */
+
+    // set test for metadata
+    app.patch("//api/metadata/:testcase/:test", async function(req, res) {
+        
+        // check if apikey is correct
+        let authorisation = checkAuthorisation(req);
+        if(!authorisation) {
+            error = {code: 401, msg: "Unauthorized"};
+            res.status(error.code).send(error.msg);
+            return null;
+        }	
+
+        let testcase = req.params.testcase;
+        let test = req.params.test;
+        let patch_data = req.body.data;
+        let user = (authorisation=='API')? req.body.user : req.session.user;
+        let store_type = (authorisation=='API')? req.query.store_type : (req.session.store_type)? req.session.store_type : 'test';
+        let organization = (authorisation=='API')? req.body.organization : (req.session.entity)? req.session.entity.id : null;
+        let external_code = (authorisation=='API')? req.body.external_code : req.session.external_code;
+
+        if(!user) { return res.status(400).send("Parameter user is missing"); }
+        if(!store_type) { return res.status(400).send("Parameter store_type is missing"); }
+        //if(!organization) { return res.status(400).send("Parameter organization is missing"); }
+        //if(!external_code) { return res.status(400).send("Parameter external_code is missing"); }
+
+        let metadata = (authorisation=='API')? database.getMetadata(req.query.user, store_type) : req.session.store.metadata;
+        if(!metadata || !metadata.configuration) { return res.status(400).send("Please download metadata first"); }
+        console.log("metadata", metadata);
+
+        let store = database.getStore(user, store_type);
+
+        let testsuite = "metadata";
+        let hook = "metadata";
+
+        // if the last validation not exists, reroute for check
+        if(!store.test[testsuite]) {
+            res.status(404).send();
+            return;
+        }
+
+        // get test and patch
+        let saved_test = store.test[testsuite]['cases'][testcase]['hook'][hook][test];
+        for(let p in patch_data) {
+            saved_test[p] = patch_data[p]; 
+        }
+        database.setTest(user, external_code, store_type, testsuite, testcase, hook, saved_test);
+
+        // retrieve new testsuite data
+        store = database.getStore(user, store_type);
+
+        let testcase_name = store.test[testsuite]['cases'][testcase].name;
+        let testcase_description = store.test[testsuite]['cases'][testcase].description;
+        let testcase_referements = store.test[testsuite]['cases'][testcase].ref;
+        let report_datetime =  store.test[testsuite]['cases'][testcase].datetime;
+
+        let report = [];
+        let tests = store.test[testsuite]['cases'][testcase]['hook'][hook];
+        for(t in tests) report.push(tests[t]);
+
+        res.status(200).send({
+            testcase: testcase,
+            name: testcase_name,
+            description: testcase_description,
+            referements: testcase_referements,
+            report: report,
+            datetime: report_datetime
+        });
+    });
 
 }

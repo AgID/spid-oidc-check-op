@@ -48,6 +48,7 @@ class Main extends Component {
 			modal_input_enabled: false,
 			modal_input: "",
 			modal_input_func: null,
+			modal_switch1_control: null,
 
 			print: false,
             infoprint_issuer: "-",
@@ -131,6 +132,7 @@ class Main extends Component {
 			modal_input_enabled: modalState.inputEnabled,
 			modal_input: modalState.input,
 			modal_input_func: modalState.inputFunc,
+			modal_switch1_control: modalState.switch1
 		}, ()=>{
 			//Utility.log("Updated state", this.state);
 		});
@@ -222,15 +224,18 @@ class Main extends Component {
 							<div dangerouslySetInnerHTML={{__html: this.state.modal_body}}></div>
 
 							{(this.state.modal_switch1_func!=null || this.state.modal_switch2_func!=null) &&
-								<p><b>Assessment</b>:</p>
+								<p><b>Assessment</b></p>
 							}
 
 							{(this.state.modal_switch1_func!=null) &&
 								<div>
 									<label className="switch switch-success me-3">
 										<input type="checkbox" className="switch-input" 
-											checked={this.state.modal_switch1}
-											onChange={(e)=>{this.state.modal_switch1_func(e.target.checked)}}>
+											defaultChecked={this.state.modal_switch1}
+											onChange={(e)=>{
+												this.setState({modal_switch1_control: e.target.checked});
+												this.state.modal_switch1_func(e.target.checked)}
+											}>
 										</input>
 										<span className="switch-slider"></span>
 									</label>
@@ -238,11 +243,11 @@ class Main extends Component {
 								</div>
 							}
 
-							{(this.state.modal_switch2_func!=null) &&
+							{(this.state.modal_switch2_func!=null && this.state.modal_switch1_control) &&
 								<div>  
 									<label className="switch switch-success me-3">
 										<input type="checkbox" className="switch-input" 
-											checked={this.state.modal_switch2}
+											defaultChecked={this.state.modal_switch2}
 											onChange={(e)=>{this.state.modal_switch2_func(e.target.checked)}}>
 										</input>
 										<span className="switch-slider"></span>
@@ -254,9 +259,10 @@ class Main extends Component {
 							{this.state.modal_input_visible &&
 								<div>
 									<p className="mt-3"><b>Notes</b><br/>
-									<textarea class="modal-textarea" disabled={!this.state.modal_input_enabled || !this.state.modal_input_func}
-										value={this.state.modal_input}
-										onChange={(e)=> {this.state.modal_input_func(e.target.value)}} />
+									<textarea className="modal-textarea" disabled={!this.state.modal_input_enabled || !this.state.modal_input_func}
+										onChange={(e)=> {this.state.modal_input_func(e.target.value)}}
+										defaultValue={this.state.modal_input} >
+									</textarea>
 									</p>
 								</div>
 							}

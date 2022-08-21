@@ -110,21 +110,21 @@ class MetadataCheck extends Component {
   selectTest(test) {
     console.log(test);
 
-    let body = "<p><b>Description</b>: <br/>" + test.description + "</p>";
+    let body = "<p><b>Description</b><br/>" + test.description + "</p>";
     if(test.result=='failure') {
-      body += "<p><b>Error message</b>: <br/>" + test.message + "</p>";
+      body += "<p><b>Error message</b><br/>" + test.message + "</p>";
     }
 
     Utility.showModal({
       title: "Test " + test.hook + " " + test.num,
-      subtitle: "Result: " + ((test.validation=='automatic')? test.result.toUpperCase() : test.message),
+      subtitle: "Result: " + ((test.validation=='automatic' || test.result=='success')? test.result.toUpperCase() : test.message),
       body: body,
       switch1: test.result=='success' || test.result=='failure',
       switch1Text: "Test EXECUTED",
-      switch1Func: (test.validation=='self')? (e)=> {this.setTestExecuted(test, e)} : null, 
+      switch1Func: (test.validation=='self')? (e)=> {this.setExecuted(test, e)} : null, 
       switch2: test.result=='success',
       switch2Text: "Test PASSED",
-      switch2Func: (test.validation=='self')? (e)=> {this.setTestPassed(test, e)} : null, 
+      switch2Func: (test.validation=='self')? (e)=> {this.setPassed(test, e)} : null, 
       input: test.notes,
       inputVisible: true,
       inputEnabled: true, 
@@ -133,16 +133,59 @@ class MetadataCheck extends Component {
     });
   }
 
-  setTestExecuted(test, executed) {
-    console.log("TEST EXECUTED", executed);
+  setExecuted(test, executed) {
+    this.setTestData(test, {
+      result: executed? 'failure' : 'warning'
+    });
   }
 
-  setTestPassed(test, passed) {
-    console.log("TEST PASSED", passed);
+  setPassed(test, passed) {
+    this.setTestData(test, {
+      result: passed? 'success' : 'failure'
+    });
   }
 
   setNotes(test, notes) {
-    console.log("TEST Notes", notes);
+    this.setTestData(test, {
+      notes: notes
+    });
+  }
+
+  setTestData(test, data) {
+    let service = Services.getMainService();
+    let store = ReduxStore.getMain();
+
+    //Utility.blockUI(true);
+    service.patchMetadataTest(
+      this.state.testcase,
+      test.num, 
+      data,
+      (check) => { 
+        //Utility.blockUI(false); 
+        this.setState({
+          testcase: check.testcase,
+          description: check.description,
+          referements: check.referements,
+          report: check.report,
+          datetime: moment(check.datetime).format('DD/MM/YYYY HH:mm:ss')
+        });
+      }, 
+      (error) => { 
+        //Utility.blockUI(false);
+        this.setState({
+          description: null,
+          referements: null,
+          report: null,
+          datetime: null
+        });
+        Utility.showModal({
+            title: "Error",
+            body: error,
+            isOpen: true
+        });
+        this.props.navigate('/metadata/download');
+      }
+    );
   }
 
 
