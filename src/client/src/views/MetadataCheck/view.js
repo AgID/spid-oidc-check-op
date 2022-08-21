@@ -71,7 +71,9 @@ function view(me) {
                                                         onClick={()=>me.selectTest(t)}>
                                                         <td className={(t.result=="success")? ((t.validation=="self")? "detail-num test-success-self-dm" : "detail-num test-success-dm") : ((t.result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm")}>{t.num}</td>
                                                         <td className="detail-description">{t.description}</td>
-                                                        <td className={(t.result=="success")? ((t.validation=="self")? "detail-result test-success-self-dm" : "detail-result test-success-dm") : ((t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm")}>{t.message}</td>
+                                                        <td className={(t.result=="success")? ((t.validation=="self")? "detail-result test-success-self-dm" : "detail-result test-success-dm") : ((t.result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm")}>
+                                                            {(t.result=="success")? ((t.validation=="self")? "SUCCESS (SELF ASSESSMENT)" : "SUCCESS") : ((t.result=="failure")? "FAILURE: " + t.message : t.message)}
+                                                        </td>
                                                         <td>{JSON.stringify(t.notes)}</td>
                                                     </tr>
                                                 );
