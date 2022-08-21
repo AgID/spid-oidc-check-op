@@ -31,7 +31,8 @@ function view(me) {
                                                                 Object.keys(me.state.report.cases[c].hook[h]).map((t, i)=> {
                                                                     return(
                                                                         <a key={i} 
-                                                                            className={(me.state.report.cases[c].hook[h][t].result=="success")? "test-success" : (me.state.report.cases[c].hook[h][t].result=="warning")? "test-warning" : "test-fail" }
+                                                                            onClick={()=>me.selectTest(c, h, me.state.report.cases[c].hook[h][t])}
+                                                                            className={(me.state.report.cases[c].hook[h][t].result=="success")? ((me.state.report.cases[c].hook[h][t].validation=="self")? "test-success-self" : "test-success") : (me.state.report.cases[c].hook[h][t].result=="warning")? "test-warning" : "test-fail" }
                                                                             title={me.state.report.cases[c].hook[h][t].description + (me.state.report.cases[c].hook[h][t].notes? ": " + JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : "")}> 
                                                                             {me.state.report.cases[c].hook[h][t].num} 
                                                                         </a> 
@@ -73,13 +74,26 @@ function view(me) {
                                                             return (
                                                                 Object.keys(me.state.report.cases[c].hook[h]).map((t, i)=> {
                                                                     return(
-                                                                        <tr key={i} className="detail-row">
-                                                                            <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-num test-success-dm" : 
+                                                                        <tr key={i} className="detail-row"
+                                                                            onClick={()=>me.selectTest(c, h, me.state.report.cases[c].hook[h][t])}>
+                                                                            <td className={(me.state.report.cases[c].hook[h][t].result=="success")? ((me.state.report.cases[c].hook[h][t].validation=="self")? "detail-num test-success-self-dm" : "detail-num test-success-dm") : 
                                                                                                 (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-num test-warning-dm" : "detail-num test-fail-dm" }>{me.state.report.cases[c].hook[h][t].num}</td>
                                                                             <td className="detail-description">{me.state.report.cases[c].hook[h][t].description}</td>
-                                                                            <td className={(me.state.report.cases[c].hook[h][t].result=="success")? "detail-result test-success-dm" : 
+                                                                            <td className={(me.state.report.cases[c].hook[h][t].result=="success")? ((me.state.report.cases[c].hook[h][t].validation=="self")? "detail-result test-success-self-dm" : "detail-result test-success-dm") : 
                                                                                                 (me.state.report.cases[c].hook[h][t].result=="warning")? "detail-result test-warning-dm" : "detail-result test-fail-dm" }>
-                                                                                {me.state.report.cases[c].hook[h][t].message? JSON.stringify(me.state.report.cases[c].hook[h][t].message) : ''}
+
+                                                                                {(me.state.report.cases[c].hook[h][t].result=="success")? 
+                                                                                    ((me.state.report.cases[c].hook[h][t].validation=="self")? 
+                                                                                        "SUCCESS (SELF ASSESSMENT)" : "SUCCESS"
+                                                                                    ) 
+                                                                                    : 
+                                                                                    (me.state.report.cases[c].hook[h][t].message)?
+                                                                                        ((me.state.report.cases[c].hook[h][t].result=="failure")? 
+                                                                                            "FAILURE: " + JSON.stringify(me.state.report.cases[c].hook[h][t].message) : JSON.stringify(me.state.report.cases[c].hook[h][t].message)
+                                                                                        )
+                                                                                        :
+                                                                                        "FAILURE"
+                                                                                }
                                                                             </td>
                                                                             <td className="detail-notes"> 
                                                                                 {me.state.report.cases[c].hook[h][t].notes? JSON.stringify(me.state.report.cases[c].hook[h][t].notes) : ''}

@@ -195,6 +195,28 @@ class MainService {
 		});
 	}
 
+	patchOIDCTest(testcase, hook, test, data, callback_response, callback_notfound, callback_error) {  
+		Utility.log("PATCH /api/oidc/report/" + testcase + "/" + hook + "/" + test);
+		axios.patch(
+			config.basepath + '/api/oidc/report/' + testcase + '/' + hook + "/" + test + '?apikey=' + Utility.getApikey(),
+			{data: data},
+			{timeout: 900000}
+		)
+		.then(function(response) {
+			Utility.log("patchOIDCTest Success", response.data);
+			callback_response(response.data);
+		})
+		.catch(function(error) {
+			Utility.log("patchOIDCTest Error", error);
+			if(error.response.status==404) {
+				Utility.log("patchOIDCTest Not Found");
+				callback_notfound();
+			} else {
+				callback_error((error.response!=null) ? error.response.data : "Service not available");
+			}
+		});
+	}
+
 	getTestSuite(testsuite, callback_response, callback_error) {
 		Utility.log("GET /api/test/suite/" + testsuite);
 		axios.get(config.basepath + '/api/test/suite/' + testsuite + '?apikey=' + Utility.getApikey(), {timeout: 900000})

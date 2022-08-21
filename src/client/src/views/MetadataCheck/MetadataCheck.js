@@ -108,8 +108,6 @@ class MetadataCheck extends Component {
   }
   
   selectTest(test) {
-    console.log(test);
-
     let body = "<p><b>Description</b><br/>" + test.description + "</p>";
     if(test.result=='failure') {
       body += "<p><b>Error message</b><br/>" + test.message + "</p>";

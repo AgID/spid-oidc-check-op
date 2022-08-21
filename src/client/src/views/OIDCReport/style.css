@@ -60,6 +60,22 @@
     text-decoration: none;
 }
 
+#OIDCReport .test-success-self {
+    display: block;
+    float: left;
+    width: 50px;
+    line-height: 23px;
+    margin: 1px;
+    border: 1px solid #000;
+    background-color: #006000;
+    color: #fff!important;
+    font-size: 13px;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 #OIDCReport .test-fail {
     display: block;
     float: left;
@@ -94,6 +110,7 @@
 
 #OIDCReport .detail-row {
     border:1px solid #000;
+    cursor: pointer;
 }
 
 #OIDCReport .detail-row:hover {
@@ -120,6 +137,12 @@
 
 #OIDCReport .test-success-dm {
     background: green!important;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#OIDCReport .test-success-self-dm {
+    background: #006000!important;
     color: #FFFFFF;
     font-weight: bold;
 }

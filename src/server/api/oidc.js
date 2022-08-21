@@ -66,7 +66,6 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).send(authrequest);
     });
 
-
     app.get("//redirect", async function(req, res) {
         
         let report = [];
@@ -387,7 +386,6 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).json(log);
     });
 
-
     app.get("//api/oidc/report", async function(req, res) {
         
         // check if apikey is correct
@@ -405,6 +403,48 @@ module.exports = function(app, checkAuthorisation, database) {
         // get report
         let testsuite = "oidc-core";
         let report = database.getReport(user, store_type, testsuite);
+
+        console.log("Report", report);
+        if(!report || report=={}) {
+            res.status(404).send();
+        } else {
+            res.status(200).send(report);
+        }
+    });
+
+    app.patch("//api/oidc/report/:testcase/:hook/:test", async function(req, res) {
+        
+        // check if apikey is correct
+        let authorisation = checkAuthorisation(req);
+        if(!authorisation) {
+            error = {code: 401, msg: "Unauthorized"};
+            res.status(error.code).send(error.msg);
+            return null;
+        }
+
+        let testcase = req.params.testcase;
+        let hook = req.params.hook;
+        let test = req.params.test;
+        let patch_data = req.body.data;
+        let user = (authorisation=='API')? req.body.user : req.session.user;
+        let store_type = (authorisation=='API')? req.query.store_type : (req.session.store_type)? req.session.store_type : 'test';
+        let external_code = (authorisation=='API')? req.body.external_code : req.session.external_code;
+        
+        if(!store_type) { return res.status(400).send("Parameter store_type is missing"); }
+                
+        // get report
+        let testsuite = "oidc-core";
+        let report = database.getReport(user, store_type, testsuite);
+
+        // get test and patch
+        let saved_test = report['cases'][testcase]['hook'][hook][test];
+        for(let p in patch_data) {
+            saved_test[p] = patch_data[p]; 
+        }
+        database.setTest(user, external_code, store_type, testsuite, testcase, hook, saved_test);
+
+        // retrieve new report
+        report = database.getReport(user, store_type, testsuite);
 
         console.log("Report", report);
         if(!report || report=={}) {
