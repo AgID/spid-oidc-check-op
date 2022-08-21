@@ -89,6 +89,21 @@ module.exports = function(app, checkAuthorisation, authenticator) {
             res.redirect(config_rp.basepath);
         }
     });
+
+    // session logout and AgID Login global logout
+    app.get("//switch/:user", (req, res)=> {
+        // check if apikey is correct
+        let authorisation = checkAuthorisation(req);
+        if(!authorisation) {
+            error = {code: 401, msg: "Unauthorized"};
+            res.status(error.code).send(error.msg);
+            return null;
+        }
+
+        let user = req.params.user;
+        req.session.user = user;
+        res.redirect(config_rp.basepath + "/worksave");
+    });
     
 
     function recLocalLoginSession(req) {
