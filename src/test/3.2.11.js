@@ -10,7 +10,7 @@ class Test_3_2_11 extends TestTokenResponse {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
         this.num = "3.2.11";
         this.description = "the signature of refresh_token MUST be valid, the signature of refresh_token MUST be able to be verified with the public key of the OP";
-        this.validation = "self";
+        this.validation = "automatic";
     }
 
     async exec() {
