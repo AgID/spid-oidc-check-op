@@ -125,7 +125,12 @@ module.exports = function(app, checkAuthorisation, database) {
                                 case 'failure': num_failure++; break;
                             }
                         break;
-                        case 'self': num_warning++; break;
+                        case 'self': 
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
                         case 'required': num_warning++; break;
                     }
 
@@ -158,17 +163,29 @@ module.exports = function(app, checkAuthorisation, database) {
                 test = new TestTokenRequestClass(metadata, authrequest, authresponse, tokenrequest);
                 if(test.hook==hook) {
                     tokenrequest = await test.getTokenRequest();
-
-                    switch(test.validation) {
-                        case 'self': num_warning++; break;
-                        case 'required': num_warning++; break;
-                    }
                     
                     // save request
                     //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
 
-                    // save single test to store
                     result = await test.getResult();
+
+                    switch(test.validation) {
+                        case 'automatic':
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
+                        case 'self': 
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
+                        case 'required': num_warning++; break;
+                    }
+
+                    // save single test to store
                     database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
 
                     console.log(result);
@@ -225,7 +242,12 @@ module.exports = function(app, checkAuthorisation, database) {
                                 case 'failure': num_failure++; break;
                             }
                         break;
-                        case 'self': num_warning++; break;
+                        case 'self': 
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
                         case 'required': num_warning++; break;
                     }
 
@@ -259,16 +281,28 @@ module.exports = function(app, checkAuthorisation, database) {
                 if(test.hook==hook) {
                     userinforequest = await test.getUserinfoRequest();
 
-                    switch(test.validation) {
-                        case 'self': num_warning++; break;
-                        case 'required': num_warning++; break;
-                    }
-
                     // save request
                     //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
 
-                    // save single test to store
                     result = await test.getResult();
+
+                    switch(test.validation) {
+                        case 'automatic':
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
+                        case 'self': 
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
+                        case 'required': num_warning++; break;
+                    }
+
+                    // save single test to store
                     database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
 
                     console.log(result);
@@ -326,7 +360,12 @@ module.exports = function(app, checkAuthorisation, database) {
                                 case 'failure': num_failure++; break;
                             }
                         break;
-                        case 'self': num_warning++; break;
+                        case 'self': 
+                            switch(result.result) {
+                                case 'success': num_success++; break;
+                                case 'failure': num_failure++; break;
+                            }
+                        break;
                         case 'required': num_warning++; break;
                     }
                     
