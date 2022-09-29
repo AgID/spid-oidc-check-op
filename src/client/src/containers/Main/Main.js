@@ -192,7 +192,7 @@ class Main extends Component {
 								<Sidebar {...this.props}/> 
 								
 								<main className="main">
-									<img className="agid-logo-print" src="img/spid-agid-logo-lb.png" />
+									<img className="agid-logo-print" src="/../../img/spid-agid-logo-lb.png" />
 
 									<Breadcrumb {...this.props} user={this.state.user}/>	
 									<Container fluid>
@@ -200,7 +200,7 @@ class Main extends Component {
 									</Container>
 									
 									<div className="info-print">
-										User: {this.state.user}
+										User: {this.state.user}<br/>
 										Metadata: {this.state.infoprint_metadata} <br/>
 										Report generato il: {this.state.infoprint_datetime}
 									</div>

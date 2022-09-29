@@ -32,6 +32,18 @@
 }
 
 @media print {
+    .container-main {
+        background-color: #fff;
+    }
+
+    .app-header, .sidebar, .btn-scroll {
+        display: none;
+    }
+
+    .table-responsive {
+        overflow-x: unset;
+    }
+
     .agid-logo-print, .info-print {
         display: block!important;
         margin-bottom: 50px;

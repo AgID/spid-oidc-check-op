@@ -27,17 +27,19 @@ function view(me) {
                                             {me.state.referements!=null && <div>Referements: {me.state.referements}</div> }
                                         </div>
 
-                                        {me.state.report.map((t, i)=> {
-                                            return(
-                                                <a key={i} 
-                                                    className={(t.result=="success")? ((t.validation=="self")? "test-success-self" : "test-success") : ((t.result=="warning")? "test-warning" : "test-fail")}
-                                                    title={t.description + (t.message? ": " + t.message : "")}
-                                                    onClick={()=>me.selectTest(t)}
-                                                    > 
-                                                    {t.num} 
-                                                </a> 
-                                            );
-                                        })}
+                                        <div className="mt-3">
+                                            {me.state.report.map((t, i)=> {
+                                                return(
+                                                    <a key={i} 
+                                                        className={(t.result=="success")? ((t.validation=="self")? "test-success-self" : "test-success") : ((t.result=="warning")? "test-warning" : "test-fail")}
+                                                        title={t.description + (t.message? ": " + t.message : "")}
+                                                        onClick={()=>me.selectTest(t)}
+                                                        > 
+                                                        {t.num} 
+                                                    </a> 
+                                                );
+                                            })}
+                                        </div>
 
                                     </div>                                      
                                 </div> 
@@ -53,12 +55,12 @@ function view(me) {
                                 <div className="row"> 
                                     <div className="col-sm-12 table-responsive">
                                     <div>
-                                        <div>Check: <b><span className="first-upper">{me.state.testcase}</span></b></div> 
-                                        {me.state.description!=null && <div>Description<b>: {me.state.description}</b></div> }
-                                        {me.state.referements!=null && <div>Referements<b>: {me.state.referements}</b></div> }
+                                        <div>Check: <span className="first-upper">{me.state.testcase}</span></div> 
+                                        {me.state.description!=null && <div>Description: {me.state.description}</div> }
+                                        {me.state.referements!=null && <div>Referements: {me.state.referements}</div> }
                                     </div>
                                         
-                                        <table className="table detail-table">
+                                        <table className="table detail-table mt-3">
                                             <tr className="detail-header">
                                                 <th className="detail-num">#</th>
                                                 <th className="detail-description">Test</th>
