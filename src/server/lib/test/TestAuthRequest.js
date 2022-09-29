@@ -26,6 +26,20 @@ class TestAuthRequest extends Test {
             datetime: moment().format('YYYY-MM-DD HH:mm:ss')
         }
 
+        if(this.validation=='self') {
+            test.result = this.setWarning();
+            test.message = "REQUIRES SELF ASSESSMENT";
+            test.notes = this.notes;
+            return test;
+        } 
+
+        if(this.validation=='required') {
+            test.result = this.setWarning();
+            test.message = "REQUIRES AUTHORITY ASSESSMENT";
+            test.notes = this.notes;
+            return test;
+        } 
+
         try {
             //do not await here but exec requested. TODO 
             this.exec();
