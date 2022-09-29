@@ -9,6 +9,7 @@ const moment = require("moment");
 
 const config_server = require("../config/server.json");
 const config_rp = require("../config/rp.json");
+const config_aa = require("../config/aa.json");
 const config_api = require("../config/api.json");
 
 const Database = require("./lib/database");
@@ -99,17 +100,23 @@ var checkBasicAuth = function(req) {
     return authorised;
 }
 
-/* APP */
+/* Authentication */
 require('./app/auth')		    (app, checkAuth, authenticator);
-require('./app/rp')		        (app, checkAuth);
 
-/* API */
+/* Relying Party */
+if(config_rp.enabled) require('./app/rp') (app, checkAuth);
+
+/* Attribute Authority */
+if(config_aa.enabled) require('./app/aa') (app, checkAuth, database);
+
+/* API Validator */
 require('./api/test')    	    (app, checkAuth);
 require('./api/metadata')	    (app, checkAuth, database);
 require('./api/oidc')	        (app, checkAuth, database);
 require('./api/store')		    (app, checkAuth, database);
 require('./api/info')		    (app, checkAuth);
 require('./api/server-info')	(app);
+
 
 
 
