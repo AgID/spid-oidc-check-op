@@ -1,0 +1,5 @@
+{
+	"enabled": true,
+	"basepath": "",
+	"iss": "http://localhost:8084/attribute-authority"
+}
