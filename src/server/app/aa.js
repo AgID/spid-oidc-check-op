@@ -42,7 +42,7 @@ module.exports = function(app, checkAuthorisation, database) {
                     "aa-version": "1.0.0",
                     "aa-home": config_aa.iss + '/openapi',
                     "aa-registry": "https://registry.spid.gov.it/attribute-authority",
-                    "aa-required-attributes": ['fiscalNumber', 'email'],
+                    "aa-required-attributes": ['https://attributes.eid.gov.it/fiscal_number', 'email'],
                     "aa-lookup-attribute": ['email']
                 }
             },
