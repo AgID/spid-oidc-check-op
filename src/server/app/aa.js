@@ -274,7 +274,6 @@ module.exports = function(app, checkAuthorisation, database) {
             jti: Utility.getUUID(),
             iss: iss,
             sub: iss,
-            organization_name: "SPID OIDC Validator Attribute Authority",
             iat: iat.unix(),
             exp: exp.unix(),
             jwks: jwks,
@@ -291,7 +290,8 @@ module.exports = function(app, checkAuthorisation, database) {
                     resource: config_aa.iss + '/v1/validation'
                 },
                 federation_entity: {
-
+                    homepage_uri: config_aa.iss,
+                    organization_name: "SPID OIDC Validator Attribute Authority",                    
                 }
             }
         });
