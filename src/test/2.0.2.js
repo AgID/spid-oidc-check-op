@@ -30,7 +30,7 @@ class Test_2_0_2 extends TestAuthRequest {
         this.authrequest.code_verifier = pkce.code_verifier;
         this.authrequest.code_challenge_method = "S256";
         this.authrequest.nonce = Utility.getNonce();
-        this.authrequest.prompt = "login";
+        this.authrequest.prompt = "consent login";
         this.authrequest.redirect_uri = config_rp.redirect_uri;
         this.authrequest.acr_values = "https://www.spid.gov.it/SpidL2";
         this.authrequest.claims = {
