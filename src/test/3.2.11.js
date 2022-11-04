@@ -1,13 +1,13 @@
-const TestTokenResponse = require('../server/lib/test/TestTokenResponse.js');
+const TestRefreshTokenResponse = require('../server/lib/test/TestRefreshTokenResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
 const validator = require('../server/node_modules/validator');
 const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 
-class Test_3_2_11 extends TestTokenResponse {
+class Test_3_2_11 extends TestRefreshTokenResponse {
 
-    constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse) {
-        super(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
+    constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse) {
+        super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse);
         this.num = "3.2.11";
         this.description = "the signature of refresh_token MUST be valid, the signature of refresh_token MUST be able to be verified with the public key of the OP";
         this.validation = "automatic";
@@ -21,7 +21,7 @@ class Test_3_2_11 extends TestTokenResponse {
             throw("The authrequest scope not contains offline_access");
         }
 
-        let refresh_token = this.tokenresponse.data.refresh_token;
+        let refresh_token = this.refreshtokenresponse.data.refresh_token;
 
         if(!validator.isJWT(refresh_token)) {
             this.notes = refresh_token;
@@ -36,16 +36,16 @@ class Test_3_2_11 extends TestTokenResponse {
         }
 
         let keystore_op = jose.JWK.createKeyStore();
-        for(let k in op_jwks) {
-            await keystore_op.add(op_jwks[k], 'json');
+        for(let k in op_jwks.keys) {
+            await keystore_op.add(op_jwks.keys[k]);
         }
         
         let refresh_token_verified = await jose.JWS.createVerify(keystore_op).verify(refresh_token);
 
-        this.notes = refresh_token_verified; 
+        this.notes = refresh_token; 
         return true;
     }
 
 }
-
+ 
 module.exports = Test_3_2_11

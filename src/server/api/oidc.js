@@ -112,39 +112,42 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Referements: " + testcase_referements);
             console.log("Test list to be executed: ", tests);
 
-            for(let t in tests) {
-                let TestAuthResponseClass = require("../../test/" + tests[t]);
-                test = new TestAuthResponseClass(metadata, authrequest, authresponse);
-                if(test.hook==hook) {
-                    result = await test.getResult();
+            if(tests!=null) {
+                for(let t in tests) {
+                    let TestAuthResponseClass = require("../../test/" + tests[t]);
+                    test = new TestAuthResponseClass(metadata, authrequest, authresponse);
+                    if(test.hook==hook) {
+                        result = await test.getResult();
 
-                    switch(test.validation) {
-                        case 'automatic':
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'self': 
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'required': num_warning++; break;
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
                     }
-
-                    // save single test to store
-                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
-
-                    console.log(result);
-                    report.push(result);
                 }
             }
         }
 
         let tokenrequest = {};
         let tokenresponse = {};
+        let actualtokenresponse = {}; // from token request or new refresh token request
 
         { // token request
             let hook = "token-request";
@@ -157,68 +160,73 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Referements: " + testcase_referements);
             console.log("Test list to be executed: ", tests);
 
-            let test = null;
-            for(let t in tests) {
-                let TestTokenRequestClass = require("../../test/" + tests[t]);
-                test = new TestTokenRequestClass(metadata, authrequest, authresponse, tokenrequest);
-                if(test.hook==hook) {
-                    tokenrequest = await test.getTokenRequest();
-                    
-                    // save request
-                    //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+            if(tests!=null) {
 
-                    result = await test.getResult();
+                let test = null;
+                for(let t in tests) {
+                    let TestTokenRequestClass = require("../../test/" + tests[t]);
+                    test = new TestTokenRequestClass(metadata, authrequest, authresponse, tokenrequest);
+                    if(test.hook==hook) {
+                        tokenrequest = await test.getTokenRequest();
+                        
+                        // save request
+                        //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
 
-                    switch(test.validation) {
-                        case 'automatic':
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'self': 
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'required': num_warning++; break;
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
                     }
+                }
 
-                    // save single test to store
-                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+                // send token request
+                console.log("Token Request", qs.stringify(tokenrequest));
 
-                    console.log(result);
-                    report.push(result);
+                try {
+                    tokenresponse = await axios.post(
+                        metadata.configuration.token_endpoint, 
+                        qs.stringify(tokenrequest), 
+                        {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
+                    );
+
+                    console.log("Token Response", tokenresponse.data);
+
+                    actualtokenresponse = tokenresponse;
+                    
+                } catch(error) {
+                    console.log("Token Request ERROR", error.response.data);
+                    return res.status(400).json({
+                        error: "Token Request ERROR",
+                        error_message: error.response.data,
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest
+                    });
                 }
             }
-
-            // send token request
-            console.log("Token Request", qs.stringify(tokenrequest));
-
-            try {
-                tokenresponse = await axios.post(
-                    metadata.configuration.token_endpoint, 
-                    qs.stringify(tokenrequest), 
-                    {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
-                );
-                
-            } catch(error) {
-                console.log("Token Request ERROR", error.response.data);
-                return res.status(400).json({
-                    error: "Token Request ERROR",
-                    error_message: error.response.data,
-                    metadata: metadata,
-                    authrequest: authrequest,
-                    authresponse: authresponse,
-                    tokenrequest: tokenrequest
-                });
-            }
         }
-
-        console.log("Token Response", tokenresponse.data);
         
-        {   // token response
+        { // token response
             let hook = "token-response";
 
             let tests = config_test[testsuite].cases[testcase].hook[hook]; 
@@ -229,33 +237,163 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Referements: " + testcase_referements);
             console.log("Test list to be executed: ", tests);
 
-            for(let t in tests) {
-                let TestTokenResponseClass = require("../../test/" + tests[t]);
-                test = new TestTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
-                if(test.hook==hook) {
-                    result = await test.getResult();
+            if(tests!=null) {
+                for(let t in tests) {
+                    let TestTokenResponseClass = require("../../test/" + tests[t]);
+                    test = new TestTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
+                    if(test.hook==hook) {
+                        result = await test.getResult();
 
-                    switch(test.validation) {
-                        case 'automatic':
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'self': 
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'required': num_warning++; break;
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
                     }
+                }
+            }
+        }
 
-                    // save single test to store
-                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+        let refreshtokenrequest = {};
+        let refreshtokenresponse = {};
 
-                    console.log(result);
-                    report.push(result);
+        { // refresh token request
+            let hook = "refresh-token-request";
+
+            let tests = config_test[testsuite].cases[testcase].hook[hook]; 
+            let testcase_name = config_test[testsuite].cases[testcase].name;
+            let testcase_description = config_test[testsuite].cases[testcase].description;
+            let testcase_referements = config_test[testsuite].cases[testcase].ref;
+            console.log("Test case name: " + testcase_name);
+            console.log("Referements: " + testcase_referements);
+            console.log("Test list to be executed: ", tests);
+
+            if(tests!=null) {
+
+                let test = null;
+
+                for(let t in tests) {
+                    let TestRefreshTokenRequestClass = require("../../test/" + tests[t]);
+                    test = new TestRefreshTokenRequestClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
+                    if(test.hook==hook) {
+                        refreshtokenrequest = await test.getRefreshTokenRequest();
+                        
+                        // save request
+                        //database.saveRefreshTokenRequest ?
+
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
+                    }
+                }
+            
+                // send refresh token request
+                console.log("Refresh Token Request", qs.stringify(refreshtokenrequest));
+
+                try {
+                    refreshtokenresponse = await axios.post(
+                        metadata.configuration.token_endpoint, 
+                        qs.stringify(refreshtokenrequest), 
+                        {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
+                    );
+
+                    console.log("Refresh Token Response", refreshtokenresponse.data);
+
+                    // if refresh token request is successful, the response is the new token response
+                    actualtokenresponse = refreshtokenresponse; 
+
+                } catch(error) {
+                    console.log("Token Request ERROR", error.response.data);
+                    return res.status(400).json({
+                        error: "Token Request ERROR",
+                        error_message: error.response.data,
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest
+                    });
+                }
+            }
+        }
+        
+        { // refresh token response
+            let hook = "refresh-token-response";
+
+            let tests = config_test[testsuite].cases[testcase].hook[hook]; 
+            let testcase_name = config_test[testsuite].cases[testcase].name;
+            let testcase_description = config_test[testsuite].cases[testcase].description;
+            let testcase_referements = config_test[testsuite].cases[testcase].ref;
+            console.log("Test case name: " + testcase_name);
+            console.log("Referements: " + testcase_referements);
+            console.log("Test list to be executed: ", tests);
+
+            if(tests!=null) {
+                for(let t in tests) {
+                    let TestRefreshTokenResponseClass = require("../../test/" + tests[t]);
+                    test = new TestRefreshTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse);
+                    if(test.hook==hook) {
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
+                    }
                 }
             }
         }
@@ -274,67 +412,72 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Referements: " + testcase_referements);
             console.log("Test list to be executed: ", tests);
 
-            let test = null;
-            for(let t in tests) {
-                let TestUserinfoRequestClass = require("../../test/" + tests[t]);
-                test = new TestUserinfoRequestClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest);
-                if(test.hook==hook) {
-                    userinforequest = await test.getUserinfoRequest();
+            if(tests!=null) {
 
-                    // save request
-                    //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+                let test = null;
+                for(let t in tests) {
+                    let TestUserinfoRequestClass = require("../../test/" + tests[t]);
+                    test = new TestUserinfoRequestClass(metadata, authrequest, authresponse, tokenrequest, actualtokenresponse, userinforequest);
+                    if(test.hook==hook) {
+                        userinforequest = await test.getUserinfoRequest();
 
-                    result = await test.getResult();
+                        // save request
+                        //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
 
-                    switch(test.validation) {
-                        case 'automatic':
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'self': 
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'required': num_warning++; break;
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
                     }
+                }
 
-                    // save single test to store
-                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+                // send userinfo request
+                console.log("Userinfo Request", userinforequest);
 
-                    console.log(result);
-                    report.push(result);
+                try {
+                    userinforesponse = await axios.get(
+                        metadata.configuration.userinfo_endpoint, 
+                        {headers: userinforequest}
+                    );
+
+                    console.log("Userinfo Response", userinforesponse.data);
+                    
+                } catch(error) {
+                    console.log("Userinfo Request ERROR", error.response.data);
+                    return res.status(400).json({
+                        error: "Userinfo Request ERROR",
+                        error_message: error.response.data,
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest,
+                        refreshtokenresponse: refreshtokenresponse.data,
+                        userinforequest: userinforequest
+                    });
                 }
             }
-
-            // send userinfo request
-            console.log("Userinfo Request", userinforequest);
-
-            try {
-                userinforesponse = await axios.get(
-                    metadata.configuration.userinfo_endpoint, 
-                    {headers: userinforequest}
-                );
-                
-            } catch(error) {
-                console.log("Userinfo Request ERROR", error.response.data);
-                return res.status(400).json({
-                    error: "Userinfo Request ERROR",
-                    error_message: error.response.data,
-                    metadata: metadata,
-                    authrequest: authrequest,
-                    authresponse: authresponse,
-                    tokenrequest: tokenrequest,
-                    tokenresponse: tokenresponse.data,
-                    userinforequest: userinforequest
-                });
-            }
         }
-
-        console.log("Userinfo Response", userinforesponse.data);
         
         {   // userinfo response
             let hook = "userinfo-response";
@@ -347,33 +490,35 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log("Referements: " + testcase_referements);
             console.log("Test list to be executed: ", tests);
 
-            for(let t in tests) {
-                let TestUserinfoResponseClass = require("../../test/" + tests[t]);
-                test = new TestUserinfoResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse);
-                if(test.hook==hook) {
-                    result = await test.getResult();
+            if(tests!=null) {
+                for(let t in tests) {
+                    let TestUserinfoResponseClass = require("../../test/" + tests[t]);
+                    test = new TestUserinfoResponseClass(metadata, authrequest, authresponse, tokenrequest, actualtokenresponse, userinforequest, userinforesponse);
+                    if(test.hook==hook) {
+                        result = await test.getResult();
 
-                    switch(test.validation) {
-                        case 'automatic':
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'self': 
-                            switch(result.result) {
-                                case 'success': num_success++; break;
-                                case 'failure': num_failure++; break;
-                            }
-                        break;
-                        case 'required': num_warning++; break;
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+                        
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
                     }
-                    
-                    // save single test to store
-                    database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
-
-                    console.log(result);
-                    report.push(result);
                 }
             }
         }
@@ -411,6 +556,8 @@ module.exports = function(app, checkAuthorisation, database) {
                 authresponse: authresponse,
                 tokenrequest: tokenrequest,
                 tokenresponse: tokenresponse.data,
+                refreshtokenrequest: refreshtokenrequest,
+                refreshtokenresponse: refreshtokenresponse.data,
                 userinforequest: userinforequest,
                 userinforesponse: userinforesponse.data,
                 userinfo: userinfo_data,
