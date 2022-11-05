@@ -95,7 +95,7 @@ class OIDCReport extends Component {
       switch2: test.result=='success',
       switch2Text: "Test PASSED",
       switch2Func: (test.validation=='self')? (e)=> {this.setPassed(testcase, hook, test, e)} : null, 
-      input: test.notes,
+      input: Utility.isObject(test.notes)? JSON.stringify(test.notes) : test.notes,
       inputVisible: true,
       inputEnabled: true, 
       inputFunc: (e)=> {this.setNotes(testcase, hook, test, e)},

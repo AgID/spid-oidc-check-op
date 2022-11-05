@@ -7,6 +7,10 @@ import sha256 from 'crypto-js/sha256';
 
 class Utility {
 
+    static isObject(obj) {
+        return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
+    }
+
     static log(tag, text) {
         console.log("\n\n>>> " + tag);
         if(text!=null) console.log(CircularJSON.stringify(text, null, 4));

@@ -214,6 +214,8 @@ module.exports = function(app, checkAuthorisation, database) {
                     
                 } catch(error) {
                     console.log("Token Request ERROR", error.response.data);
+
+                    /*
                     return res.status(400).json({
                         error: "Token Request ERROR",
                         error_message: error.response.data,
@@ -222,6 +224,10 @@ module.exports = function(app, checkAuthorisation, database) {
                         authresponse: authresponse,
                         tokenrequest: tokenrequest
                     });
+                    */
+
+                    // error response from token endpoint MUST be checked
+                    actualtokenresponse = error.response;
                 }
             }
         }
@@ -240,7 +246,7 @@ module.exports = function(app, checkAuthorisation, database) {
             if(tests!=null) {
                 for(let t in tests) {
                     let TestTokenResponseClass = require("../../test/" + tests[t]);
-                    test = new TestTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse);
+                    test = new TestTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, actualtokenresponse);
                     if(test.hook==hook) {
                         result = await test.getResult();
 
@@ -339,7 +345,9 @@ module.exports = function(app, checkAuthorisation, database) {
                     actualtokenresponse = refreshtokenresponse; 
 
                 } catch(error) {
-                    console.log("Token Request ERROR", error.response.data);
+                    console.log("Refresh Token Request ERROR", error.response.data);
+
+                    /*
                     return res.status(400).json({
                         error: "Token Request ERROR",
                         error_message: error.response.data,
@@ -350,6 +358,10 @@ module.exports = function(app, checkAuthorisation, database) {
                         tokenresponse: tokenresponse.data,
                         refreshtokenrequest: refreshtokenrequest
                     });
+                    */
+
+                    // error response from token endpoint MUST be checked
+                    actualtokenresponse = error.response; 
                 }
             }
         }
@@ -368,7 +380,7 @@ module.exports = function(app, checkAuthorisation, database) {
             if(tests!=null) {
                 for(let t in tests) {
                     let TestRefreshTokenResponseClass = require("../../test/" + tests[t]);
-                    test = new TestRefreshTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse);
+                    test = new TestRefreshTokenResponseClass(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, actualtokenresponse);
                     if(test.hook==hook) {
                         result = await test.getResult();
 
@@ -557,7 +569,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 tokenrequest: tokenrequest,
                 tokenresponse: tokenresponse.data,
                 refreshtokenrequest: refreshtokenrequest,
-                refreshtokenresponse: refreshtokenresponse.data,
+                refreshtokenresponse: actualtokenresponse.data,
                 userinforequest: userinforequest,
                 userinforesponse: userinforesponse.data,
                 userinfo: userinfo_data,
