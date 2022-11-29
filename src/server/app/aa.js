@@ -278,7 +278,7 @@ module.exports = function(app, checkAuthorisation, database) {
             exp: exp.unix(),
             jwks: jwks,
             trust_marks: [],
-            authority_hints: 'registry.spid.gov.it',
+            authority_hints: ['registry.spid.gov.it'],
             metadata: {
                 oauth_authorization_server: {
                     issuer: iss,
