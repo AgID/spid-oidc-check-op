@@ -7,7 +7,7 @@ class Test_3_5_15 extends TestRefreshTokenResponse {
     constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest, refreshtokenresponse);
         this.num = "3.5.15";
-        this.description = "Refresh Token Payload: if use case is CU1 or CU2 (SPID_A41) the value of exp MUST be = iat + 30 days - (iat of original authentication)";
+        this.description = "Refresh Token Payload: if use case is CU1 or CU2 (SPID_A41) the value of exp MUST be <= iat + 30 days - (iat - iat of original authentication)";
         this.validation = "automatic";
     }
 
@@ -38,10 +38,12 @@ class Test_3_5_15 extends TestRefreshTokenResponse {
             throw("the value of exp is not a valid unix time");
         }
 
-
-        let authrequest_iat_diff = moment.unix(refresh_token_payload.iat).diff(moment.unix(authrequest.iat));
-        if(!moment.unix(refresh_token_payload.exp).isBefore(
-            moment.unix(refresh_token_payload.iat).add(30, 'd').subtract(authrequest_iat_diff)
+        let refresh_token_iat = moment.unix(refresh_token_payload.iat);
+        let refresh_token_exp = moment.unix(refresh_token_payload.exp);
+        let authrequest_iat_diff = refresh_token_iat.diff(moment.unix(authrequest.iat));
+        
+        if(refresh_token_exp.isAfter(
+            refresh_token_iat.add(30, 'd').subtract(authrequest_iat_diff)
         )) {
             this.notes = moment.unix(refresh_token_payload.exp).format('DD/MM/YYYY HH:mm:ss') + 
                             " > " + moment.unix(refresh_token_payload.iat).add(30, 'd').subtract(authrequest_iat_diff).format('DD/MM/YYYY HH:mm:ss') + ". ";
