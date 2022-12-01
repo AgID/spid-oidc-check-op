@@ -247,7 +247,7 @@
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
                     "refresh-token-request": ["3.1.33"],
-                    "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.3"]
+                    "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3"]
                 }
             },
             "test-case-oidc-offline-access-denied-4": {
@@ -260,7 +260,33 @@
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
                     "refresh-token-request": ["3.1.33"],
-                    "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.3"]
+                    "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3"]
+                }
+            },
+            "test-case-oidc-offline-access-invalid-request-0": {
+                "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id is not present)",
+                "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.6",
+                "hook": {
+                    "authentication-request": ["2.2.6"],
+                    "authentication-response": [],
+                    "token-request": ["3.0.0"], 
+                    "token-response": [], 
+                    "refresh-token-request": ["3.1.1"],
+                    "refresh-token-response": ["3.9.3"]
+                }
+            },
+            "test-case-oidc-offline-access-invalid-request-1": {
+                "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
+                "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.6",
+                "hook": {
+                    "authentication-request": ["2.2.6"],
+                    "authentication-response": [],
+                    "token-request": ["3.0.0"], 
+                    "token-response": [], 
+                    "refresh-token-request": ["3.1.2"],
+                    "refresh-token-response": ["3.9.3"]
                 }
             },
 
