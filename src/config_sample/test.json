@@ -277,7 +277,7 @@
                 }
             },
             "test-case-oidc-offline-access-invalid-request-1": {
-                "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
+                "name": "11 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
                 "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.6",
                 "hook": {
@@ -291,7 +291,7 @@
             },
 
             "test-case-attribute-authority-0": {
-                "name": "10 - Attribute Authority Request and Grant Token",
+                "name": "12 - Attribute Authority Request and Grant Token",
                 "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority.",
                 "ref": "SPID-QAD-OIDC-OP",
                 "hook": {

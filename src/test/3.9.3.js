@@ -29,10 +29,12 @@ class Test_3_9_3 extends TestRefreshTokenResponse {
             throw("Parameter error is not '" + this.error + "'");
         } 
 
+        /*
         if(this.refreshtokenresponse.data.error_description!=this.error_description) {
             this.notes = this.refreshtokenresponse.data;
             throw("Parameter error_description is not: " + this.error_description);
         } 
+        */
 
         this.notes = this.refreshtokenresponse.data;
         return true;
