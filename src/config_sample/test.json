@@ -268,7 +268,7 @@
                 "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.6",
                 "hook": {
-                    "authentication-request": ["2.2.6"],
+                    "authentication-request": ["2.0.2"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
@@ -281,7 +281,7 @@
                 "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.6",
                 "hook": {
-                    "authentication-request": ["2.2.6"],
+                    "authentication-request": ["2.0.2"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
