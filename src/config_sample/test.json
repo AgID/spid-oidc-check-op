@@ -272,7 +272,7 @@
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
-                    "refresh-token-request": ["3.1.1"],
+                    "refresh-token-request": ["3.1.34"],
                     "refresh-token-response": ["3.9.3"]
                 }
             },
@@ -285,8 +285,8 @@
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
-                    "refresh-token-request": ["3.1.2"],
-                    "refresh-token-response": ["3.9.3"]
+                    "refresh-token-request": ["3.1.35"],
+                    "refresh-token-response": ["3.9.0"]
                 }
             },
 
