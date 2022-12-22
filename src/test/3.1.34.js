@@ -17,9 +17,8 @@ class Test_3_1_34 extends TestRefreshTokenRequest {
 
     async exec() {
         //this.refreshtokenrequest.client_id = "";
-        this.refreshtokenrequest.code = this.authresponse.code;
-        this.refreshtokenrequest.code_verifier = this.authrequest.code_verifier;
-        this.refreshtokenrequest.grant_type = "authorization_code";
+        this.refreshtokenrequest.refresh_token = this.tokenresponse.data.refresh_token;
+        this.refreshtokenrequest.grant_type = "refresh_token";
         this.refreshtokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.refreshtokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
