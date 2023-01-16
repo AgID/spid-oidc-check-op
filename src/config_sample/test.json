@@ -239,7 +239,7 @@
             },
             "test-case-oidc-offline-access-denied-3": {
                 "name": "8 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 2)",
-                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request. Expected refresh token response: error 'invalid_request'",
+                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request with invalid grant. Expected authentication request response: invalid_request, expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.5",
                 "hook": {
                     "authentication-request": ["2.2.5"],
