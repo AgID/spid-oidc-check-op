@@ -8,8 +8,8 @@ const config_rp = require('../config/rp.json');
 
 class Test_3_1_35 extends TestRefreshTokenRequest {
 
-    constructor(metadata, authrequest={}, authresponse={}) {
-        super(metadata, authrequest, authresponse);
+    constructor(metadata, authrequest={}, authresponse={}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
+        super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
         this.num = "3.1.35";
         this.description = "Wrong Refresh Token Request: the value of client_id is not trusted";
         this.validation = "self";

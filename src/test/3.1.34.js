@@ -8,8 +8,8 @@ const config_rp = require('../config/rp.json');
 
 class Test_3_1_34 extends TestRefreshTokenRequest {
 
-    constructor(metadata, authrequest={}, authresponse={}) {
-        super(metadata, authrequest, authresponse);
+    constructor(metadata, authrequest={}, authresponse={}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
+        super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
         this.num = "3.1.34";
         this.description = "Wrong Refresh Token Request: parameter client_id is not present";
         this.validation = "self";
