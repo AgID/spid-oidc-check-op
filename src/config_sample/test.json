@@ -295,7 +295,7 @@
                 "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority.",
                 "ref": "SPID-QAD-OIDC-OP",
                 "hook": {
-                    "authentication-request": ["2.6.0"],
+                    "authentication-request": ["7.0.0"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"],
                     "token-response": [

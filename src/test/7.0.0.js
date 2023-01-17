@@ -9,11 +9,11 @@ const TestAuthRequest = require('../server/lib/test/TestAuthRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_2_6_0 extends TestAuthRequest {
+class Test_7_0_0 extends TestAuthRequest {
 
     constructor(metadata, authrequest={}) {
         super(metadata, authrequest);
-        this.num = "2.6.0";
+        this.num = "7.0.0";
         this.description = "Request correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details";
         this.validation = "self";
     }
@@ -103,4 +103,4 @@ class Test_2_6_0 extends TestAuthRequest {
 
 }
 
-module.exports = Test_2_6_0 
+module.exports = Test_7_0_0 
