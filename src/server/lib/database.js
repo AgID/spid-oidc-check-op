@@ -235,10 +235,10 @@ class Database {
         store.metadata = metadata;
 
         if(!store.metadata.configuration) throw new Error("Metadata Configuration is not found");
-        if(!store.metadata.configuration.op_name) throw new Error("op_name configuration is not found");
+        if(!store.metadata.configuration.organization_name) throw new Error("organization_name configuration is not found");
         if(!store.metadata.configuration.issuer) throw new Error("issuer configuration is not found");
 
-        let organization = metadata.configuration.op_name;
+        let organization = metadata.configuration.organization_name;
         let issuer = metadata.configuration.issuer;
     
         this.saveStore(user, organization, issuer, external_code, store_type, store);
@@ -269,7 +269,7 @@ class Database {
         if(!store) throw new Error("Store is not found");
         if(!store.metadata) throw new Error("Metadata is not found");
         if(!store.metadata.configuration) throw new Error("Metadata Configuration is not found");
-        if(!store.metadata.configuration.op_name) throw new Error("op_name configuration is not found");
+        if(!store.metadata.configuration.organization_name) throw new Error("organization_name configuration is not found");
         if(!store.metadata.configuration.issuer) throw new Error("issuer configuration is not found");
 
         if(!store.test) store.test = {};
@@ -305,7 +305,7 @@ class Database {
         
         store.test[testsuite]['cases'][testcase]['hook'][hook][test.num] = test;
 
-        let organization = store.metadata.configuration.op_name;
+        let organization = store.metadata.configuration.organization_name;
         let issuer = store.metadata.configuration.issuer;
     
         this.saveStore(user, organization, issuer, external_code, store_type, store);
@@ -319,10 +319,10 @@ class Database {
         if(!store) throw new Error("Store is not found");
         if(!store.metadata) throw new Error("Metadata is not found");
         if(!store.metadata.configuration) throw new Error("Metadata Configuration is not found");
-        if(!store.metadata.configuration.op_name) throw new Error("op_name configuration is not found");
+        if(!store.metadata.configuration.organization_name) throw new Error("organization_name configuration is not found");
         if(!store.metadata.configuration.issuer) throw new Error("issuer configuration is not found");
 
-        let organization = store.metadata.configuration.op_name;
+        let organization = store.metadata.configuration.organization_name;
         let issuer = store.metadata.configuration.issuer;
 
         store.test[testsuite]['lastlog'] = log;
