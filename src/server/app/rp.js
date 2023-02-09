@@ -40,6 +40,7 @@ module.exports = function(app, checkAuthorisation) {
         const response_types = ["code"];
         const grant_types = ["authorization_code", "refresh_token"];
         const client_name = "Agenzia per l'Italia Digitale";
+        const organization_name = "Agenzia per l'Italia Digitale";
 
         return {
             client_id: client_id,
@@ -48,7 +49,8 @@ module.exports = function(app, checkAuthorisation) {
             jwks_uri: jwks_uri,
             response_types: response_types,
             grant_types: grant_types,
-            client_name: client_name 
+            client_name: client_name,
+            organization_name: organization_name
         };
     }
 

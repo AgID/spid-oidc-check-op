@@ -51,10 +51,14 @@ app.use(express.static(path.resolve(__dirname, "..", "client/build")));
 
 app.set('trust proxy', 1);
 app.use(session({
+    name: 'connect-spid-oidc-check-op.sid',
     secret: "OIDC CHECK OP",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60*60000 }  //30*60000: 30min
+    cookie: { 
+        secure: true,
+        maxAge: 60*60000 
+    }  //30*60000: 30min
 }));
 
 

@@ -145,6 +145,17 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
 
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
+
         let tokenrequest = {};
         let tokenresponse = {};
         let actualtokenresponse = {}; // from token request or new refresh token request
@@ -232,6 +243,18 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
         
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
+
         { // token response
             let hook = "token-response";
 
@@ -275,6 +298,19 @@ module.exports = function(app, checkAuthorisation, database) {
                 }
             }
         }
+
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                tokenresponse: tokenresponse,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
 
         let refreshtokenrequest = {};
         let refreshtokenresponse = {};
@@ -366,6 +402,20 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
         
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                tokenresponse: tokenresponse,
+                refreshtokenrequest: refreshtokenrequest,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
+
         { // refresh token response
             let hook = "refresh-token-response";
 
@@ -409,6 +459,21 @@ module.exports = function(app, checkAuthorisation, database) {
                 }
             }
         }
+
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                tokenresponse: tokenresponse,
+                refreshtokenrequest: refreshtokenrequest,
+                refreshtokenresponse: refreshtokenresponse,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
 
         let userinforequest = {};
         let userinforesponse = {};
@@ -491,6 +556,22 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
         
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                tokenresponse: tokenresponse,
+                refreshtokenrequest: refreshtokenrequest,
+                refreshtokenresponse: refreshtokenresponse,
+                userinforequest: userinforequest,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
+
         {   // userinfo response
             let hook = "userinfo-response";
 
@@ -534,6 +615,23 @@ module.exports = function(app, checkAuthorisation, database) {
                 }
             }
         }
+
+        // save log to store
+        database.setLastLog(user, external_code, store_type, testsuite, {
+            details: {
+                metadata: metadata,
+                authrequest: authrequest,
+                authresponse: authresponse,
+                tokenrequest: tokenrequest,
+                tokenresponse: tokenresponse,
+                refreshtokenrequest: refreshtokenrequest,
+                refreshtokenresponse: refreshtokenresponse,
+                userinforequest: userinforequest,
+                userinforesponse, userinforesponse,
+                report: report,
+                report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+        });
 
         // grab userinfo claims
         let userinfo_data = {};
