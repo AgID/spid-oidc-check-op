@@ -40,7 +40,6 @@ module.exports = function(app, checkAuthorisation) {
         const response_types = ["code"];
         const grant_types = ["authorization_code", "refresh_token"];
         const client_name = "Agenzia per l'Italia Digitale";
-        const organization_name = "Agenzia per l'Italia Digitale";
 
         return {
             client_id: client_id,
@@ -49,13 +48,13 @@ module.exports = function(app, checkAuthorisation) {
             jwks_uri: jwks_uri,
             response_types: response_types,
             grant_types: grant_types,
-            client_name: client_name,
-            organization_name: organization_name
+            client_name: client_name
         };
     }
 
     async function makeEntityStatement() {
         const config_key = fs.readFileSync(path.resolve(__dirname, '../../config/spid-oidc-check-op-sig.key'));
+        const organization_name = "Agenzia per l'Italia Digitale";
         const keystore = jose.JWK.createKeyStore();
         
         const key = await keystore.add(config_key, 'pem');
@@ -81,7 +80,8 @@ module.exports = function(app, checkAuthorisation) {
                     "policy_uri": "https://" + config_rp.client_id + "/policy",
                     "logo_uri": "https://" + config_rp.client_id + "/logo",
                     "contacts": "spid.tech@agid.gov.it",
-                    "federation_resolve_endpoint": null
+                    "federation_resolve_endpoint": null,
+                    "organization_name": organization_name
                 },
                 "openid_relying_party": await makeMetadata(),
             },
