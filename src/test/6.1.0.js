@@ -1,4 +1,4 @@
-const TestRevocationRequest = require("../server/lib/test/TestIntrospectionResponse.js");
+const TestRevocationRequest = require('../server/lib/test/TestIntrospectionResponse.js');
 
 class Test_6_1_0 extends TestRevocationRequest {
   constructor(
@@ -31,18 +31,18 @@ class Test_6_1_0 extends TestRevocationRequest {
       revocationrequest,
       revocationresponse
     );
-    this.num = "6.1.0";
+    this.num = '6.1.0';
     this.description =
-      "the request is sent using HTTP method different from POST";
-    this.validation = "automatic";
+      'the request is sent using HTTP method different from POST';
+    this.validation = 'automatic';
   }
   async exec() {
     super.exec();
-    if (this.revocationrequest.method !== "POST") {
-      throw "token request is not using HTTP POST method";
-    } else {
-      return true;
-    }
+    this.notes = this.revocationrequest.method;
+    if (this.notes !== 'POST')
+      throw 'token request is not using HTTP POST method';
+
+    return true;
   }
 }
 module.exports = Test_6_1_0;
