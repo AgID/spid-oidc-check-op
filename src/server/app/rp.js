@@ -13,20 +13,20 @@ const config_dir = require("../../config/dir.json");
 module.exports = function(app, checkAuthorisation) {
 
     // get metadata (OIDC CORE)
-    app.get("//.well-known/openid-configuration", async function (req, res) {
+    app.get("/.well-known/openid-configuration", async function (req, res) {
         let metadata = await makeMetadata();
         res.status(200).json(metadata);
     }); 
 
     // get entity configuration (OIDC FEDERATION)
-    app.get("//.well-known/openid-federation", async function (req, res) {
+    app.get("/.well-known/openid-federation", async function (req, res) {
         let entity_statement = await makeEntityStatement();
         res.set('Content-Type', 'application/entity-statement+jwt');
         res.status(200).send(entity_statement);
     });
 
     // get certs
-    app.get("//certs", async function (req, res) {
+    app.get("/certs", async function (req, res) {
         let jwks = await makeJwks();
         res.status(200).json(jwks);
     }); 

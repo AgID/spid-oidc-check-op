@@ -21,6 +21,14 @@ create directory for database
 ```
 mkdir data
 ```
+configure same base path on
+ - src/client/src/config.json
+ - src/config/server.json
+ - src/config/rp.json
+ - src/config/aa.json
+```
+mkdir data
+```
 compile and build the client
 ```
 cd client && npm i && npm run build && cd ..

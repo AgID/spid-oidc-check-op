@@ -43,7 +43,17 @@ app.use((req, res, next)=> {
 });
 
 
-app.get("/", function (req, res) { res.redirect(config_server.host + '/') });
+app.get("/", function (req, res, next) { 
+    if(!config_server.basepath) {
+        console.log('root base path');
+        return next();
+    }
+    
+    let url = config_server.host;
+    url += config_server.port? ':' + config_server.port : '';
+    url += '/';
+    res.redirect(url);
+});
 
 app.use(bodyParser.json({limit: '3mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '3mb', extended: true}));
@@ -56,7 +66,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: true,
+        secure: config_server.useHttps? true : false,
         maxAge: 60*60000 
     }  //30*60000: 30min
 }));

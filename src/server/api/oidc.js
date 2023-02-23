@@ -13,7 +13,7 @@ const private_key = fs.readFileSync(__dirname + '/../../config/spid-oidc-check-o
  
 module.exports = function(app, checkAuthorisation, database) {
 
-    app.get("//api/oidc/authrequest/:testcase", async function(req, res) {
+    app.get("/api/oidc/authrequest/:testcase", async function(req, res) {
 
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -66,7 +66,7 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).send(authrequest);
     });
 
-    app.get("//redirect", async function(req, res) {
+    app.get("/redirect", async function(req, res) {
         
         let report = [];
         let num_success = 0;
@@ -682,7 +682,7 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).json(log);
     });
 
-    app.get("//api/oidc/report", async function(req, res) {
+    app.get("/api/oidc/report", async function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -708,7 +708,7 @@ module.exports = function(app, checkAuthorisation, database) {
         }
     });
 
-    app.patch("//api/oidc/report/:testcase/:hook/:test", async function(req, res) {
+    app.patch("/api/oidc/report/:testcase/:hook/:test", async function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
