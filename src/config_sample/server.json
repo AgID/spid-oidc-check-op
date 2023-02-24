@@ -1,6 +1,7 @@
 {
   "host": "http://localhost",
   "port": 8084,
+  "basepath": "",
   "useProxy": false,
   "useHttps": false,
 	"httpsPrivateKey": "./config/spid-oidc-check-op.key",

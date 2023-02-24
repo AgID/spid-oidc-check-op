@@ -13,7 +13,7 @@ const private_key = fs.readFileSync(__dirname + '/../../config/spid-oidc-check-o
  
 module.exports = function(app, checkAuthorisation, database) {
 
-    app.get("//api/oidc/authrequest/:testcase", async function(req, res) {
+    app.get("/api/oidc/authrequest/:testcase", async function(req, res) {
 
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -66,7 +66,7 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).send(authrequest);
     });
 
-    app.get("//redirect", async function(req, res) {
+    app.get("/redirect", async function(req, res) {
         
         let report = [];
         let num_success = 0;
@@ -103,6 +103,17 @@ module.exports = function(app, checkAuthorisation, database) {
 
         {   // authentication response
             let hook = "authentication-response";
+
+            // save log to store before exec test
+            database.setLastLog(user, external_code, store_type, testsuite, {
+                details: {
+                    metadata: metadata,
+                    authrequest: authrequest,
+                    authresponse: authresponse,
+                    report: report,
+                    report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                }
+            });
 
             let tests = config_test[testsuite].cases[testcase].hook[hook]; 
             let testcase_name = config_test[testsuite].cases[testcase].name;
@@ -198,6 +209,18 @@ module.exports = function(app, checkAuthorisation, database) {
                     }
                 }
 
+                // save log to store before send
+                database.setLastLog(user, external_code, store_type, testsuite, {
+                    details: {
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        report: report,
+                        report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                    }
+                });
+
                 // send token request
                 console.log("Token Request", qs.stringify(tokenrequest));
 
@@ -231,9 +254,22 @@ module.exports = function(app, checkAuthorisation, database) {
                 }
             }
         }
-        
+
         { // token response
             let hook = "token-response";
+
+            // save log to store before exec test
+            database.setLastLog(user, external_code, store_type, testsuite, {
+                details: {
+                    metadata: metadata,
+                    authrequest: authrequest,
+                    authresponse: authresponse,
+                    tokenrequest: tokenrequest,
+                    tokenresponse: actualtokenresponse.data,
+                    report: report,
+                    report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                }
+            });
 
             let tests = config_test[testsuite].cases[testcase].hook[hook]; 
             let testcase_name = config_test[testsuite].cases[testcase].name;
@@ -329,6 +365,20 @@ module.exports = function(app, checkAuthorisation, database) {
                     }
                 }
             
+                // save log to store before send
+                database.setLastLog(user, external_code, store_type, testsuite, {
+                    details: {
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest,
+                        report: report,
+                        report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                    }
+                });
+
                 // send refresh token request
                 console.log("Refresh Token Request", qs.stringify(refreshtokenrequest));
 
@@ -365,9 +415,24 @@ module.exports = function(app, checkAuthorisation, database) {
                 }
             }
         }
-        
+
         { // refresh token response
             let hook = "refresh-token-response";
+
+            // save log to store before exec test
+            database.setLastLog(user, external_code, store_type, testsuite, {
+                details: {
+                    metadata: metadata,
+                    authrequest: authrequest,
+                    authresponse: authresponse,
+                    tokenrequest: tokenrequest,
+                    tokenresponse: tokenresponse.data,
+                    refreshtokenrequest: refreshtokenrequest,
+                    refreshtokenresponse: actualtokenresponse.data,
+                    report: report,
+                    report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                }
+            });
 
             let tests = config_test[testsuite].cases[testcase].hook[hook]; 
             let testcase_name = config_test[testsuite].cases[testcase].name;
@@ -462,6 +527,22 @@ module.exports = function(app, checkAuthorisation, database) {
                     }
                 }
 
+                // save log to store before send
+                database.setLastLog(user, external_code, store_type, testsuite, {
+                    details: {
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest,
+                        refreshtokenresponse: actualtokenresponse.data,
+                        userinforequest: userinforequest,
+                        report: report,
+                        report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                    }
+                });
+
                 // send userinfo request
                 console.log("Userinfo Request", userinforequest);
 
@@ -484,15 +565,32 @@ module.exports = function(app, checkAuthorisation, database) {
                         tokenrequest: tokenrequest,
                         tokenresponse: tokenresponse.data,
                         refreshtokenrequest: refreshtokenrequest,
-                        refreshtokenresponse: refreshtokenresponse.data,
+                        refreshtokenresponse: actualtokenresponse.data,
                         userinforequest: userinforequest
                     });
                 }
             }
         }
-        
+
         {   // userinfo response
             let hook = "userinfo-response";
+
+            // save log to store before exec test
+            database.setLastLog(user, external_code, store_type, testsuite, {
+                details: {
+                    metadata: metadata,
+                    authrequest: authrequest,
+                    authresponse: authresponse,
+                    tokenrequest: tokenrequest,
+                    tokenresponse: tokenresponse.data,
+                    refreshtokenrequest: refreshtokenrequest,
+                    refreshtokenresponse: actualtokenresponse.data,
+                    userinforequest: userinforequest,
+                    userinforesponse: userinforesponse.data,
+                    report: report,
+                    report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                }
+            });
 
             let tests = config_test[testsuite].cases[testcase].hook[hook]; 
             let testcase_name = config_test[testsuite].cases[testcase].name;
@@ -577,14 +675,14 @@ module.exports = function(app, checkAuthorisation, database) {
                 report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
             }
         };
-
+ 
         // save log to store
         database.setLastLog(user, external_code, store_type, testsuite, log);
 
         res.status(200).json(log);
     });
 
-    app.get("//api/oidc/report", async function(req, res) {
+    app.get("/api/oidc/report", async function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);
@@ -610,7 +708,7 @@ module.exports = function(app, checkAuthorisation, database) {
         }
     });
 
-    app.patch("//api/oidc/report/:testcase/:hook/:test", async function(req, res) {
+    app.patch("/api/oidc/report/:testcase/:hook/:test", async function(req, res) {
         
         // check if apikey is correct
         let authorisation = checkAuthorisation(req);

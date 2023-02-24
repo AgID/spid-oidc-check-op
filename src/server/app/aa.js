@@ -13,7 +13,7 @@ const config_aa = require("../../config/aa.json");
  
 module.exports = function(app, checkAuthorisation, database) {
 
-    app.get("//attribute-authority", function(req, res) {
+    app.get("/attribute-authority", function(req, res) {
         res.redirect(config_aa.iss + '/apidoc');
     });
 
@@ -245,11 +245,11 @@ module.exports = function(app, checkAuthorisation, database) {
         res.status(200).json(openapi);
     });
 
-    app.get("//attribute-authority/apidoc", function(req, res) {
+    app.get("/attribute-authority/apidoc", function(req, res) {
         res.sendFile(path.join(__dirname, 'aa.html'));
     });
 
-    app.get("//attribute-authority/.well-known/openid-federation", async function(req, res) {
+    app.get("/attribute-authority/.well-known/openid-federation", async function(req, res) {
 
         const crt = fs.readFileSync(path.resolve(__dirname, '../../config/spid-oidc-check-op-sig.crt'));
         const x5c = new x509.X509Certificate(crt);
@@ -310,12 +310,12 @@ module.exports = function(app, checkAuthorisation, database) {
 
 
     /* TODO: implement attribute authority protected token exchange */
-    app.get("//attribute-authority/token", function(req, res) {
+    app.get("/attribute-authority/token", function(req, res) {
         res.status(401).send("Unavailable");
     });
 
     /* TODO: implement attribute authority resource endpoint */
-    app.get("//attribute-authority/v1/validation", function(req, res) {
+    app.get("/attribute-authority/v1/validation", function(req, res) {
         res.status(401).send("Unavailable");
     });
 

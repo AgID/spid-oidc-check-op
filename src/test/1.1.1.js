@@ -14,7 +14,7 @@ class Test_1_1_1 extends TestMetadata {
         super.exec();
         let response = await axios.get(this.metadata.url);
         if(response.status!=200) {
-            this.notes = response.data.status;
+            this.notes = response.status;
             throw("The HTTP Status Code is not 200 OK");
         } else {
             return true;

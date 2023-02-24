@@ -3,6 +3,9 @@ SPID OIDC Conformance Test Tool for OP
 
 <img src="doc/spid-oidc-check-op.gif" />
 
+## Requirements
+- Node.js v.14
+
 ## Setup
 clone the repository
 ```
@@ -21,6 +24,12 @@ create directory for database
 ```
 mkdir data
 ```
+configure same base path on
+ - src/client/src/config.json
+ - src/config/server.json
+ - src/config/rp.json
+ - src/config/aa.json
+
 compile and build the client
 ```
 cd client && npm i && npm run build && cd ..

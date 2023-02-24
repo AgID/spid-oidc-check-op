@@ -239,7 +239,7 @@
             },
             "test-case-oidc-offline-access-denied-3": {
                 "name": "8 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 2)",
-                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request. Expected refresh token response: error 'invalid_request'",
+                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request with invalid grant. Expected authentication request response: invalid_request, expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.5",
                 "hook": {
                     "authentication-request": ["2.2.5"],
@@ -268,11 +268,11 @@
                 "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.6",
                 "hook": {
-                    "authentication-request": ["2.2.6"],
+                    "authentication-request": ["2.0.1"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
-                    "refresh-token-request": ["3.1.1"],
+                    "refresh-token-request": ["3.1.34"],
                     "refresh-token-response": ["3.9.3"]
                 }
             },
@@ -281,12 +281,12 @@
                 "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
                 "ref": "SPID-QAD-OIDC-OP #2.2.6",
                 "hook": {
-                    "authentication-request": ["2.2.6"],
+                    "authentication-request": ["2.0.1"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"], 
                     "token-response": [], 
-                    "refresh-token-request": ["3.1.2"],
-                    "refresh-token-response": ["3.9.3"]
+                    "refresh-token-request": ["3.1.35"],
+                    "refresh-token-response": ["3.9.0"]
                 }
             },
 
@@ -295,7 +295,7 @@
                 "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority.",
                 "ref": "SPID-QAD-OIDC-OP",
                 "hook": {
-                    "authentication-request": ["2.6.0"],
+                    "authentication-request": ["7.0.0"],
                     "authentication-response": [],
                     "token-request": ["3.0.0"],
                     "token-response": [

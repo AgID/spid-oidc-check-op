@@ -14,7 +14,7 @@ module.exports = {
     },
     entry: "./src/index.js",
     output: {
-        publicPath: config_rp.basepath + 'assets/',  
+        publicPath: (config_rp.basepath? config_rp.basepath : '/') + 'assets/',  
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, 'build/assets'),
         clean: true

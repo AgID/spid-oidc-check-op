@@ -123,7 +123,7 @@ class MetadataCheck extends Component {
       switch2: test.result=='success',
       switch2Text: "Test PASSED",
       switch2Func: (test.validation=='self')? (e)=> {this.setPassed(test, e)} : null, 
-      input: test.notes,
+      input: (typeof test.notes === 'object')? JSON.stringify(test.notes) : test.notes,
       inputVisible: true,
       inputEnabled: true, 
       inputFunc: (e)=> {this.setNotes(test, e)},
