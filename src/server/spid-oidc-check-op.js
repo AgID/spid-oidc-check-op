@@ -18,6 +18,7 @@ const Utility = require("./lib/utils");
 
 const os = require('os');
 
+const useProxy = config_server.useProxy;
 const useHttps = config_server.useHttps;
 const httpPort = (process.env.NODE_HTTPS_PORT) ? process.env.NODE_HTTPS_PORT : config_server.port;
 
@@ -44,13 +45,13 @@ app.use((req, res, next)=> {
 
 
 app.get("/", function (req, res, next) { 
-    if(!config_server.basepath) {
+    if(useProxy || !config_server.basepath) {
         console.log('root base path');
         return next();
     }
     
     let url = config_server.host;
-    url += config_server.port? ':' + config_server.port : '';
+    url += (!useProxy && httpPort)? ':' + httpPort : '';
     url += '/';
     res.redirect(url);
 });

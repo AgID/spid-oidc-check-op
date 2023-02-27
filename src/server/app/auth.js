@@ -3,6 +3,7 @@ const path = require('path');
 const sha256 = require("sha256");
 const moment = require("moment"); 
 const Utility = require("../lib/utils");
+const config_server = require("../../config/server.json");
 const config_rp = require("../../config/rp.json");
 
 
@@ -70,7 +71,9 @@ module.exports = function(app, checkAuthorisation, authenticator) {
             let apikey = sha256(userinfo.sub).toString();
             req.session.apikey = apikey;
 
-            res.redirect(config_rp.basepath + "/worksave");
+            let basepath = config_server.basepath;
+            if(!basepath.endsWith('/')) basepath += '/';
+            res.redirect(basepath + "worksave");
     
         }, (error)=> {
             Utility.log("Error", error);
@@ -86,7 +89,9 @@ module.exports = function(app, checkAuthorisation, authenticator) {
         if(config_rp.agidloginAuthentication) {
             res.redirect(authenticator.getLogoutURL());
         } else {
-            res.redirect(config_rp.basepath? config_rp.basepath : '/');
+            let basepath = config_server.basepath;
+            if(!basepath.endsWith('/')) basepath += '/';
+            res.redirect(basepath);
         }
     });
 
@@ -102,7 +107,10 @@ module.exports = function(app, checkAuthorisation, authenticator) {
 
         let user = req.params.user;
         req.session.user = user;
-        res.redirect(config_rp.basepath + "/worksave");
+        let basepath = config_server.basepath;
+        if(!basepath.endsWith('/')) basepath += '/';
+
+        res.redirect(basepath + "/worksave");
     });
     
 

@@ -32,10 +32,13 @@ module.exports = function(app, checkAuthorisation) {
     }); 
 
     async function makeMetadata() {
+        let basepath = config_server.basepath;
+        if(!basepath.endsWith('/')) basepath += '/';
+
         const client_id = config_rp.client_id;
         const redirect_uris = [ config_rp.redirect_uri ];
         const jwks_uri_host = (client_id.substring(-1)=='/')? client_id.substring(0, client_id.length-1) : client_id;
-        const jwks_uri = jwks_uri_host + config_rp.basepath + "/certs";
+        const jwks_uri = jwks_uri_host + basepath + "certs";
         const jwks = await makeJwks();
         const response_types = ["code"];
         const grant_types = ["authorization_code", "refresh_token"];
