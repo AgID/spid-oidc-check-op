@@ -18,6 +18,7 @@ const Utility = require('./lib/utils');
 
 const os = require('os');
 
+const useProxy = config_server.useProxy;
 const useHttps = config_server.useHttps;
 const httpPort = process.env.NODE_HTTPS_PORT
   ? process.env.NODE_HTTPS_PORT

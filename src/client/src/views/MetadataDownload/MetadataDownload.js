@@ -12,6 +12,7 @@ class MetadataDownload extends Component {
     super(props);
     
     this.state = {
+        type: "configuration", // configuration || federation
         url: "https://",
         configuration: ""
     };  
@@ -27,13 +28,13 @@ class MetadataDownload extends Component {
       (info) => {
         Utility.blockUI(false);
         if(info.metadata && info.metadata.url && info.metadata.configuration) {
-          this.setState({ url: info.metadata.url, configuration: info.metadata.configuration });
+          this.setState({ url: info.metadata.url, type: info.metadata.type, configuration: info.metadata.configuration });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
           store.dispatch(Actions.setMetadataConfiguration(info.metadata.configuration)); 
         }
 
         if(info.metadata && info.metadata.url && !info.metadata.configuration) {
-          this.setState({ url: info.metadata.url });          
+          this.setState({ url: info.metadata.url, type: info.metadata.type });          
           this.downloadMetadata(info.metadata.url);
         }
       },
@@ -41,13 +42,13 @@ class MetadataDownload extends Component {
       (info)=> { // no session
         Utility.blockUI(false);
         if(info.metadata && info.metadata.url && info.metadata.configuration) {
-          this.setState({ url: info.metadata.url, configuration: info.metadata.configuration });
+          this.setState({ url: info.metadata.url, type: info.metadata.type, configuration: info.metadata.configuration });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
           store.dispatch(Actions.setMetadataConfiguration(info.metadata.configuration)); 
         }
 
         if(info.metadata && info.metadata.url && !info.metadata.configuration) {
-          this.setState({ url: info.metadata.url });
+          this.setState({ url: info.metadata.url, type: info.metadata.type });
           this.downloadMetadata(info.metadata.url);
         }
       },
@@ -68,13 +69,17 @@ class MetadataDownload extends Component {
   }
   
 
+  setType(type) {
+    this.setState({ type: type });
+  }
+
   downloadMetadata(url) {
     let service = Services.getMainService();
     let store = ReduxStore.getMain();
     let util = ReduxStore.getUtil();
 
     Utility.blockUI(true);
-    service.downloadMetadata(url,
+    service.downloadMetadata(url, this.state.type,
       (metadata) => { 
         Utility.blockUI(false);
         this.setState({ url: metadata.url, configuration: metadata.configuration });

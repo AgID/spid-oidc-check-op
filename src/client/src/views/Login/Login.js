@@ -18,6 +18,9 @@ class Login extends Component {
 			local_auth: false
 		}
 
+		let basepath = config.basepath;
+		if(!basepath.endsWith('/')) basepath += '/';
+
 		let service = Services.getMainService();
 
 		service.assert( 
@@ -25,11 +28,11 @@ class Login extends Component {
 			Utility.setApikey(data.apikey);
 			Utility.log("Login result", Utility.isAuthenticated());	
 			if(Utility.isAuthenticated()) {
-				window.location=config.basepath + "/worksave";
+				window.location=basepath + "worksave";
 			}
 		}, 
 		(tologin)=> {
-			if(tologin.remote) window.location=config.basepath + "/login"; 
+			if(tologin.remote) window.location=basepath + "login"; 
 			else {
 				this.setState({local_auth: true});
 			}
