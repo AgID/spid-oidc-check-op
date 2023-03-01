@@ -11,14 +11,11 @@ class Test_1_2_5 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.document = jwt_decode(this.metadata.entity_statement);
-    if (this.document.iss == null || this.document.iss == '') {
-      this.notes = this.document.iss;
+    this.notes = jwt_decode(this.metadata.entity_statement).iss;
+    if (this.notes == null || this.notes == '')
       throw 'claim iss is not present';
-    } else {
-      this.notes = this.document.iss;
-      return true;
-    }
+
+    return true;
   }
 }
 

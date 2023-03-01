@@ -11,17 +11,10 @@ class Test_1_2_13 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.document = jwt_decode(this.metadata.entity_statement);
-    if (
-      this.document.authority_hints == null ||
-      this.document.authority_hints == ''
-    ) {
-      this.notes = this.document.authority_hints;
+    this.notes = jwt_decode(this.metadata.entity_statement).authority_hints;
+    if (this.notes == null || this.notes == '')
       throw 'claim authority_hints is not present';
-    } else {
-      this.notes = this.document.authority_hints;
-      return true;
-    }
+    return true;
   }
 }
 

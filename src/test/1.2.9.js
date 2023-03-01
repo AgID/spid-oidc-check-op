@@ -13,11 +13,9 @@ class Test_1_2_9 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.document = jwt_decode(this.metadata.entity_statement);
-    this.notes = this.document.iat;
-    if (!moment.unix(this.document.iat).isValid())
+    this.notes = jwt_decode(this.metadata.entity_statement).iat;
+    if (!moment.unix(this.notes).isValid())
       throw 'the value of iat is not a valid unix time';
-
     return true;
   }
 }

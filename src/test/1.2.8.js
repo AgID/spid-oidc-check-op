@@ -11,14 +11,11 @@ class Test_1_2_8 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.document = jwt_decode(this.metadata.entity_statement);
-    if (this.document.iat == null || this.document.iat == '') {
-      this.notes = this.document.iat;
+    this.notes = jwt_decode(this.metadata.entity_statement).iat;
+    if (this.notes == null || this.notes == '')
       throw 'claim iat is not present';
-    } else {
-      this.notes = this.document.iat;
-      return true;
-    }
+
+    return true;
   }
 }
 

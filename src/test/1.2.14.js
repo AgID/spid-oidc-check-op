@@ -12,16 +12,11 @@ class Test_1_2_14 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.document = jwt_decode(this.metadata.entity_statement);
-    if (
-      !this.document.authority_hints.includes('https://registry.spid.gov.it')
-    ) {
-      this.notes = this.document.authority_hints;
+    this.notes = jwt_decode(this.metadata.entity_statement).authority_hints;
+    if (!this.notes.includes('https://registry.spid.gov.it'))
       throw "'https://registry.spid.gov.it' is not present in authority_hints";
-    } else {
-      this.notes = this.document.authority_hints;
-      return true;
-    }
+
+    return true;
   }
 }
 
