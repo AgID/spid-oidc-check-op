@@ -1,4 +1,5 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
+const jwt_decode = require('../server/node_modules/jwt-decode');
 
 class Test_1_2_10 extends TestMetadata {
   constructor(metadata) {
@@ -10,7 +11,8 @@ class Test_1_2_10 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.notes = this.metadata.exp;
+    this.document = jwt_decode(this.metadata.entity_statement);
+    this.notes = this.document.exp;
     if (this.notes == null || this.notes == '')
       throw 'claim exp is not present';
 

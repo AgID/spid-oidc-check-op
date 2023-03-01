@@ -1,20 +1,23 @@
-const TestMetadata = require("../server/lib/test/TestMetadata.js");
+const TestMetadata = require('../server/lib/test/TestMetadata.js');
+const jwt_decode = require('../server/node_modules/jwt-decode');
 
 class Test_1_2_6 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
-    this.num = "1.2.6";
-    this.description = "The document MUST contain the claim sub";
-    this.validation = "automatic";
+    this.num = '1.2.6';
+    this.description = 'The document MUST contain the claim sub';
+    this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
-    if (this.metadata.sub == null || this.metadata.sub == "") {
-      this.notes = this.metadata.sub;
-      throw "claim sub is not present";
+    super.exec();
+    this.document = jwt_decode(this.metadata.entity_statement);
+    if (this.document.sub == null || this.document.sub == '') {
+      this.notes = this.document.sub;
+      throw 'claim sub is not present';
     } else {
-      this.notes = this.metadata.sub;
+      this.notes = this.document.sub;
       return true;
     }
   }

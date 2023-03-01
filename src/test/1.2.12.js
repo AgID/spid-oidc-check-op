@@ -1,20 +1,22 @@
-const TestMetadata = require("../server/lib/test/TestMetadata.js");
+const TestMetadata = require('../server/lib/test/TestMetadata.js');
+const jwt_decode = require('../server/node_modules/jwt-decode');
 
 class Test_1_2_12 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
-    this.num = "1.2.12";
-    this.description = "The document MUST contain the claim jwks";
-    this.validation = "automatic";
+    this.num = '1.2.12';
+    this.description = 'The document MUST contain the claim jwks';
+    this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
-    if (this.metadata.jwks == null || this.metadata.jwks == "") {
-      this.notes = this.metadata.jwks;
-      throw "claim jwks is not present";
+    this.document = jwt_decode(this.metadata.entity_statement);
+    if (this.document.jwks == null || this.document.jwks == '') {
+      this.notes = this.document.jwks;
+      throw 'claim jwks is not present';
     } else {
-      this.notes = this.metadata.jwks;
+      this.notes = this.document.jwks;
       return true;
     }
   }

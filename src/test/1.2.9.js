@@ -1,4 +1,6 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
+const jwt_decode = require('../server/node_modules/jwt-decode');
+const moment = require('../server/node_modules/moment');
 
 class Test_1_2_9 extends TestMetadata {
   constructor(metadata) {
@@ -11,8 +13,9 @@ class Test_1_2_9 extends TestMetadata {
 
   async exec() {
     super.exec();
-    this.notes = this.metadata.iat;
-    if (!moment.unix(this.notes).isValid())
+    this.document = jwt_decode(this.metadata.entity_statement);
+    this.notes = this.document.iat;
+    if (!moment.unix(this.document.iat).isValid())
       throw 'the value of iat is not a valid unix time';
 
     return true;
