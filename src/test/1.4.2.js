@@ -1,12 +1,12 @@
-const TestMetadata = require("../server/lib/test/TestMetadata.js");
+const TestMetadata = require('../server/lib/test/TestMetadata.js');
 
 class Test_1_4_2 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
-    this.num = "1.4.2";
+    this.num = '1.4.2';
     this.description =
-      "The metadata SHOULD contain the claim grant_types_supported";
-    this.validation = "automatic";
+      'The metadata SHOULD contain the claim grant_types_supported';
+    this.validation = 'automatic';
   }
 
   async exec() {
