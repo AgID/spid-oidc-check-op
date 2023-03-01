@@ -1,50 +1,35 @@
-const TestUserinfoResponse = require("../server/lib/test/TestUserinfoResponse.js");
-const jwt_decode = require("../server/node_modules/jwt-decode");
-const validator = require("../server/node_modules/validator");
-const utility = require("../server/lib/utils");
-const jose = require("../server/node_modules/node-jose");
-const fs = require("fs");
-const private_key = fs.readFileSync(
-  __dirname + "/../config/spid-oidc-check-op-enc.key",
-  "utf8"
-);
+const TestMetadata = require('../server/lib/test/TestMetadata.js');
+const jwt_decode = require('../server/node_modules/jwt-decode');
+const validator = require('../server/node_modules/validator');
+const utility = require('../server/lib/utils');
+const jose = require('../server/node_modules/node-jose');
+const fs = require('fs');
 
 class Test_1_2_2 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
-    this.num = "1.2.2";
-    this.description = "The document MUST be returned as a valid JWS document";
-    this.validation = "automatic";
+    this.num = '1.2.2';
+    this.description = 'The document MUST be returned as a valid JWS document';
+    this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
 
-    let returnedDocument = this.metadata.data;
+    this.notes = this.metadata.entity_statement;
 
-    if (typeof this.metadata.data != "string") {
-      this.notes = this.metadata.data;
-      throw "the content the document is not a valid JWT string";
-    }
+    if (typeof this.notes != 'string')
+      throw 'the content the document is not a valid JWT string';
 
-    if (!utility.isJWT(returnedDocument, true)) {
-      this.notes = returnedDocument;
-      throw "document is not a valid JWT";
-    }
+    if (!validator.isJWT(this.notes, true)) throw 'document is not a valid JWT';
 
-    let keystore = jose.JWK.createKeyStore();
-    await keystore.add(private_key, "pem");
-    let document_sig_token_obj = await jose.JWE.createDecrypt(keystore).decrypt(
-      returnedDocument
+    this.notes = JSON.parse(
+      Buffer.from(this.notes.split('.')[0], 'base64').toString('ascii')
     );
-    let document_sig_token = document_sig_token_obj.payload.toString();
 
-    if (!validator.isJWT(document_sig_token)) {
-      this.notes = document_sig_token;
-      throw "document data is not a valid JWT";
-    }
+    if (this.notes.alg == null || this.notes.alg == undefined)
+      throw 'invalid algorithm';
 
-    this.notes = document_sig_token;
     return true;
   }
 }
