@@ -26,7 +26,9 @@ RUN apt-get update && apt-get install -y \
         wget \
         curl \
         unzip \
-        openssl
+        openssl \
+        python3 \
+        build-essential
         
 # Set the working directory
 WORKDIR /spid-oidc-check-op
@@ -46,7 +48,7 @@ ENV NODE_HTTPS_PORT=${EXPOSE_HTTPS_PORT}
 # Build validator
 RUN cd /spid-oidc-check-op/src && \
     cd client && npm install --silent && npm run build && cd .. && \
-    cd server && npm install --silent && cd ..
+    cd server && npm install && cd ..
 
 # Ports exposed
 EXPOSE ${EXPOSE_HTTPS_PORT}
