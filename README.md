@@ -43,3 +43,18 @@ cd server && npm i && cd ..
 ```
 node server/spid-oidc-check-op
 ```
+
+## Use Docker
+clone the repository
+```
+git clone https://github.com/AgID/spid-oidc-check-op.git
+cd spid-oidc-check-op
+```
+build
+```
+docker build -t spid-oidc-check-op .
+```
+run
+```
+docker run -t -i -p 8084:8084 spid-oidc-check-op
+```
