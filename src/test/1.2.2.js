@@ -23,12 +23,7 @@ class Test_1_2_2 extends TestMetadata {
 
     if (!validator.isJWT(this.notes, true)) throw 'document is not a valid JWT';
 
-    this.notes = JSON.parse(
-      Buffer.from(this.notes.split('.')[0], 'base64').toString('ascii')
-    );
-
-    if (this.notes.alg == null || this.notes.alg == undefined)
-      throw 'invalid algorithm';
+    this.notes = jwt_decode(this.notes);
 
     return true;
   }

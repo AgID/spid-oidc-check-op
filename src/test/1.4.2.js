@@ -6,7 +6,7 @@ class Test_1_4_2 extends TestMetadata {
     this.num = '1.4.2';
     this.description =
       'The metadata SHOULD contain the claim grant_types_supported';
-    this.validation = 'automatic';
+    this.validation = 'self';
   }
 
   async exec() {

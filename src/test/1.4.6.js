@@ -1,12 +1,12 @@
-const TestMetadata = require("../server/lib/test/TestMetadata.js");
+const TestMetadata = require('../server/lib/test/TestMetadata.js');
 
 class Test_1_4_6 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
-    this.num = "1.4.6";
+    this.num = '1.4.6';
     this.description =
-      "The metadata SHOULD contain the claim token_endpoint_auth_signing_alg_values_supported";
-    this.validation = "automatic";
+      'The metadata SHOULD contain the claim token_endpoint_auth_signing_alg_values_supported';
+    this.validation = 'self';
   }
 
   async exec() {

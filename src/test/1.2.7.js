@@ -13,7 +13,7 @@ class Test_1_2_7 extends TestMetadata {
   async exec() {
     super.exec();
     this.document = jwt_decode(this.metadata.entity_statement);
-    if ((this.document.iss !== this.document.sub) == null) {
+    if (this.document.iss !== this.document.sub) {
       this.notes = `iss ${this.document.iss} != sub ${this.document.sub}`;
       throw 'claim iss is not equal to the claim sub';
     } else {

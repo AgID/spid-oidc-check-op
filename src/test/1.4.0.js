@@ -5,7 +5,7 @@ class Test_1_4_0 extends TestMetadata {
     super(metadata);
     this.num = '1.4.0';
     this.description = 'The metadata SHOULD contain the claim scopes_supported';
-    this.validation = 'automatic';
+    this.validation = 'self';
   }
 
   async exec() {

@@ -21,19 +21,31 @@ class Test_1_2_4 extends TestMetadata {
   async exec() {
     super.exec();
 
-    let returnedDocument = this.metadata.data;
+    let returnedDocument = this.metadata.entity_statement;
 
     if (!validator.isJWT(returnedDocument)) {
       this.notes = returnedDocument;
       throw 'returned document is not a valid JWT';
     }
 
-    let keystore = jose.JWK.createKeyStore();
-    await keystore.add(private_key, 'pem');
-    let returnedDocumentSigObj = await jose.JWE.createDecrypt(keystore).decrypt(
-      returnedDocument
-    );
-    let returnedDocumentSig = returnedDocumentSigObj.payload.toString();
+    // let keystore = jose.JWK.createKeyStore();
+    // await keystore.add(private_key, 'pem');
+
+    let jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
+
+    if (jwks.keys == null || jwks.keys == '') {
+      this.notes = jwks;
+      throw 'JWKS not found';
+    }
+
+    let keystore = await jose.JWK.asKeyStore(jwks.keys);
+
+    console.log(keystore.toString());
+
+    let returnedDocumentVerified = await jose.JWS.createVerify(keystore, {
+      algorithms: '*',
+    }).verify(returnedDocument);
+    let returnedDocumentSig = returnedDocumentVerified.payload.toString();
 
     if (!validator.isJWT(returnedDocumentSig)) {
       this.notes = returnedDocumentSig;
