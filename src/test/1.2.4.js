@@ -28,9 +28,6 @@ class Test_1_2_4 extends TestMetadata {
       throw 'returned document is not a valid JWT';
     }
 
-    // let keystore = jose.JWK.createKeyStore();
-    // await keystore.add(private_key, 'pem');
-
     let jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
 
     if (jwks.keys == null || jwks.keys == '') {
@@ -38,18 +35,17 @@ class Test_1_2_4 extends TestMetadata {
       throw 'JWKS not found';
     }
 
-    let keystore = await jose.JWK.asKeyStore(jwks.keys);
+    let keystore = jose.JWK.createKeyStore();
+    for (let k in jwks.keys) {
+      await keystore.add(jwks.keys[k]);
+    }
 
-    console.log(keystore.toString());
-
-    let returnedDocumentVerified = await jose.JWS.createVerify(keystore, {
-      algorithms: '*',
-    }).verify(returnedDocument);
-    let returnedDocumentSig = returnedDocumentVerified.payload.toString();
-
-    if (!validator.isJWT(returnedDocumentSig)) {
-      this.notes = returnedDocumentSig;
-      throw 'returned document is not a valid JWT';
+    let returnedDocumentVerified = await jose.JWS.createVerify(keystore).verify(
+      returnedDocument
+    );
+    this.notes(returnedDocumentVerified);
+    if (!this.notes) {
+      throw 'document not verifiable';
     }
   }
 }
