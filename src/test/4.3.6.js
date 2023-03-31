@@ -20,8 +20,8 @@ class Test_4_3_6 extends TestUserinfoResponse {
 
         let userinfo_token = this.userinforesponse.data;
 
-        if(typeof(this.userinforesponse.data)!='string') {
-            this.notes = this.userinforesponse.data;
+        if(typeof(userinfo_token)!='string') {
+            this.notes = userinfo_token;
             throw("the content of body is not a valid JWT string");
         }
         
@@ -32,8 +32,19 @@ class Test_4_3_6 extends TestUserinfoResponse {
 
         let keystore = jose.JWK.createKeyStore();
         await keystore.add(private_key, 'pem');
-        let userinfo_sig_token = jose.JWE.createDecrypt(keystore).decrypt(userinfo_token);
- 
+        let decrypted_userinfo = await jose.JWE.createDecrypt(keystore).decrypt(userinfo_token);
+        let userinfo_sig_token = decrypted_userinfo.payload.toString();
+    
+        if(!utility.isString(userinfo_sig_token)) {
+            this.notes = userinfo_sig_token;
+            throw("userinfo signed token is not a valid string");
+        }
+
+        if(!utility.isJWT(userinfo_sig_token, false)) {
+            this.notes = userinfo_sig_token;
+            throw("userinfo signed token is not a valid JWT");
+        }
+
         this.notes = userinfo_sig_token;
         return true;
     }
