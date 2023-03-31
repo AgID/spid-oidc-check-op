@@ -75,24 +75,36 @@ class Utils {
         return Buffer.from(buffer, 'base64').toString('ascii');
     }
 
+    static isString(obj) {
+        return (typeof obj === 'string' || obj instanceof String);
+    }
+
     // patch to validator.isJWT for JWE compatibility
     // move to validator.isJWT when PR will be merged 
     // https://github.com/validatorjs/validator.js/pull/2031
     static isJWT(str, jwe = false) {
-        let dotSplit = str.split('.');
-        let len = dotSplit.length;
-      
-        if(!jwe) {
-            if (len > 3 || len < 2) {
-                return false;
+        let isJWT = false;
+        try {
+            let dotSplit = str.split('.');
+            let len = dotSplit.length;
+        
+            if(!jwe) {
+                if (len > 3 || len < 2) {
+                    return false;
+                }
+            } else {
+                if (len < 5 || len > 5) {
+                    return false; 
+                }
             }
-        } else {
-            if (len < 5 || len > 5) {
-                return false; 
-            }
+        
+            return dotSplit.reduce((acc, currElem) => acc && validator.isBase64(currElem, { urlSafe: true }), true);
+        
+        } catch(error) {
+            console.log(error.message);
         }
-      
-        return dotSplit.reduce((acc, currElem) => acc && validator.isBase64(currElem, { urlSafe: true }), true);
+
+        return isJWT;
     }
 }
 
