@@ -10,7 +10,7 @@ class Test_3_1_14 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.14";
-        this.description = "Wrong token request:the value of iat is not a valid unix time"
+        this.description = "the value of iat is not a valid unix time"
         this.validation = "self";
     }
 

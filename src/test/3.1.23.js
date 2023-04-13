@@ -10,7 +10,7 @@ class Test_3_1_23 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.23";
-        this.description = "Wrong token request:the parameter grant_type is not present"
+        this.description = "the parameter grant_type is not present"
         this.validation = "self";
     }
 
@@ -18,7 +18,7 @@ class Test_3_1_23 extends TestTokenRequest {
         //this.tokenrequest.client_id = "";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
-        this.tokenrequest.grant_type = "authorization_code";
+        //this.tokenrequest.grant_type = "authorization_code";
         this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 

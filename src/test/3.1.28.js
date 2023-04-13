@@ -10,18 +10,18 @@ class Test_3_1_28 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.28";
-        this.description = "Wrong token request:the value of code_verifier is not valid"
+        this.description = "the value of code_verifier is not valid"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = config_rp.client_id;
         this.tokenrequest.code = this.authresponse.code;
-        this.tokenrequest.code_verifier = this.authrequest.code_verifier;
+        this.tokenrequest.code_verifier = 'NOT_VALID';
         this.tokenrequest.grant_type = "authorization_code";
         this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
-
+        
         const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));
         const keystore = jose.JWK.createKeyStore();
 

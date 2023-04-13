@@ -10,12 +10,12 @@ class Test_3_1_18 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.18";
-        this.description = "Wrong token request:the value of exp is < current date + 3min"
+        this.description = "the value of exp is < current date + 3min"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = "";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";
@@ -32,7 +32,7 @@ class Test_3_1_18 extends TestTokenRequest {
         }
 
         let iat = moment();
-        let exp = iat.clone().add(15, 'm');
+        let exp = iat.clone().add(2, 'm');
 
         let payload = JSON.stringify({ 
             jti: Utility.getUUID(),

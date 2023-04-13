@@ -10,16 +10,16 @@ class Test_3_1_22 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.22";
-        this.description = "Wrong token request:the value of client_assertion_type is different from 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'"
+        this.description = "the value of client_assertion_type is different from 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = "";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";
-        this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        this.tokenrequest.client_assertion_type = "";
         this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
         const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));

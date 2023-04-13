@@ -10,12 +10,12 @@ class Test_3_1_19 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.19";
-        this.description = "Wrong token request:the claim jti in the client_assertion is not present"
+        this.description = "the claim jti in the client_assertion is not present"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = "";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";
@@ -35,7 +35,7 @@ class Test_3_1_19 extends TestTokenRequest {
         let exp = iat.clone().add(15, 'm');
 
         let payload = JSON.stringify({ 
-            jti: Utility.getUUID(),
+            //jti: Utility.getUUID(),
             iss: this.tokenrequest.client_id,
             aud: this.metadata.configuration.token_endpoint,
             iat: iat.unix(),

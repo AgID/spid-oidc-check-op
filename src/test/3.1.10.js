@@ -10,7 +10,7 @@ class Test_3_1_10 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.10";
-        this.description = "Wrong token request:the value of sub in the client_assertion is different from the value of iss";
+        this.description = "the value of sub in the client_assertion is different from the value of iss";
         this.validation = "self";
     }
 

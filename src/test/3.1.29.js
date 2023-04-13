@@ -10,15 +10,15 @@ class Test_3_1_29 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.29";
-        this.description = "Wrong token request:the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
+        this.description = "the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = config_rp.client_id;
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
-        this.tokenrequest.grant_type = "authorization_code";
+        this.tokenrequest.grant_type = "refresh_token";
         this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 

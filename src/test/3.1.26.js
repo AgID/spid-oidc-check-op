@@ -10,14 +10,14 @@ class Test_3_1_26 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.26";
-        this.description = "Wrong token request:the value of code is not valid"
+        this.description = "the value of code is not valid"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
-        this.tokenrequest.code = this.authresponse.code;
-        this.tokenrequest.code_verifier = this.authrequest.code_verifier;
+        this.tokenrequest.client_id = "";
+        this.tokenrequest.code = 'NOT_VALID';
+        //this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";
         this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
