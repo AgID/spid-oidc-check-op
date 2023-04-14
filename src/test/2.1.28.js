@@ -9,10 +9,10 @@ const TestAuthRequest = require('../server/lib/test/TestAuthRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_2_1_13 extends TestAuthRequest {
+class Test_2_1_28 extends TestAuthRequest {
   constructor(metadata, authrequest = {}) {
     super(metadata, authrequest);
-    this.num = '2.1.13';
+    this.num = '2.1.28';
     this.description =
       'Wrong Authentication Request: claim are requested into id_token';
     this.validation = 'required';
@@ -106,4 +106,4 @@ class Test_2_1_13 extends TestAuthRequest {
   }
 }
 
-module.exports = Test_2_1_13;
+module.exports = Test_2_1_28;

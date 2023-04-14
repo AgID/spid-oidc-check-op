@@ -1,4 +1,5 @@
 const TestAuthResponse = require('../server/lib/test/TestAuthResponse.js');
+const Utility = require('../server/lib/utils');
 
 class Test_2_5_1 extends TestAuthResponse {
   constructor(metadata, authrequest, authresponse) {
@@ -12,21 +13,18 @@ class Test_2_5_1 extends TestAuthResponse {
   exec() {
     super.exec();
     if (
-      this.authresponse.error !=
-      [
-        'access_denied',
-        'invalid_client',
-        'invalid_request',
-        'invalid_scope',
-        'server_error',
-        'temporary_unavailable',
-      ]
+      this.authresponse.error.toString() != 'access_denied' ||
+      this.authresponse.error.toString() != 'invalid_client' ||
+      this.authresponse.error.toString() != 'invalid_request' ||
+      this.authresponse.error.toString() != 'invalid_scope' ||
+      this.authresponse.error.toString() != 'server_error' ||
+      this.authresponse.error.toString() != 'temporary_unavailable'
     ) {
       this.notes = this.authresponse.error;
-      throw 'The value of error is not one of "access_denied", "invalid_client", "invalid_request", "invalid_scope", "server_error", "temporary_unavailable"';
+      return true;
     } else {
       this.notes = this.authresponse.error;
-      return true;
+      throw 'The value of error is not one of "access_denied", "invalid_client", "invalid_request", "invalid_scope", "server_error", "temporary_unavailable"';
     }
   }
 }
