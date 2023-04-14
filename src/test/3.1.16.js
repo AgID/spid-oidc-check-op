@@ -10,12 +10,12 @@ class Test_3_1_16 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.16";
-        this.description = "the claim exp in the client_assertion is not present"
+        this.description = "Wrong Token Request:the claim exp in the client_assertion is not present"
         this.validation = "self";
     }
 
     async exec() {
-        //this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = "";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";

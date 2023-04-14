@@ -10,7 +10,7 @@ class Test_3_1_20 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.20";
-        this.description = "the value of jti is less of 16 byte length"
+        this.description = "Wrong Token Request:the value of jti is less of 16 byte length"
         this.validation = "self";
     }
 

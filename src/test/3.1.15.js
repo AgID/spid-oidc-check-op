@@ -10,7 +10,7 @@ class Test_3_1_15 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.15";
-        this.description = "the value of iat is > current date + 3min"
+        this.description = "Wrong Token Request:the value of iat is > current date + 3min"
         this.validation = "self";
     }
 

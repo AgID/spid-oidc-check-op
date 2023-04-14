@@ -10,7 +10,7 @@ class Test_3_1_6 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.6";
-        this.description = "the signature of client_assertion JWT is not valid";
+        this.description = "Wrong Token Request:the signature of client_assertion JWT is not valid";
         this.validation = "self";
     }
 

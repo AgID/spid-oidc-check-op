@@ -10,7 +10,7 @@ class Test_3_1_22 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.22";
-        this.description = "the value of client_assertion_type is different from 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'"
+        this.description = "Wrong Token Request:the value of client_assertion_type is different from 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'"
         this.validation = "self";
     }
 

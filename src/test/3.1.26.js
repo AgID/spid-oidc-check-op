@@ -10,7 +10,7 @@ class Test_3_1_26 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.26";
-        this.description = "the value of code is not valid"
+        this.description = "Wrong Token Request:the value of code is not valid"
         this.validation = "self";
     }
 

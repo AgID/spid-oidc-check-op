@@ -10,7 +10,7 @@ class Test_3_1_7 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.7";
-        this.description = "the claim iss in the client_assertion is not present";
+        this.description = "Wrong Token Request:the claim iss in the client_assertion is not present";
         this.validation = "self";
     }
 

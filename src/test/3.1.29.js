@@ -10,7 +10,7 @@ class Test_3_1_29 extends TestTokenRequest {
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
         super(metadata, authrequest, authresponse, tokenrequest);
         this.num = "3.1.29";
-        this.description = "the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
+        this.description = "Wrong Token Request:the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
         this.validation = "self";
     }
 
