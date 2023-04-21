@@ -1,7 +1,4 @@
-const path = require("path");
 const TestUserinfoRequest = require("../server/lib/test/TestUserinfoRequest.js");
-const Utility = require("../server/lib/utils.js");
-const config_rp = require("../config/rp.json");
 
 class Test_4_1_1 extends TestUserinfoRequest {
   constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest) {
