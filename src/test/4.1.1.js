@@ -11,7 +11,9 @@ class Test_4_1_1 extends TestUserinfoRequest {
   async exec() {
     super.exec();
     this.notes = this.authresponse.data.access_token;
-    if (!validator.isJWT(this.notes)) throw "The value of access_token is not a valid JWT";
+    if (!validator.isJWT(this.notes)) {
+      throw "The bearer token for authorization is not valid";
+    }
 
     return true;
   }

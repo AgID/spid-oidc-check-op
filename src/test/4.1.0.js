@@ -11,8 +11,9 @@ class Test_4_1_0 extends TestUserinfoRequest {
   async exec() {
     super.exec();
     this.notes = this.userinforequest.method;
-    if (this.notes != "GET") throw "request is not using HTTP GET method";
-
+    if (this.notes != "GET") {
+      throw "request is not using HTTP GET method";
+    }
     return true;
   }
 }
