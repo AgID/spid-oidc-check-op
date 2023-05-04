@@ -33,14 +33,15 @@ class Test_5_2_2 extends TestIntrospectionResponse {
     this.validation = 'self';
   }
   async exec() {
-    //this.tokenrequest.client_id = "";
+    this.introspectionrequest.client_id = config_rp.client_id;
     this.introspectionresponse.code = this.authresponse.code;
     this.introspectionresponse.code_verifier = this.authrequest.code_verifier;
     this.introspectionresponse.grant_type = 'authorization_code';
     this.introspectionresponse.client_assertion_type =
       'urn:ietf:params:oauth:client-assertion-type:jwt-bearer';
     this.introspectionresponse.redirect_uri = this.authrequest.redirect_uri;
-
+    this.introspectionrequest.endpoint =
+      this.metadata.configuration.introspection_endpoint;
     const config_key = fs.readFileSync(
       path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key')
     );
@@ -62,16 +63,20 @@ class Test_5_2_2 extends TestIntrospectionResponse {
       sub: this.introspectionrequest.client_id,
     });
 
-    this.introspectionrequest.client_assertion = await jose.JWS.createSign(
-      {
-        format: 'compact',
-        alg: 'RS256',
-        fields: { ...header },
-      },
-      key
-    )
-      .update(payload)
-      .final();
+    if (payload.isValid()) {
+      this.introspectionrequest.client_assertion = await jose.JWS.createSign(
+        {
+          format: 'compact',
+          alg: 'RS256',
+          fields: { ...header },
+        },
+        key
+      )
+        .update(payload)
+        .final();
+    } else {
+      throw 'The content of body is not a valid JSON';
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 const TestIntrospectionRequest = require('../server/lib/test/TestIntrospectionRequest.js');
+const moment = require('../server/node_modules/moment');
 
 class Test_5_0_2 extends TestIntrospectionRequest {
   constructor(
@@ -32,7 +33,7 @@ class Test_5_0_2 extends TestIntrospectionRequest {
     this.validation = 'self';
   }
   async exec() {
-    //this.tokenrequest.client_id = "";
+    this.introspectionrequest.client_id = config_rp.client_id;
     this.introspectionrequest.code = this.authresponse.code;
     this.introspectionrequest.code_verifier = this.authrequest.code_verifier;
     this.introspectionrequest.grant_type = 'authorization_code';
@@ -55,7 +56,7 @@ class Test_5_0_2 extends TestIntrospectionRequest {
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
       iss: this.introspectionrequest.client_id,
-      aud: this.metadata.configuration.token_endpoint,
+      aud: this.metadata.configuration.introspection_endpoint,
       iat: iat.unix(),
       exp: exp.unix(),
       sub: this.introspectionrequest.client_id,

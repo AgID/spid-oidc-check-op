@@ -1,4 +1,5 @@
 const TestIntrospectionRequest = require('../server/lib/test/TestIntrospectionRequest.js');
+const moment = require('../server/node_modules/moment');
 
 class Test_5_1_22 extends TestIntrospectionResponse {
   constructor(
@@ -33,14 +34,15 @@ class Test_5_1_22 extends TestIntrospectionResponse {
     this.validation = 'self';
   }
   async exec() {
-    //this.tokenresponse.client_id = "";
+    this.introspectionrequest.client_id = config_rp.client_id;
     this.introspectionrequest.code = this.authresponse.code;
     this.introspectionrequest.code_verifier = this.authrequest.code_verifier;
     this.introspectionrequest.grant_type = 'authorization_code';
     this.introspectionrequest.client_assertion_type =
       'urn:ietf:params:oauth:client-assertion-type:jwt-bearer';
     this.introspectionrequest.redirect_uri = this.authrequest.redirect_uri;
-
+    this.introspectionrequest.endpoint =
+      this.metadata.configuration.introspection_endpoint;
     const config_key = fs.readFileSync(
       path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key')
     );
