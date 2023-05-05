@@ -41,7 +41,7 @@ class Test_6_1_2 extends TestRevocationRequest {
     this.validation = 'self';
   }
   async exec() {
-    this.revocationrequest.client_id = config_rp.client_id;
+    this.revocationrequest.client_id = '';
     this.revocationrequest.code = this.authresponse.code;
     this.revocationrequest.code_verifier = this.authrequest.code_verifier;
     this.revocationrequest.grant_type = 'authorization_code';
@@ -64,11 +64,11 @@ class Test_6_1_2 extends TestRevocationRequest {
 
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
-      iss: this.this.revocationrequest.client_id,
+      iss: this.revocationrequest.client_id,
       aud: this.metadata.configuration.token_endpoint,
       iat: iat.unix(),
       exp: exp.unix(),
-      sub: this.this.revocationrequest.client_id,
+      sub: this.revocationrequest.client_id,
     });
 
     this.revocationrequest.client_assertion = await jose.JWS.createSign(

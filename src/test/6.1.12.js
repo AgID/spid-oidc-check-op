@@ -60,7 +60,7 @@ class Test_6_1_12 extends TestRevocationRequest {
 
     let header = {};
 
-    let iat = moment().add(3, 'm');
+    let iat = moment().add(4, 'm');
     let exp = iat.clone().add(15, 'm');
 
     let payload = JSON.stringify({

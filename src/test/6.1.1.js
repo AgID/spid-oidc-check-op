@@ -63,11 +63,11 @@ class Test_6_1_1 extends TestRevocationRequest {
 
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
-      iss: this.this.revocationrequest.client_id,
+      iss: '',
       aud: this.metadata.configuration.token_endpoint,
       iat: iat.unix(),
       exp: exp.unix(),
-      sub: this.this.revocationrequest.client_id,
+      sub: this.revocationrequest.client_id,
     });
 
     this.revocationrequest.client_assertion = await jose.JWS.createSign(

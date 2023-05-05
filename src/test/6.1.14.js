@@ -61,14 +61,14 @@ class Test_6_1_14 extends TestRevocationRequest {
     let header = {};
 
     let iat = moment();
-    let exp = '';
+    let exp = iat.clone().add(15, 'm');
 
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
       iss: this.revocationrequest.client_id,
       aud: this.metadata.configuration.token_endpoint,
       iat: iat.unix(),
-      exp: exp.unix(),
+      exp: exp,
       sub: this.revocationrequest.client_id,
     });
 

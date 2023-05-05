@@ -72,14 +72,11 @@ class Test_6_1_3 extends TestRevocationRequest {
       sub: this.revocationrequest.client_id,
     });
 
-    this.revocationrequest.client_assertion = await jose.JWS.createSign(
-      {
-        format: 'compact',
-        alg: '',
-        fields: { ...header },
-      },
-      key
-    )
+    this.revocationrequest.client_assertion = await jose.JWS.createSign({
+      format: 'compact',
+      alg: 'RS256',
+      fields: { ...header },
+    })
       .update(payload)
       .final();
   }
