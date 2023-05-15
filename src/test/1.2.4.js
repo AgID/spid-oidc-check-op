@@ -5,10 +5,7 @@ const validator = require('../server/node_modules/validator');
 const axios = require('../server/node_modules/axios');
 const jose = require('../server/node_modules/node-jose');
 const fs = require('fs');
-const private_key = fs.readFileSync(
-  __dirname + '/../config/spid-oidc-check-op-enc.key',
-  'utf8'
-);
+const private_key = fs.readFileSync(__dirname + '/../config/spid-oidc-check-op-enc.key', 'utf8');
 
 class Test_1_2_4 extends TestMetadata {
   constructor(metadata) {
@@ -40,10 +37,8 @@ class Test_1_2_4 extends TestMetadata {
       await keystore.add(jwks.keys[k]);
     }
 
-    let returnedDocumentVerified = await jose.JWS.createVerify(keystore).verify(
-      returnedDocument
-    );
-    this.notes(returnedDocumentVerified);
+    let returnedDocumentVerified = await jose.JWS.createVerify(keystore).verify(returnedDocument);
+    this.notes = returnedDocumentVerified;
     if (!this.notes) {
       throw 'document not verifiable';
     }
