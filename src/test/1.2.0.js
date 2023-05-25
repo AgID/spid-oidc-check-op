@@ -12,6 +12,12 @@ class Test_1_2_0 extends TestMetadata {
 
   async exec() {
     super.exec();
+
+    if(this.metadata.type!='federation') {
+      this.notes = "N/A (document is not provided as openid-federation)";
+      return true;
+    }
+    
     this.issuer = this.metadata.configuration.issuer;
     if (this.issuer.substring(issuer.length - 1) == '/') {
       this.issuer = this.issuer.substring(0, this.issuer.length - 1);

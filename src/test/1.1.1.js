@@ -12,6 +12,10 @@ class Test_1_1_1 extends TestMetadata {
 
     async exec() {
         super.exec();
+        if(this.metadata.type!='configuration') {
+            this.notes = "N/A (document is not provided as openid-configuration)";
+            return true;
+        }
         let response = await axios.get(this.metadata.url);
         if(response.status!=200) {
             this.notes = response.status;
