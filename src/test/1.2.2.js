@@ -16,6 +16,11 @@ class Test_1_2_2 extends TestMetadata {
   async exec() {
     super.exec();
 
+    if(this.metadata.type!='federation') {
+      this.notes = "N/A (document is not provided as openid-federation)";
+      return true;
+    }
+    
     this.notes = this.metadata.entity_statement;
 
     if (typeof this.notes != 'string')

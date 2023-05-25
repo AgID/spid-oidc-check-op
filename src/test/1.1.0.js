@@ -12,6 +12,10 @@ class Test_1_1_0 extends TestMetadata {
 
     async exec() {
         super.exec();
+        if(this.metadata.type!='configuration') {
+            this.notes = "N/A (document is not provided as openid-configuration)";
+            return true;
+        }
         let issuer = this.metadata.configuration.issuer;
         if(issuer.substring(issuer.length-1)=='/') {
             issuer = issuer.substring(0, issuer.length-1);

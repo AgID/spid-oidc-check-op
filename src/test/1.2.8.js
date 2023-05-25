@@ -11,6 +11,10 @@ class Test_1_2_8 extends TestMetadata {
 
   async exec() {
     super.exec();
+    if(this.metadata.type!='federation') {
+      this.notes = "N/A (document is not provided as openid-federation)";
+      return true;
+    }
     this.notes = jwt_decode(this.metadata.entity_statement).iat;
     if (this.notes == null || this.notes == '')
       throw 'claim iat is not present';
