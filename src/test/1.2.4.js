@@ -20,6 +20,10 @@ class Test_1_2_4 extends TestMetadata {
   async exec() {
     super.exec();
 
+    if(this.metadata.type!='federation') {
+      return this.notes = "N/A - downloaded metadata is not of type federation";
+    }
+    
     let returnedDocument = this.metadata.entity_statement;
 
     if (!validator.isJWT(returnedDocument)) {
