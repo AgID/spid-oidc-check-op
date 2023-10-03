@@ -23,12 +23,32 @@ class Test_3_2_11 extends TestRefreshTokenResponse {
 
         let refresh_token = this.refreshtokenresponse.data.refresh_token;
 
-        if(!validator.isJWT(refresh_token)) {
+        try {
+            if(!validator.isJWT(refresh_token)) {
+                this.notes = refresh_token;
+                throw("The value of refresh_token is not a valid JWT");
+            }
+        } catch(exception) {
             this.notes = refresh_token;
             throw("The value of refresh_token is not a valid JWT");
         }
 
-        let op_jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
+        // DEPRECATED BY SPID Notice n. 41 v.2 
+        //let op_jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
+
+        if(this.metadata.configuration.signed_jwks_uri==null && this.metadata.configuration.jwks==null) {
+            this.notes = this.metadata.configuration;
+            throw("The metadata MUST contain jwks or signed_jwks_uri (SPID Notice n.41 v.2)");
+        }
+
+        let op_jwks;
+
+        // prefer signed_jwks_uri
+        if(this.metadata.configuration.signed_jwks_uri==null) {
+            op_jwks = this.metadata.configuration.jwks;
+        } else {
+            op_jwks = (await axios.get(this.metadata.configuration.signed_jwks_uri)).data;
+        }
         
         if(op_jwks.keys==null || op_jwks.keys=='') {
             this.notes = op_jwks;
