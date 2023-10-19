@@ -13,11 +13,20 @@ class Test_1_1_2 extends TestMetadata {
 
     async exec() {
         super.exec();
-        let response = await axios.get(this.metadata.url);
-        if(!validator.isJSON(JSON.stringify(response.data))) {
-            throw("The document is not a valid JSON document");
-        } else {
+
+        if(this.metadata.type=='federation') {
+
+            this.notes = "N/A - metadata is provided as openid-federation";
             return true;
+
+        } else {
+
+            let response = await axios.get(this.metadata.url);
+            if(!validator.isJSON(JSON.stringify(response.data))) {
+                throw("The document is not a valid JSON document");
+            } else {
+                return true;
+            }
         }
     }
 

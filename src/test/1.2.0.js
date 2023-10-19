@@ -6,26 +6,37 @@ class Test_1_2_0 extends TestMetadata {
     super(metadata);
     this.num = '1.2.0';
     this.description =
-      'Document URL MUST be <issuer>/.well-known/openid-federation';
+      'Document URL MUST be &lt;issuer&gt;/.well-known/openid-federation';
     this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
-    this.issuer = this.metadata.configuration.issuer;
-    if (this.issuer.substring(issuer.length - 1) == '/') {
-      this.issuer = this.issuer.substring(0, this.issuer.length - 1);
-    }
 
-    this.notes = this.metadata.url;
+    if(this.metadata.type=='configuration') {
 
-    if (
-      this.notes == `${this.issuer}/.well-known/openid-federation` ||
-      this.notes == `${this.issuer}/.well-known/openid-federation/`
-    ) {
+      this.notes = "N/A - metadata is provided as openid-configuration";
       return true;
+
     } else {
-      throw 'Document URL is not <issuer>/.well-known/openid-federation';
+
+      let issuer = this.metadata.configuration.issuer;
+      if (issuer.substring(issuer.length - 1) == '/') {
+        issuer = issuer.substring(0, issuer.length - 1);
+      }
+  
+      this.notes = this.metadata.url;
+  
+      if (
+        this.notes == `${issuer}/.well-known/openid-federation` ||
+        this.notes == `${issuer}/.well-known/openid-federation/`
+      ) {
+        return true;
+
+      } else {
+        throw 'Document URL is not &lt;issuer&gt;/.well-known/openid-federation';
+      }
+
     }
   }
 }

@@ -1,11 +1,11 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
 
-class Test_1_5_4 extends TestMetadata {
+class Test_1_5_13 extends TestMetadata {
 
     constructor(metadata) {
         super(metadata);
-        this.num = "1.5.4";
-        this.description = "The userinfo_encryption_alg_values_supported MUST contain ['RSA-OAEP', 'RSA-OAEP-256']";
+        this.num = "1.5.13";
+        this.description = "The userinfo_encryption_alg_values_supported MUST NOT contain ['RSA_1_5']";
         this.validation = "automatic";
     }
 
@@ -18,14 +18,9 @@ class Test_1_5_4 extends TestMetadata {
             throw("the claim userinfo_encryption_alg_values_supported is not present");
         } 
 
-        if(!this.metadata.configuration.userinfo_encryption_alg_values_supported.includes('RSA-OAEP')) {
+        if(this.metadata.configuration.userinfo_encryption_alg_values_supported.includes('RSA_1_5')) {
             this.notes = this.metadata.configuration.userinfo_encryption_alg_values_supported;
-            throw("the claim userinfo_encryption_alg_values_supported does not contain 'RSA-OAEP'");
-        }
-
-        if(!this.metadata.configuration.userinfo_encryption_alg_values_supported.includes('RSA-OAEP-256')) {
-            this.notes = this.metadata.configuration.userinfo_encryption_alg_values_supported;
-            throw("the claim userinfo_encryption_alg_values_supported does not contain 'RSA-OAEP-256'");
+            throw("the claim userinfo_encryption_alg_values_supported must not contain 'RSA_1_5'");
         }
 
         this.notes = this.metadata.configuration.userinfo_encryption_alg_values_supported;
@@ -35,4 +30,4 @@ class Test_1_5_4 extends TestMetadata {
 
 }
 
-module.exports = Test_1_5_4
+module.exports = Test_1_5_13
