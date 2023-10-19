@@ -5,7 +5,7 @@ class Test_1_5_7 extends TestMetadata {
     constructor(metadata) { 
         super(metadata);
         this.num = "1.5.7";
-        this.description = "The request_object_encryption_alg_values_supported MUST be ['RSA-OAEP', 'RSA-OAEP-256']";
+        this.description = "The request_object_encryption_alg_values_supported MUST contain ['RSA-OAEP', 'RSA-OAEP-256']";
         this.validation = "automatic";
     }
 
@@ -23,12 +23,14 @@ class Test_1_5_7 extends TestMetadata {
             //throw("the claim request_object_encryption_alg_values_supported is not present");
         } 
 
-        if(!(this.metadata.configuration.request_object_encryption_alg_values_supported.length==2
-            && this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP')
-            && this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP-256')
-        )) {
+        if(!this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP')) {
             this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
-            throw("the claim request_object_encryption_alg_values_supported is not ['RSA-OAEP', 'RSA-OAEP-256']");
+            throw("the claim request_object_encryption_alg_values_supported does not contain 'RSA-OAEP'");
+        }
+
+        if(!this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP-256')) {
+            this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
+            throw("the claim request_object_encryption_alg_values_supported does not contain 'RSA-OAEP-256'");
         }
 
         this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
