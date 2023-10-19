@@ -5,7 +5,7 @@ class Test_1_5_0 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.5.0";
-        this.description = "The id_token_signing_alg_values_supported MUST be ['RS256', 'RS512']";
+        this.description = "The id_token_signing_alg_values_supported MUST contain ['RS256', 'RS512']";
         this.validation = "automatic";
     }
 
@@ -18,12 +18,14 @@ class Test_1_5_0 extends TestMetadata {
             throw("the claim id_token_signing_alg_values_supported is not present");
         } 
 
-        if(!(this.metadata.configuration.id_token_signing_alg_values_supported.length==2
-            && this.metadata.configuration.id_token_signing_alg_values_supported.includes('RS256')
-            && this.metadata.configuration.id_token_signing_alg_values_supported.includes('RS512')
-        )) {
+        if(!this.metadata.configuration.id_token_signing_alg_values_supported.includes('RS256')) {
             this.notes = this.metadata.configuration.id_token_signing_alg_values_supported;
-            throw("the claim id_token_signing_alg_values_supported is not ['RS256', 'RS512']");
+            throw("the claim id_token_signing_alg_values_supported does not contain 'RS256'");
+        }
+
+        if(!this.metadata.configuration.id_token_signing_alg_values_supported.includes('RS512')) {
+            this.notes = this.metadata.configuration.id_token_signing_alg_values_supported;
+            throw("the claim id_token_signing_alg_values_supported does not contain 'RS512'");
         }
 
         this.notes = this.metadata.configuration.id_token_signing_alg_values_supported;

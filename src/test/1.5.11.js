@@ -1,11 +1,11 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
 
-class Test_1_5_1 extends TestMetadata {
+class Test_1_5_11 extends TestMetadata {
 
     constructor(metadata) {
         super(metadata);
-        this.num = "1.5.1";
-        this.description = "The id_token_encryption_alg_values_supported MUST contain ['RSA-OAEP', 'RSA-OAEP-256']";
+        this.num = "1.5.11";
+        this.description = "If present, the id_token_encryption_alg_values_supported MUST NOT contain ['RSA_1_5']";
         this.validation = "automatic";
     }
 
@@ -23,14 +23,9 @@ class Test_1_5_1 extends TestMetadata {
             //throw("the claim id_token_encryption_alg_values_supported is not present");
         } 
 
-        if(!this.metadata.configuration.id_token_encryption_alg_values_supported.includes('RSA-OAEP')) {
+        if(this.metadata.configuration.id_token_encryption_alg_values_supported.includes('RSA_1_5')) {
             this.notes = this.metadata.configuration.id_token_encryption_alg_values_supported;
-            throw("the claim id_token_encryption_alg_values_supported does not contain 'RSA-OAEP'");
-        }
-
-        if(!this.metadata.configuration.id_token_encryption_alg_values_supported.includes('RSA-OAEP-256')) {
-            this.notes = this.metadata.configuration.id_token_encryption_alg_values_supported;
-            throw("the claim id_token_encryption_alg_values_supported does not contain 'RSA-OAEP-256'");
+            throw("the claim id_token_encryption_alg_values_supported must not contain 'RSA_1_5'");
         }
 
         this.notes = this.metadata.configuration.id_token_encryption_alg_values_supported;
@@ -40,4 +35,4 @@ class Test_1_5_1 extends TestMetadata {
 
 }
 
-module.exports = Test_1_5_1
+module.exports = Test_1_5_11

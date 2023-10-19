@@ -1,11 +1,11 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
 
-class Test_1_5_7 extends TestMetadata {
+class Test_1_5_15 extends TestMetadata {
 
     constructor(metadata) { 
         super(metadata);
-        this.num = "1.5.7";
-        this.description = "The request_object_encryption_alg_values_supported MUST contain ['RSA-OAEP', 'RSA-OAEP-256']";
+        this.num = "1.5.15";
+        this.description = "If present, the request_object_encryption_alg_values_supported MUST NOT contain ['RSA_1_5']";
         this.validation = "automatic";
     }
 
@@ -23,15 +23,11 @@ class Test_1_5_7 extends TestMetadata {
             //throw("the claim request_object_encryption_alg_values_supported is not present");
         } 
 
-        if(!this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP')) {
+        if(this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA_1_5')) {
             this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
-            throw("the claim request_object_encryption_alg_values_supported does not contain 'RSA-OAEP'");
+            throw("the claim request_object_encryption_alg_values_supported must not contain 'RSA_1_5'");
         }
 
-        if(!this.metadata.configuration.request_object_encryption_alg_values_supported.includes('RSA-OAEP-256')) {
-            this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
-            throw("the claim request_object_encryption_alg_values_supported does not contain 'RSA-OAEP-256'");
-        }
 
         this.notes = this.metadata.configuration.request_object_encryption_alg_values_supported;
         return true;
@@ -40,4 +36,4 @@ class Test_1_5_7 extends TestMetadata {
 
 }
 
-module.exports = Test_1_5_7
+module.exports = Test_1_5_15
