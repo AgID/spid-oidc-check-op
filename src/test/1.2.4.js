@@ -31,11 +31,21 @@ class Test_1_2_4 extends TestMetadata {
       throw "returned document is not a valid JWT";
     }
 
-    let jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
+    let jwks = this.metadata.configuration.jwks;
 
     if (jwks.keys == null || jwks.keys == "") {
-      this.notes = jwks;
-      throw "JWKS not found";
+
+      if(this.metadata.signed_jwks_uri == null || this.metadata.signed_jwks_uri == '') {
+        this.notes = this.metadata.configuration;
+        throw "JWKS not found";
+
+      } else {
+        // TODO
+        //jwks = (await axios.get(this.metadata.configuration.signed_jwks_uri)).data;
+
+        this.notes = this.metadata.signed_jwks_uri;
+        throw "test for signed_jwks_uri is not implemented. Please contact AgID. Thanks";
+      }
     }
 
     let keystore = jose.JWK.createKeyStore();
@@ -48,7 +58,7 @@ class Test_1_2_4 extends TestMetadata {
       returnedDocument
     );
 
-    this.notes = returnedDocumentVerified;
+    this.notes = jwks;
 
     if (!this.notes) {
       throw "document not verifiable";
