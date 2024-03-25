@@ -15,7 +15,7 @@ class Test_2_1_14 extends TestAuthRequest {
     this.num = '2.1.14';
     this.description =
       'Wrong Authentication Request: scope not contains "openid"';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
