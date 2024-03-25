@@ -15,7 +15,7 @@ class Test_2_1_14 extends TestAuthRequest {
     this.num = '2.1.14';
     this.description =
       'Wrong Authentication Request: scope not contains "openid"';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -26,7 +26,7 @@ class Test_2_1_14 extends TestAuthRequest {
 
     this.authrequest.client_id = config_rp.client_id;
     this.authrequest.response_type = 'code';
-    this.authrequest.scope = '';
+    this.authrequest.scope = 'profile';  // not contains openid
     let pkce = pkceChallenge();
     this.authrequest.code_challenge = pkce.code_challenge;
     this.authrequest.code_verifier = pkce.code_verifier;
