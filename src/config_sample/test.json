@@ -651,7 +651,13 @@
           "token-request": ["3.0.0"],
           "token-response": [],
           "refresh-token-request": ["3.1.33"],
-          "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
+          "refresh-token-response": [
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.8.3",
+            "3.9.2"
+          ]
         }
       },
       "test-case-oidc-offline-access-denied-1": {
@@ -664,7 +670,13 @@
           "token-request": ["3.0.0"],
           "token-response": [],
           "refresh-token-request": ["3.1.33"],
-          "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
+          "refresh-token-response": [
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.8.3",
+            "3.9.2"
+          ]
         }
       },
       "test-case-oidc-offline-access-denied-2": {
@@ -677,7 +689,13 @@
           "token-request": ["3.0.0"],
           "token-response": [],
           "refresh-token-request": ["3.1.33"],
-          "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
+          "refresh-token-response": [
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.8.3",
+            "3.9.2"
+          ]
         }
       },
       "test-case-oidc-offline-access-denied-3": {
