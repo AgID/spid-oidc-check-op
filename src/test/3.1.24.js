@@ -18,7 +18,7 @@ class Test_3_1_24 extends TestTokenRequest {
     this.tokenrequest.client_id = config_rp.client_id;
     this.tokenrequest.code = this.authresponse.code;
     this.tokenrequest.code_verifier = this.authrequest.code_verifier;
-    this.tokenrequest.grant_type = "";
+    this.tokenrequest.grant_type = "not_authorization_code_nor_refresh_token";
     this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
     this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
