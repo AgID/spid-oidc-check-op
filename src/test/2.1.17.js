@@ -15,7 +15,7 @@ class Test_2_1_17 extends TestAuthRequest {
     this.num = '2.1.17';
     this.description =
       'Wrong Authentication Request: code_challenge_method is different from "S256"';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
