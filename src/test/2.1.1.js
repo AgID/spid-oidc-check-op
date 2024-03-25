@@ -55,8 +55,8 @@ class Test_2_1_1 extends TestAuthRequest {
     let thumbprint = await key.thumbprint('SHA-256');
 
     let header = {
-      kid: base64url.encode(thumbprint),
-      x5c: [x5c.toString('base64')],
+      //kid: base64url.encode(thumbprint),
+      //x5c: [x5c.toString('base64')],
     };
 
     let iat = moment();
@@ -84,7 +84,7 @@ class Test_2_1_1 extends TestAuthRequest {
     this.authrequest.request = await jose.JWS.createSign(
       {
         format: 'compact',
-        alg: 'RS256',
+        //alg: 'RS256',
         fields: { ...header },
       },
       key
@@ -102,7 +102,7 @@ class Test_2_1_1 extends TestAuthRequest {
       this.authrequest.response_type +
       '&scope=' +
       this.authrequest.scope +
-      '&request' +
+      '&request=' +
       this.authrequest.request;
   }
 }
