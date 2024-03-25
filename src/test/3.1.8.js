@@ -34,7 +34,7 @@ class Test_3_1_8 extends TestTokenRequest {
 
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
-      iss: "",
+      iss: "different_from_client_id",
       aud: this.metadata.configuration.token_endpoint,
       iat: iat.unix(),
       exp: exp.unix(),
