@@ -15,7 +15,7 @@ class Test_2_1_17 extends TestAuthRequest {
     this.num = '2.1.17';
     this.description =
       'Wrong Authentication Request: code_challenge_method is different from "S256"';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -30,7 +30,7 @@ class Test_2_1_17 extends TestAuthRequest {
     let pkce = pkceChallenge();
     this.authrequest.code_challenge = pkce.code_challenge;
     this.authrequest.code_verifier = pkce.code_verifier;
-    this.authrequest.code_challenge_method = '';
+    this.authrequest.code_challenge_method = 'S512'; // different from S256
     this.authrequest.nonce = Utility.getNonce();
     this.authrequest.prompt = 'consent login';
     this.authrequest.redirect_uri = config_rp.redirect_uri;
