@@ -15,7 +15,7 @@ class Test_2_1_11 extends TestAuthRequest {
     this.num = '2.1.11';
     this.description =
       'Wrong Authentication Request: scope is not present as HTTP parameter';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
