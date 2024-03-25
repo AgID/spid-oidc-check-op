@@ -20,7 +20,7 @@ class Test_2_1_2 extends TestAuthRequest {
 
   async exec() {
     const crt = fs.readFileSync(
-      path.resolve(__dirname, '../config/spid-oidc-check-op-sig-fake.crt')
+      path.resolve(__dirname, '../config/spid-oidc-check-op-sig-fake.crt')    //TODO: check for fake files
     );
     const x5c = new x509.X509Certificate(crt);
 
