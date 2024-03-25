@@ -14,7 +14,7 @@ class Test_2_1_20 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.20';
     this.description = 'Wrong Authentication Request: prompt is not present';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -31,7 +31,7 @@ class Test_2_1_20 extends TestAuthRequest {
     this.authrequest.code_verifier = pkce.code_verifier;
     this.authrequest.code_challenge_method = 'S256';
     this.authrequest.nonce = Utility.getNonce();
-    this.authrequest.prompt = 'consent login';
+    //this.authrequest.prompt = 'consent login';
     this.authrequest.redirect_uri = config_rp.redirect_uri;
     this.authrequest.acr_values =
       'https://www.spid.gov.it/SpidL2 https://www.spid.gov.it/SpidL1';
