@@ -15,7 +15,7 @@ class Test_3_1_3 extends TestTokenRequest {
     }
 
     async exec() {
-        this.tokenrequest.client_id = "";
+        this.tokenrequest.client_id = "different_from_authentication_request_client_id";
         this.tokenrequest.code = this.authresponse.code;
         this.tokenrequest.code_verifier = this.authrequest.code_verifier;
         this.tokenrequest.grant_type = "authorization_code";
