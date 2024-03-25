@@ -6,8 +6,8 @@ const TestTokenRequest = require("../server/lib/test/TestTokenRequest.js");
 const Utility = require("../server/lib/utils.js");
 const config_rp = require("../config/rp.json");
 
-class Test_3_1_32 extends TestTokenRequest {
-  constructor(metadata, authrequest = {}, authresponse = {}, , tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
+class Test_3_1_32 extends TestRefreshTokenRequest {
+  constructor(metadata, authrequest = {}, authresponse = {}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
     super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
     this.num = "3.1.32";
     this.description =
