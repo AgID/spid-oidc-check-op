@@ -15,7 +15,7 @@ class Test_2_1_10 extends TestAuthRequest {
     this.num = '2.1.10';
     this.description =
       'Wrong Authentication Request: response_type is different from "code"';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
