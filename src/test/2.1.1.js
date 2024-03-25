@@ -24,8 +24,7 @@ class Test_2_1_1 extends TestAuthRequest {
     );
     const x5c = new x509.X509Certificate(crt);
 
-    //this.authrequest.client_id = config_rp.client_id;
-    this.authrequest.client_id = '';
+    this.authrequest.client_id = config_rp.client_id;
     this.authrequest.response_type = 'code';
     this.authrequest.scope = 'openid offline_access';
     let pkce = pkceChallenge();
@@ -55,6 +54,7 @@ class Test_2_1_1 extends TestAuthRequest {
     let thumbprint = await key.thumbprint('SHA-256');
 
     let header = {
+      //remove kid for create an invalid jwt
       //kid: base64url.encode(thumbprint),
       //x5c: [x5c.toString('base64')],
     };
@@ -84,6 +84,7 @@ class Test_2_1_1 extends TestAuthRequest {
     this.authrequest.request = await jose.JWS.createSign(
       {
         format: 'compact',
+        //remove alg for create an invalid jwt
         //alg: 'RS256',
         fields: { ...header },
       },
