@@ -14,7 +14,7 @@ class Test_2_1_20 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.20';
     this.description = 'Wrong Authentication Request: prompt is not present';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
