@@ -15,7 +15,7 @@ class Test_2_1_16 extends TestAuthRequest {
     this.num = '2.1.16';
     this.description =
       'Wrong Authentication Request: code_challenge_method is not present';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
