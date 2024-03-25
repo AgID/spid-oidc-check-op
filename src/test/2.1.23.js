@@ -33,7 +33,7 @@ class Test_2_1_23 extends TestAuthRequest {
     this.authrequest.code_challenge_method = 'S256';
     this.authrequest.nonce = Utility.getNonce();
     this.authrequest.prompt = 'consent login';
-    this.authrequest.redirect_uri = 'invalid redirect_uri';
+    this.authrequest.redirect_uri = 'NOT_TRUSTED';
     this.authrequest.acr_values =
       'https://www.spid.gov.it/SpidL2 https://www.spid.gov.it/SpidL1';
     this.authrequest.claims = {
