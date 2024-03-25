@@ -5,6 +5,7 @@ const jose = require('../server/node_modules/node-jose');
 const TestTokenRequest = require('../server/lib/test/TestTokenRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
+
 class Test_3_1_28 extends TestTokenRequest {
 
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
