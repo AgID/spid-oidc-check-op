@@ -15,7 +15,7 @@ class Test_2_1_19 extends TestAuthRequest {
     this.num = '2.1.19';
     this.description =
       'Wrong Authentication Request: nonce length is less than 32 chars';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -31,7 +31,7 @@ class Test_2_1_19 extends TestAuthRequest {
     this.authrequest.code_challenge = pkce.code_challenge;
     this.authrequest.code_verifier = pkce.code_verifier;
     this.authrequest.code_challenge_method = 'S256';
-    this.authrequest.nonce = Utility.getNonce();
+    this.authrequest.nonce = Utility.getNonce().substr(0, 31);
     this.authrequest.prompt = 'consent login';
     this.authrequest.redirect_uri = config_rp.redirect_uri;
     this.authrequest.acr_values =
@@ -72,7 +72,7 @@ class Test_2_1_19 extends TestAuthRequest {
       scope: this.authrequest.scope,
       code_challenge: this.authrequest.code_challenge,
       code_challenge_method: this.authrequest.code_challenge_method,
-      nonce: this.authrequest.nonce.substr(0, 31),
+      nonce: this.authrequest.nonce,
       prompt: this.authrequest.prompt,
       redirect_uri: this.authrequest.redirect_uri,
       acr_values: this.authrequest.acr_values,
