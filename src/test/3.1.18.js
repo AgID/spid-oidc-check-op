@@ -9,7 +9,7 @@ class Test_3_1_18 extends TestTokenRequest {
   constructor(metadata, authrequest = {}, authresponse = {}, tokenrequest) {
     super(metadata, authrequest, authresponse, tokenrequest);
     this.num = "3.1.18";
-    this.description = "Wrong Token Request:the value of exp is < current date + 3min";
+    this.description = "Wrong Token Request:the value of exp is < current date";
     this.validation = "self";
   }
 
@@ -29,7 +29,7 @@ class Test_3_1_18 extends TestTokenRequest {
     let header = {};
 
     let iat = moment();
-    let exp = iat.clone().add(2, "m");
+    let exp = iat.clone().subtract(2, "m");
 
     let payload = JSON.stringify({
       jti: Utility.getUUID(),
