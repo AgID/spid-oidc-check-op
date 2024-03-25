@@ -15,7 +15,7 @@ class Test_2_1_13 extends TestAuthRequest {
     this.num = '2.1.13';
     this.description =
       'Wrong Authentication Request: the values of scope are different';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -69,7 +69,7 @@ class Test_2_1_13 extends TestAuthRequest {
       exp: exp.unix(),
       client_id: this.authrequest.client_id,
       response_type: this.authrequest.response_type,
-      scope: '',
+      scope: 'different_from_openid',
       code_challenge: this.authrequest.code_challenge,
       code_challenge_method: this.authrequest.code_challenge_method,
       nonce: this.authrequest.nonce,
