@@ -22,7 +22,7 @@ class Test_3_1_31 extends TestTokenRequest {
     this.tokenrequest.grant_type = "authorization_code";
     this.tokenrequest.refresh_token = this.authrequest.refresh_token;
     this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
-    this.tokenrequest.redirect_uri = "";
+    this.tokenrequest.redirect_uri = "different_from_authrequest_redirect_uri";
 
     const config_key = fs.readFileSync(path.resolve(__dirname, "../config/spid-oidc-check-op-sig.key"));
     const keystore = jose.JWK.createKeyStore();
