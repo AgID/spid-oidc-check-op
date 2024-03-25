@@ -7,20 +7,18 @@ const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 class Test_3_1_29 extends TestTokenRequest {
 
-    constructor(metadata, authrequest={}, authresponse={}, tokenrequest) {
-        super(metadata, authrequest, authresponse, tokenrequest);
+    constructor(metadata, authrequest={}, authresponse={}, tokenrequest, tokenresponse={}, refreshtokenrequest={}) {
+        super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
         this.num = "3.1.29";
         this.description = "Wrong Token Request:the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
         this.validation = "self";
     }
 
     async exec() {
-        this.tokenrequest.client_id = config_rp.client_id;
-        this.tokenrequest.code = this.authresponse.code;
-        this.tokenrequest.code_verifier = this.authrequest.code_verifier;
-        this.tokenrequest.grant_type = "refresh_token";
-        this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
-        this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
+        this.refreshtokenrequest.client_id = config_rp.client_id;
+        this.refreshtokenrequest.grant_type = "refresh_token";
+        this.refreshtokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        this.refreshtokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
         const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));
         const keystore = jose.JWK.createKeyStore();
