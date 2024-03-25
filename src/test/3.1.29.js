@@ -2,10 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const moment = require('../server/node_modules/moment');
 const jose = require('../server/node_modules/node-jose');
-const TestTokenRequest = require('../server/lib/test/TestTokenRequest.js');
+const TestRefreshTokenRequest = require('../server/lib/test/TestRefreshTokenRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
-class Test_3_1_29 extends TestTokenRequest {
+
+class Test_3_1_29 extends TestRefreshTokenRequest {
 
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
