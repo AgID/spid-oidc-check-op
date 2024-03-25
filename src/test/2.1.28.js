@@ -14,7 +14,7 @@ class Test_2_1_28 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.28';
     this.description =
-      'Wrong Authentication Request: claim are requested into id_token';
+      'Wrong Authentication Request: claim are requested into id_token (not valid for SPID, but valid for CIE)';
     this.validation = 'required';
   }
 
@@ -36,8 +36,10 @@ class Test_2_1_28 extends TestAuthRequest {
     this.authrequest.redirect_uri = config_rp.redirect_uri;
     this.authrequest.acr_values =
       'https://www.spid.gov.it/SpidL2 https://www.spid.gov.it/SpidL1';
+
+    // this is valid for CIE
     this.authrequest.claims = {
-      userinfo: {
+      id_token: {
         given_name: { essential: true },
         family_name: { essential: true },
         'https://attributes.eid.gov.it/fiscal_number': { essential: true },
