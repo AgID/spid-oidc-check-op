@@ -20,6 +20,7 @@ class Test_3_1_10 extends TestTokenRequest {
     this.tokenrequest.code_verifier = this.authrequest.code_verifier;
     this.tokenrequest.grant_type = "authorization_code";
     this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+    this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
     const config_key = fs.readFileSync(path.resolve(__dirname, "../config/spid-oidc-check-op-sig.key"));
     const keystore = jose.JWK.createKeyStore();
