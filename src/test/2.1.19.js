@@ -15,7 +15,7 @@ class Test_2_1_19 extends TestAuthRequest {
     this.num = '2.1.19';
     this.description =
       'Wrong Authentication Request: nonce length is less than 32 chars';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
