@@ -15,12 +15,12 @@ class Test_2_1_2 extends TestAuthRequest {
     this.num = '2.1.2';
     this.description =
       'Wrong Authentication Request: the signature of the request JWT is not valid';
-    this.validation = 'required ';
+    this.validation = 'self ';
   }
 
   async exec() {
     const crt = fs.readFileSync(
-      path.resolve(__dirname, '../config/spid-oidc-check-op-sig.crt')
+      path.resolve(__dirname, '../config/spid-oidc-check-op-sig-fake.crt')
     );
     const x5c = new x509.X509Certificate(crt);
 
@@ -46,7 +46,7 @@ class Test_2_1_2 extends TestAuthRequest {
     this.authrequest.state = Utility.getUUID();
 
     const config_key = fs.readFileSync(
-      path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key')
+      path.resolve(__dirname, '../config/spid-oidc-check-op-sig-fake.key')
     );
     const keystore = jose.JWK.createKeyStore();
 
