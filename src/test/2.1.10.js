@@ -15,7 +15,7 @@ class Test_2_1_10 extends TestAuthRequest {
     this.num = '2.1.10';
     this.description =
       'Wrong Authentication Request: response_type is different from "code"';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -25,7 +25,7 @@ class Test_2_1_10 extends TestAuthRequest {
     const x5c = new x509.X509Certificate(crt);
 
     this.authrequest.client_id = config_rp.client_id;
-    this.authrequest.response_type = '';
+    this.authrequest.response_type = 'different_from_code';
     this.authrequest.scope = 'openid';
     let pkce = pkceChallenge();
     this.authrequest.code_challenge = pkce.code_challenge;
