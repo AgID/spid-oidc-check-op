@@ -6,18 +6,17 @@ const TestRefreshTokenRequest = require('../server/lib/test/TestRefreshTokenRequ
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_3_1_33 extends TestRefreshTokenRequest {
+class Test_3_1_29 extends TestRefreshTokenRequest {
 
     constructor(metadata, authrequest={}, authresponse={}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
-        this.num = "3.1.33";
-        this.description = "Wrong Token Request: if grant_type is 'refresh_token', the value of refresh_token is not valid";
+        this.num = "3.1.29";
+        this.description = "Wrong Token Request:the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
         this.validation = "self";
     }
 
     async exec() {
         this.refreshtokenrequest.client_id = config_rp.client_id;
-        this.refreshtokenrequest.refresh_token = 'NOT_VALID';
         this.refreshtokenrequest.grant_type = "refresh_token";
         this.refreshtokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.refreshtokenrequest.redirect_uri = this.authrequest.redirect_uri;
@@ -52,4 +51,4 @@ class Test_3_1_33 extends TestRefreshTokenRequest {
 
 }
 
-module.exports = Test_3_1_33 
+module.exports = Test_3_1_29
