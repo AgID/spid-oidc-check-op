@@ -21,7 +21,8 @@ class Test_3_1_6 extends TestTokenRequest {
     this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
     this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
-    const config_key = fs.readFileSync(path.resolve(__dirname, "../config/spid-oidc-check-op-sig.key"));
+    // used encryption key instead of signature key to create a not valid JWT
+    const config_key = fs.readFileSync(path.resolve(__dirname, "../config/spid-oidc-check-op-enc.key"));
     const keystore = jose.JWK.createKeyStore();
 
     let key = await keystore.add(config_key, "pem");
@@ -44,7 +45,7 @@ class Test_3_1_6 extends TestTokenRequest {
       format: "compact",
       alg: "RS256",
       fields: { ...header },
-    })
+    }, key)
       .update(payload)
       .final();
   }
