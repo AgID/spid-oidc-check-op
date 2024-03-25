@@ -15,7 +15,7 @@ class Test_2_1_0 extends TestAuthRequest {
     this.num = '2.1.0';
     this.description =
       'Wrong Authentication Request: parameter request is not present';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
