@@ -15,7 +15,7 @@ class Test_2_1_2 extends TestAuthRequest {
     this.num = '2.1.2';
     this.description =
       'Wrong Authentication Request: the signature of the request JWT is not valid';
-    this.validation = 'self ';
+    this.validation = 'required';
   }
 
   async exec() {
