@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const moment = require("../server/node_modules/moment");
 const jose = require("../server/node_modules/node-jose");
-const TestTokenRequest = require("../server/lib/test/TestTokenRequest.js");
+const TestRefreshTokenRequest = require("../server/lib/test/TestRefreshTokenRequest.js");
 const Utility = require("../server/lib/utils.js");
 const config_rp = require("../config/rp.json");
 
