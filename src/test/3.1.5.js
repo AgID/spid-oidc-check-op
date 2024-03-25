@@ -43,7 +43,7 @@ class Test_3_1_5 extends TestTokenRequest {
     this.tokenrequest.client_assertion = await jose.JWS.createSign(
       {
         format: "compact",
-        alg: "",
+        alg: "",  // client_assertion is not valid
         fields: { ...header },
       },
       key
