@@ -14,7 +14,7 @@ class Test_2_1_18 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.18';
     this.description = 'Wrong Authentication Request: nonce is not present';
-    this.validation = 'required';
+    this.validation = 'self';
   }
 
   async exec() {
@@ -70,7 +70,6 @@ class Test_2_1_18 extends TestAuthRequest {
       scope: this.authrequest.scope,
       code_challenge: this.authrequest.code_challenge,
       code_challenge_method: this.authrequest.code_challenge_method,
-      nonce: this.authrequest.nonce,
       prompt: this.authrequest.prompt,
       redirect_uri: this.authrequest.redirect_uri,
       acr_values: this.authrequest.acr_values,
