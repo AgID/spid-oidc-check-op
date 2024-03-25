@@ -38,9 +38,10 @@ class Test_2_1_29 extends TestAuthRequest {
       'https://www.spid.gov.it/SpidL2 https://www.spid.gov.it/SpidL1';
     this.authrequest.claims = {
       userinfo: {
-        given_name: { essential: false },
-        family_name: { essential: false },
-        'https://attributes.eid.gov.it/fiscal_number': { essential: false },
+        given_name: { essential: true },
+        family_name: { essential: true },
+        'https://attributes.eid.gov.it/fiscal_number': { essential: true },
+        not_valid_claim: {essential: true}
       },
     };
     this.authrequest.state = Utility.getUUID();
