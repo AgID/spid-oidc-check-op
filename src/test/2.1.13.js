@@ -15,7 +15,7 @@ class Test_2_1_13 extends TestAuthRequest {
     this.num = '2.1.13';
     this.description =
       'Wrong Authentication Request: the values of scope are different';
-    this.validation = 'self';
+    this.validation = 'required';
   }
 
   async exec() {
