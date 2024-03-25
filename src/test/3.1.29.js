@@ -7,7 +7,7 @@ const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 class Test_3_1_29 extends TestTokenRequest {
 
-    constructor(metadata, authrequest={}, authresponse={}, tokenrequest, tokenresponse={}, refreshtokenrequest={}) {
+    constructor(metadata, authrequest={}, authresponse={}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
         this.num = "3.1.29";
         this.description = "Wrong Token Request:the value of grant_type is 'refresh_token' and parameter refresh_token is not present"
@@ -41,7 +41,7 @@ class Test_3_1_29 extends TestTokenRequest {
             sub: this.tokenrequest.client_id
         });
 
-        this.tokenrequest.client_assertion = await jose.JWS.createSign({
+        this.refreshtokenrequest.client_assertion = await jose.JWS.createSign({
             format: 'compact',
             alg: 'RS256',
             fields: {...header}
