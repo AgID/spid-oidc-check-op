@@ -6,21 +6,20 @@ const TestTokenRequest = require("../server/lib/test/TestTokenRequest.js");
 const Utility = require("../server/lib/utils.js");
 const config_rp = require("../config/rp.json");
 
-class Test_3_1_35 extends TestTokenRequest {
-  constructor(metadata, authrequest = {}, authresponse = {}, tokenrequest) {
-    super(metadata, authrequest, authresponse, tokenrequest);
+class Test_3_1_35 extends TestRefreshTokenRequest {
+  constructor(metadata, authrequest = {}, authresponse = {}, tokenrequest={}, tokenresponse={}, refreshtokenrequest={}) {
+    super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, refreshtokenrequest);
     this.num = "3.1.35";
-    this.description = "Wrong Token Request:if grant_type is ‘refresh_token’, the value of client_id is not trusted";
+    this.description = "Wrong Token Request:if grant_type is 'refresh_token', the value of client_id is not trusted";
     this.validation = "self";
   }
 
   async exec() {
-    this.tokenrequest.client_id = "NOT_TRUSTED";
-    this.tokenrequest.code = this.authresponse.code;
-    this.tokenrequest.code_verifier = this.authrequest.code_verifier;
-    this.tokenrequest.grant_type = "refresh_token";
-    this.tokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
-    this.tokenrequest.redirect_uri = this.authrequest.redirect_uri;
+    this.refreshtokenrequest.client_id = "NOT_TRUSTED";
+    this.refreshtokenrequest.refresh_token = this.tokenresponse.refresh_token;
+    this.refreshtokenrequest.grant_type = "refresh_token";
+    this.refreshtokenrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+    this.refreshtokenrequest.redirect_uri = this.authrequest.redirect_uri;
 
     const config_key = fs.readFileSync(path.resolve(__dirname, "../config/spid-oidc-check-op-sig.key"));
     const keystore = jose.JWK.createKeyStore();
@@ -41,7 +40,7 @@ class Test_3_1_35 extends TestTokenRequest {
       sub: this.tokenrequest.client_id,
     });
 
-    this.tokenrequest.client_assertion = await jose.JWS.createSign(
+    this.refreshtokenrequest.client_assertion = await jose.JWS.createSign(
       {
         format: "compact",
         alg: "RS256",
