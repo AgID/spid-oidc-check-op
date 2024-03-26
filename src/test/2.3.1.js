@@ -31,7 +31,7 @@ class Test_2_3_1 extends TestAuthRequest {
     this.authrequest.nonce = Utility.getNonce();
     this.authrequest.prompt = "consent login";
     this.authrequest.redirect_uri = config_rp.redirect_uri;
-    this.authrequest.acr_values = "https://www.spid.gov.it/SpidL1";
+    this.authrequest.acr_values = "https://www.spid.gov.it/SpidL3";
     this.authrequest.claims = {
       userinfo: {
         given_name: { essential: true },
