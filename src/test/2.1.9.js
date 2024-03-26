@@ -68,7 +68,7 @@ class Test_2_1_9 extends TestAuthRequest {
       iat: iat.unix(),
       exp: exp.unix(),
       client_id: this.authrequest.client_id,
-      response_type: '',
+      response_type: 'different_from_http_query_param',
       scope: this.authrequest.scope,
       code_challenge: this.authrequest.code_challenge,
       code_challenge_method: this.authrequest.code_challenge_method,
