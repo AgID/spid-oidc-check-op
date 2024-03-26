@@ -24,7 +24,7 @@ class Test_2_1_6 extends TestAuthRequest {
     );
     const x5c = new x509.X509Certificate(crt);
 
-    this.authrequest.client_id = 'invalid_client_id';
+    this.authrequest.client_id = 'NOT_TRUSTED';
     this.authrequest.response_type = 'code';
     this.authrequest.scope = 'openid';
     let pkce = pkceChallenge();
