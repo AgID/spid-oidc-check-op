@@ -12,6 +12,10 @@ class Test_1_2_14 extends TestMetadata {
 
   async exec() {
     super.exec();
+    if(this.metadata.type!='federation') {
+      this.notes = "N/A (document is not provided as openid-federation)";
+      return true;
+    }
     this.notes = jwt_decode(this.metadata.entity_statement).authority_hints;
     if (!this.notes.includes('https://registry.spid.gov.it'))
       throw "'https://registry.spid.gov.it' is not present in authority_hints";
