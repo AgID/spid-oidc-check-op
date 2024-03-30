@@ -18,6 +18,7 @@ class Test_1_4_2 extends TestMetadata {
       return true;
     }
 
+    this.validation = 'automatic';
     this.notes = this.metadata.configuration.grant_types_supported;
     return true;
   }

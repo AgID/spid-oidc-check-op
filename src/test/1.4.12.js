@@ -17,6 +17,7 @@ class Test_1_4_12 extends TestMetadata {
       return true;
     }
 
+    this.validation = 'automatic';
     this.notes = this.metadata.configuration.op_tos_uri;
     return true;
   }

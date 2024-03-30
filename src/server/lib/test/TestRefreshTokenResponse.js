@@ -24,6 +24,8 @@ class TestRefreshTokenResponse extends Test {
             num: this.num,
             hook: this.hook,
             description: this.description,
+
+            // deafult but it's can be redefined while exec
             validation: this.validation,
             result: this.setFailure(),
             message: "",
@@ -31,6 +33,7 @@ class TestRefreshTokenResponse extends Test {
             datetime: moment().format('YYYY-MM-DD HH:mm:ss')
         }
 
+        // 
         if(this.validation=='self') {
             test.result = this.setWarning();
             test.message = "REQUIRES SELF ASSESSMENT";
@@ -47,11 +50,28 @@ class TestRefreshTokenResponse extends Test {
 
         try {
             await this.exec();
-            test.result = this.setSuccess();
-            test.message = "SUCCESS";
+            
+            switch(this.validation) {
+                case "automatic":
+                    test.result = this.setSuccess();
+                    test.message = "SUCCESS";
+                    break;
+
+                case "self":
+                    test.result = this.setWarning();
+                    test.message = "REQUIRES SELF ASSESSMENT";
+                    break;
+
+                case "required":
+                    test.result = this.setWarning();
+                    test.message = "REQUIRES AUTHORITY ASSESSMENT";
+                    break;
+            }
+
         } catch(error) {
             test.result = this.setFailure();
             test.message = error.message || error;
+            
         } finally {
             test.notes = this.notes;
         }
