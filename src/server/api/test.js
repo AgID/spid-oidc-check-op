@@ -32,13 +32,17 @@ module.exports = function(app, checkAuthorisation) {
                 let hook_tests = testsuite_config.cases[cases[c]].hook[hook[h]];
                 let hook_tests_list = [];
                 for(ht in hook_tests) {
-                    let TestClass = require('../../test/' + hook_tests[ht] + '.js');
-                    let testObj = new TestClass();
-                    let test_detail = {
-                        num: hook_tests[ht],
-                        description: testObj.description
-                    };
-                    hook_tests_list.push(test_detail);
+                    try {
+                        let TestClass = require('../../test/' + hook_tests[ht] + '.js');
+                        let testObj = new TestClass();
+                        let test_detail = {
+                            num: hook_tests[ht],
+                            description: testObj.description
+                        };
+                        hook_tests_list.push(test_detail);    
+                    } catch(error) {
+                        Utility.log("Error while loading test #" + hook_tests[ht], error);
+                    }
                 }
                 testsuite_config.cases[cases[c]].hook[hook[h]] = hook_tests_list;
             }

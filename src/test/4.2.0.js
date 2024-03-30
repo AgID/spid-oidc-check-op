@@ -11,11 +11,12 @@ class Test_4_2_0 extends TestUserinfoResponse {
 
     exec() {
         super.exec();
+
         if(!this.userinforesponse.headers['content-type'].includes('application/jwt')) {
-            this.notes = this.tokenresponse.headers['content-type'];
+            this.notes = this.userinforesponse.headers['content-type'];
             throw("Content-Type is not 'application/jwt'");
         } else {
-            this.notes = this.tokenresponse.headers['content-type'];
+            this.notes = this.userinforesponse.headers['content-type'];
             return true;
         }
     }

@@ -12,16 +12,21 @@ class Test_1_1_1 extends TestMetadata {
 
     async exec() {
         super.exec();
-        if(this.metadata.type!='configuration') {
-            this.notes = "N/A (document is not provided as openid-configuration)";
+
+        if(this.metadata.type=='federation') {
+
+            this.notes = "N/A - metadata is provided as openid-federation";
             return true;
-        }
-        let response = await axios.get(this.metadata.url);
-        if(response.status!=200) {
-            this.notes = response.status;
-            throw("The HTTP Status Code is not 200 OK");
+
         } else {
-            return true;
+
+            let response = await axios.get(this.metadata.url);
+            if(response.status!=200) {
+                this.notes = response.status;
+                throw("The HTTP Status Code is not 200 OK");
+            } else {
+                return true;
+            }
         }
     }
 

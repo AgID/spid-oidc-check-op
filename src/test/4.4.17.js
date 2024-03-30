@@ -42,7 +42,22 @@ class Test_4_4_17 extends TestUserinfoResponse {
             throw("userinfo data is not a valid JWT");
         }
 
-        let op_jwks = (await axios.get(this.metadata.configuration.jwks_uri)).data;
+        // I Relying Party (RP) devono usare jwks o signed_jwks_uri (Avv. SPID n.41 v.2)
+        
+        if(!this.metadata.configuration.jwks
+            && !this.metadata.configuration.signed_jwks_uri
+        ) {
+            this.notes = this.metadata.configuration;
+            throw("neither jwks or signed_jwks_uri is present");
+        }
+
+        let op_jwks = this.metadata.configuration.jwks;
+
+        if(!op_jwks) {
+            //let op_signed_jwks = (await axios.get(this.metadata.configuration.signed_jwks_uri)).data;
+            this.notes = "signed_jwks_uri is not yet implemented. Please refer to AgID.";
+            throw("OP uses signed_jwks_uri");
+        }
 
         if(op_jwks.keys==null || op_jwks.keys=='') {
             this.notes = op_jwks;

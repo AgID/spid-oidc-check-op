@@ -6,6 +6,7 @@ const jose = require('node-jose');
 const validator = require('validator');
 const jwt_decode = require("jwt-decode");
 const Utility = require('../lib/utils');
+const config_server = require("../../config/server.json");
 const config_dir = require('../../config/dir.json');
 const config_test = require("../../config/test.json");
 const private_key = fs.readFileSync(__dirname + '/../../config/spid-oidc-check-op-enc.key','utf8');
@@ -633,13 +634,18 @@ module.exports = function(app, checkAuthorisation, database) {
             }
         }
 
-        // grab userinfo claims
+        // try to grab userinfo claims
         let userinfo_data = {};
-        if(userinforesponse.data) {
-            let keystore_rp = jose.JWK.createKeyStore();
-            await keystore_rp.add(private_key, 'pem');
-            let userinfo_sig_token_obj = await jose.JWE.createDecrypt(keystore_rp).decrypt(userinforesponse.data);
-            userinfo_data = jwt_decode(userinfo_sig_token_obj.payload.toString());
+
+        try {
+            if(userinforesponse.data) {
+                let keystore_rp = jose.JWK.createKeyStore();
+                await keystore_rp.add(private_key, 'pem');
+                let userinfo_sig_token_obj = await jose.JWE.createDecrypt(keystore_rp).decrypt(userinforesponse.data);
+                userinfo_data = jwt_decode(userinfo_sig_token_obj.payload.toString());
+            }
+        } catch(error) {
+            console.log(error);
         }
 
         let summary_result = "";
@@ -679,7 +685,8 @@ module.exports = function(app, checkAuthorisation, database) {
         // save log to store
         database.setLastLog(user, external_code, store_type, testsuite, log);
 
-        res.status(200).json(log);
+        //res.status(200).json(log);
+        res.redirect("oidc/report");
     });
 
     app.get("/api/oidc/report", async function(req, res) {

@@ -47,7 +47,7 @@ class TestAuthRequest extends Test {
             test.message = "SUCCESS";
         } catch(error) {
             test.result = this.setFailure();
-            test.message = error;
+            test.message = error.message || error;
         } finally {
             test.notes = this.notes;
         }

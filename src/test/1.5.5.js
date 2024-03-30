@@ -5,7 +5,7 @@ class Test_1_5_5 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.5.5";
-        this.description = "The userinfo_encryption_enc_values_supported MUST be ['A128CBC-HS256', 'A256CBC-HS512']";
+        this.description = "The userinfo_encryption_enc_values_supported MUST contain ['A128CBC-HS256', 'A256CBC-HS512']";
         this.validation = "automatic";
     }
 
@@ -18,12 +18,14 @@ class Test_1_5_5 extends TestMetadata {
             throw("the claim userinfo_encryption_enc_values_supported is not present");
         } 
 
-        if(!(this.metadata.configuration.userinfo_encryption_enc_values_supported.length==2
-            && this.metadata.configuration.userinfo_encryption_enc_values_supported.includes('A128CBC-HS256')
-            && this.metadata.configuration.userinfo_encryption_enc_values_supported.includes('A256CBC-HS512')
-        )) {
+        if(!this.metadata.configuration.userinfo_encryption_enc_values_supported.includes('A128CBC-HS256')) {
             this.notes = this.metadata.configuration.userinfo_encryption_enc_values_supported;
-            throw("the claim userinfo_encryption_enc_values_supported is not ['A128CBC-HS256', 'A256CBC-HS512']");
+            throw("the claim userinfo_encryption_enc_values_supported does not contain 'A128CBC-HS256'");
+        }
+
+        if(!this.metadata.configuration.userinfo_encryption_enc_values_supported.includes('A256CBC-HS512')) {
+            this.notes = this.metadata.configuration.userinfo_encryption_enc_values_supported;
+            throw("the claim userinfo_encryption_enc_values_supported does not contain 'A256CBC-HS512'");
         }
 
         this.notes = this.metadata.configuration.userinfo_encryption_enc_values_supported;
