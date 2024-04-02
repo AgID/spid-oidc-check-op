@@ -15,7 +15,7 @@ class Test_1_1_0 extends TestMetadata {
 
         if(this.metadata.type=='federation') {
 
-            this.notes = "N/A - metadata is provided as openid-federation";
+            this.notes = "N/A (metadata is provided as openid-federation)";
             return true;
 
         } else {

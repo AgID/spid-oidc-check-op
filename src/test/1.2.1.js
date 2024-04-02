@@ -13,8 +13,8 @@ class Test_1_2_1 extends TestMetadata {
     super.exec();
     
     if(this.metadata.type!='federation') {
-      this.notes = "N/A (document is not provided as openid-federation)";
-      return true;
+      this.notes = "Metadata is not provided as openid-federation";
+      return false;
     }
 
     let response = await axios.get(this.metadata.url);

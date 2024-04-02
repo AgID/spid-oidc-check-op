@@ -6,7 +6,7 @@ class Test_1_1_3 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.1.3";
-        this.description = "The document MUST be returned as Content-Type application/json ";
+        this.description = "The document MUST be returned as Content-Type application/json (DEPRECATED)";
         this.validation = "automatic";
     }
 
@@ -15,7 +15,7 @@ class Test_1_1_3 extends TestMetadata {
 
         if(this.metadata.type=='federation') {
 
-            this.notes = "N/A - metadata is provided as openid-federation";
+            this.notes = "N/A (metadata is provided as openid-federation)";
             return true;
 
         } else {

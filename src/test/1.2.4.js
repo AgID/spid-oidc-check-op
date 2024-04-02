@@ -21,7 +21,8 @@ class Test_1_2_4 extends TestMetadata {
     super.exec();
 
     if(this.metadata.type!='federation') {
-      return this.notes = "N/A (document is not provided as openid-federation)";
+      this.notes = "Metadata is not provided as openid-federation";
+      return false;
     }
 
     let returnedDocument = this.metadata.entity_statement;
