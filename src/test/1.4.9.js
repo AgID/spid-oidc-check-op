@@ -5,20 +5,21 @@ class Test_1_4_9 extends TestMetadata {
     super(metadata);
     this.num = '1.4.9';
     this.description =
-      'The metadata SHOULD contain the claim claims_parameter_supported';
-    this.validation = 'self';
+      'The metadata MUST contain the claim claims_parameter_supported';
+    this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
 
-    if (this.metadata.configuration.claims_parameter_supported == null) {
-      this.notes =
-        "the claim claims_parameter_supported is not present, it's recommended but not mandatory";
-      return true;
+    if(this.metadata.configuration.claims_parameter_supported == null
+      || this.metadata.configuration.claims_parameter_supported == '') {
+
+      this.notes = this.metadata;
+      throw "the claim claims_parameter_supported is not present";
+      return false;
     }
 
-    this.validation = 'automatic';
     this.notes = this.metadata.configuration.claims_parameter_supported;
     return true;
   }

@@ -19,7 +19,7 @@ class Test_1_3_39 extends TestMetadata {
       throw("the claim authorization_response_iss_parameter_supported is not present");
     }
 
-    if(this.metadata.configuration.authorization_response_iss_parameter_supported!='true') {
+    if(this.metadata.configuration.authorization_response_iss_parameter_supported!=true) {
       this.notes = this.metadata.configuration.authorization_response_iss_parameter_supported;
       throw 'The value of authorization_response_iss_parameter_supported is not true';      
     }
