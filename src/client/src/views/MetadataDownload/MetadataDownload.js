@@ -12,9 +12,10 @@ class MetadataDownload extends Component {
     super(props);
     
     this.state = {
-        type: "configuration", // configuration || federation
+        type: "federation", // configuration || federation
         url: "https://",
-        configuration: ""
+        configuration: "",
+        entity_statement: ""
     };  
   }	
 
@@ -27,10 +28,16 @@ class MetadataDownload extends Component {
     service.getInfo(
       (info) => {
         Utility.blockUI(false);
-        if(info.metadata && info.metadata.url && info.metadata.configuration) {
-          this.setState({ url: info.metadata.url, type: info.metadata.type, configuration: info.metadata.configuration });
+        if(info.metadata && info.metadata.url && info.metadata.configuration && info.metadata.entity_statement) {
+          this.setState({ 
+            url: info.metadata.url, 
+            type: info.metadata.type, 
+            configuration: info.metadata.configuration, 
+            entity_statement: Utility.parseJwt(info.metadata.entity_statement) 
+          });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
           store.dispatch(Actions.setMetadataConfiguration(info.metadata.configuration)); 
+          store.dispatch(Actions.setMetadataEntityStatement(info.metadata.entity_statement))
         }
 
         if(info.metadata && info.metadata.url && !info.metadata.configuration) {
@@ -41,10 +48,16 @@ class MetadataDownload extends Component {
 
       (info)=> { // no session
         Utility.blockUI(false);
-        if(info.metadata && info.metadata.url && info.metadata.configuration) {
-          this.setState({ url: info.metadata.url, type: info.metadata.type, configuration: info.metadata.configuration });
+        if(info.metadata && info.metadata.url && info.metadata.configuration && info.metadata.entity_statement) {
+          this.setState({ 
+            url: info.metadata.url, 
+            type: info.metadata.type, 
+            configuration: info.metadata.configuration, 
+            entity_statement: Utility.parseJwt(info.metadata.entity_statement) 
+          });
           store.dispatch(Actions.setMetadataURL(info.metadata.url)); 
           store.dispatch(Actions.setMetadataConfiguration(info.metadata.configuration)); 
+          store.dispatch(Actions.setMetadataEntityStatement(info.metadata.entity_statement))          
         }
 
         if(info.metadata && info.metadata.url && !info.metadata.configuration) {
@@ -82,15 +95,21 @@ class MetadataDownload extends Component {
     service.downloadMetadata(url, this.state.type,
       (metadata) => { 
         Utility.blockUI(false);
-        this.setState({ url: metadata.url, configuration: metadata.configuration });
+        this.setState({ 
+          url: metadata.url, 
+          configuration: metadata.configuration,
+          entity_statement: metadata.entity_statement? Utility.parseJwt(metadata.entity_statement) : ""
+        });
         store.dispatch(Actions.setMetadataURL(url)); 
         store.dispatch(Actions.setMetadataConfiguration(metadata.configuration)); 
+        store.dispatch(Actions.setMetadataEntityStatement(metadata.entity_statement));         
         util.dispatch(UtilActions.updateSidebar(true));
       }, 
       (error)   => { 
         Utility.blockUI(false);
         store.dispatch(Actions.setMetadataURL(""));
         store.dispatch(Actions.setMetadataConfiguration(""));
+        store.dispatch(Actions.setMetadataEntityStatement("")); 
         Utility.showModal({
             title: "Errore",
             body: error,

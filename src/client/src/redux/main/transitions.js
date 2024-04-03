@@ -24,6 +24,12 @@ function transitions(state = initialState, action) {
             });
             break;     
 
+        case Type.SET_METADATA_ENTITY_STATEMENT:
+            state = Object.assign({}, state, {
+                metadata_entity_statement: action.value
+            });
+            break;  
+
         case Type.SET_TEST_DONE:
             let test_done = state.test_done;
             test_done[action.key] = action.value;

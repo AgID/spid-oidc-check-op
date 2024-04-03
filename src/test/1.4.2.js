@@ -5,17 +5,19 @@ class Test_1_4_2 extends TestMetadata {
     super(metadata);
     this.num = '1.4.2';
     this.description =
-      'The metadata SHOULD contain the claim grant_types_supported';
-    this.validation = 'self';
+      'The metadata MUST contain the claim grant_types_supported';
+    this.validation = 'automatic';
   }
 
   async exec() {
     super.exec();
 
-    if (this.metadata.configuration.grant_types_supported == null) {
-      this.notes =
-        "the claim grant_types_supported is not present, it's recommended but not mandatory";
-      return true;
+    if(this.metadata.configuration.grant_types_supported == null
+      || this.metadata.configuration.grant_types_supported == '') {
+        
+      this.notes = this.metadata;
+      throw "the claim grant_types_supported is not present";
+      return false;
     }
 
     this.notes = this.metadata.configuration.grant_types_supported;

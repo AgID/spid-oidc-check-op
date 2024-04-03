@@ -1,6 +1,7 @@
 export const SET_REQUEST = "SET_REQUEST";
 export const SET_METADATA_URL = "SET_METADATA_URL";
 export const SET_METADATA_CONFIGURATION = "SET_METADATA_CONFIGURATION";
+export const SET_METADATA_ENTITY_STATEMENT = "SET_METADATA_ENTITY_STATEMENT";
 export const SET_TEST_DONE = "SET_TEST_DONE";
 export const SET_TEST_SUCCESS = "SET_TEST_SUCCESS";
 export const SET_TEST_NOTE = "SET_TEST_NOTE";
@@ -25,6 +26,13 @@ class Actions {
     static setMetadataConfiguration(value) {
         return {
             type: SET_METADATA_CONFIGURATION,
+            value: value
+        }        
+    }
+
+    static setMetadataEntityStatement(value) {
+        return {
+            type: SET_METADATA_ENTITY_STATEMENT,
             value: value
         }        
     }

@@ -19,6 +19,8 @@ class TestAuthRequest extends Test {
             num: this.num,
             hook: this.hook,
             description: this.description,
+
+            // deafult but it's can be redefined while exec
             validation: this.validation,
             result: this.setFailure(),
             message: "",
@@ -26,28 +28,31 @@ class TestAuthRequest extends Test {
             datetime: moment().format('YYYY-MM-DD HH:mm:ss')
         }
 
-        if(this.validation=='self') {
-            test.result = this.setWarning();
-            test.message = "REQUIRES SELF ASSESSMENT";
-            test.notes = this.notes;
-            return test;
-        } 
-
-        if(this.validation=='required') {
-            test.result = this.setWarning();
-            test.message = "REQUIRES AUTHORITY ASSESSMENT";
-            test.notes = this.notes;
-            return test;
-        } 
-
         try {
             //do not await here but exec requested. TODO 
             this.exec();
-            test.result = this.setSuccess();
-            test.message = "SUCCESS";
+
+            switch(this.validation) {
+                case "automatic":
+                    test.result = this.setSuccess();
+                    test.message = "SUCCESS";
+                    break;
+
+                case "self":
+                    test.result = this.setWarning();
+                    test.message = "REQUIRES SELF ASSESSMENT";
+                    break;
+
+                case "required":
+                    test.result = this.setWarning();
+                    test.message = "REQUIRES AUTHORITY ASSESSMENT";
+                    break;
+            }
+
         } catch(error) {
             test.result = this.setFailure();
             test.message = error.message || error;
+            
         } finally {
             test.notes = this.notes;
         }
