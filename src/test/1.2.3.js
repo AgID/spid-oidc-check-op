@@ -12,6 +12,11 @@ class Test_1_2_3 extends TestMetadata {
 
   async exec() {
     super.exec();
+    if(this.metadata.type!='federation') {
+      this.notes = "Metadata is not provided as openid-federation";
+      return false;
+    }
+    
     let response = await axios.get(this.metadata.url);
     this.notes = response.headers['content-type'];
     if (this.notes != 'application/entity-statement+jwt') {

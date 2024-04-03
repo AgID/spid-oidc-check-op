@@ -11,6 +11,11 @@ class Test_1_2_15 extends TestMetadata {
 
   async exec() {
     super.exec();
+    if(this.metadata.type!='federation') {
+      this.notes = "Metadata is not provided as openid-federation";
+      return false;
+    }
+    
     this.notes = jwt_decode(this.metadata.entity_statement).metadata;
     if (this.notes == null || this.notes == '')
       throw 'claim metadata is not present';

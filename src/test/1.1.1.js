@@ -6,7 +6,7 @@ class Test_1_1_1 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.1.1";
-        this.description = "The response MUST return HTTP Status Code 200 OK";
+        this.description = "The response MUST return HTTP Status Code 200 OK (DEPRECATED)";
         this.validation = "automatic";
     }
 
@@ -15,7 +15,7 @@ class Test_1_1_1 extends TestMetadata {
 
         if(this.metadata.type=='federation') {
 
-            this.notes = "N/A - metadata is provided as openid-federation";
+            this.notes = "N/A (metadata is provided as openid-federation)";
             return true;
 
         } else {

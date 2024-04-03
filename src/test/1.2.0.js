@@ -13,11 +13,9 @@ class Test_1_2_0 extends TestMetadata {
   async exec() {
     super.exec();
 
-    if(this.metadata.type=='configuration') {
-
-      this.notes = "N/A - metadata is provided as openid-configuration";
-      return true;
-
+    if(this.metadata.type!='federation') {
+      this.notes = "Metadata is not provided as openid-federation";
+      return false;
     } else {
 
       let issuer = this.metadata.configuration.issuer;
