@@ -5,8 +5,8 @@ class Test_1_3_28 extends TestMetadata {
     constructor(metadata) {
         super(metadata);
         this.num = "1.3.28";
-        this.description = "The metadata MUST contain the claim homepage_uri";
-        this.validation = "automatic";
+        this.description = "The metadata CAN contain the claim homepage_uri. DEPRECATED";
+        this.validation = "self";
     }
 
     async exec() {
@@ -15,7 +15,8 @@ class Test_1_3_28 extends TestMetadata {
         if(this.metadata.configuration.homepage_uri==null
             || this.metadata.configuration.homepage_uri=='') {
             this.notes = this.metadata.configuration.homepage_uri;
-            throw("the claim homepage_uri is not present");
+            //throw("the claim homepage_uri is not present");
+            return false;
         } 
 
         this.notes = this.metadata.configuration.homepage_uri;
