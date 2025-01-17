@@ -7,7 +7,7 @@ import "./style.css";
 function view(me) { 
     return (
         <div id="MetadataCheck" className="animated fadeIn">
-            <p className="title h3">Metadata Service Provider Report</p>
+            <p className="title h3">Metadata OIDC Provider Report</p>
             {me.state.report && 
             <p className="subtitle h4">Last validation date: <strong>{me.state.datetime}</strong></p>
             }
