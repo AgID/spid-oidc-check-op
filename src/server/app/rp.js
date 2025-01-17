@@ -81,7 +81,7 @@ module.exports = function(app, checkAuthorisation) {
                 "federation_entity": {
                     "homepage_uri": "https://" + config_rp.client_id,
                     "policy_uri": "https://" + config_rp.client_id + "/policy",
-                    "logo_uri": "https://" + config_rp.client_id + "/logo",
+                    "logo_uri": "https://" + config_rp.client_id + "/img/logo.svg",
                     "contacts": "spid.tech@agid.gov.it",
                     "federation_resolve_endpoint": null,
                     "organization_name": organization_name
@@ -89,7 +89,7 @@ module.exports = function(app, checkAuthorisation) {
                 "openid_relying_party": await makeMetadata(),
             },
             authority_hints: [
-                "https://registry.spid.gov.it"
+                "https://registry-test.spid.gov.it"
             ],
             trust_marks: [
     
