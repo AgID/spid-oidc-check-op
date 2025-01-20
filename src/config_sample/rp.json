@@ -14,6 +14,9 @@
 	"localloginPasswordHash": "f82af32160bc53112ca118abbf57fa6fed47eb90291a1d1d92f438ae2ed74ef6",
 	"autoLogin": true,
 
+	"authority_hints": [
+		"https://registry.spid.gov.it"
+	],
 	"trust_marks": [
 		{
 			"id": "https://registry.spid.gov.it/openid_relying_party/public/",
