@@ -95,9 +95,7 @@ module.exports = function(app, checkAuthorisation) {
                 },
                 "openid_relying_party": await makeMetadata(),
             },
-            authority_hints: [
-                "https://registry-test.spid.gov.it"
-            ],
+            authority_hints: config_rp.authority_hints,
             trust_marks: config_rp.trust_marks
         });
 
