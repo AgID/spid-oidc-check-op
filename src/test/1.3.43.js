@@ -6,7 +6,7 @@ class Test_1_3_43 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
     this.num = '1.3.43';
-    this.description = 'The value of request_authentication_methods_supported MUST be a valid JSON object containing the claim authorization_endpoint with value [request_object]';
+    this.description = 'The value of request_authentication_methods_supported MUST be a valid JSON object containing the claim authorization_endpoint with value ["request_object"]';
     this.validation = 'automatic';
   }
 
@@ -17,11 +17,6 @@ class Test_1_3_43 extends TestMetadata {
       || this.metadata.configuration.request_authentication_methods_supported=='') {
       this.notes = this.metadata.configuration;
       throw("the claim request_authentication_methods_supported is not present");
-    }
-
-    if (!Array.isArray(this.metadata.configuration.request_authentication_methods_supported)) {
-      this.notes = this.metadata.configuration.request_authentication_methods_supported;
-      throw 'The value of request_authentication_methods_supported is not a valid JSON array';
     }
 
     if(this.metadata.configuration.request_authentication_methods_supported.authorization_endpoint==null

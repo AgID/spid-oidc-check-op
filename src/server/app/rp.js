@@ -51,7 +51,14 @@ module.exports = function(app, checkAuthorisation) {
             jwks_uri: jwks_uri,
             response_types: response_types,
             grant_types: grant_types,
-            client_name: client_name
+            client_name: client_name,
+            id_token_signed_response_alg: "RS256",                    // RS256 | RS512
+            userinfo_signed_response_alg: "RS256",                    // RS256 | RS512
+            userinfo_encrypted_response_alg: "RSA-OAEP",              // RSA-OAEP | RSA-OAEP-256
+            userinfo_encrypted_response_enc: "A128CBC-HS256",         // A128CBC-HS256 | A256CBC-HS512
+            token_endpoint_auth_method: "private_key_jwt",            // private_key_jwt
+            client_registration_types: "automatic"                    // automatic
+
         };
     }
 
@@ -67,7 +74,7 @@ module.exports = function(app, checkAuthorisation) {
             kid: base64url.encode(thumbprint),
             //x5c: [x5c.toString("base64")]
         }
-
+ 
         const iat = moment();
         const exp = iat.clone().add(1, 'years')
 
@@ -81,19 +88,15 @@ module.exports = function(app, checkAuthorisation) {
                 "federation_entity": {
                     "homepage_uri": "https://" + config_rp.client_id,
                     "policy_uri": "https://" + config_rp.client_id + "/policy",
-                    "logo_uri": "https://" + config_rp.client_id + "/logo",
+                    "logo_uri": "https://" + config_rp.client_id + "/img/logo.svg",
                     "contacts": "spid.tech@agid.gov.it",
                     "federation_resolve_endpoint": null,
-                    "organization_name": organization_name
+                    "organization_name": organization_name,
                 },
                 "openid_relying_party": await makeMetadata(),
             },
-            authority_hints: [
-                "https://registry.spid.gov.it"
-            ],
-            trust_marks: [
-    
-            ]
+            authority_hints: config_rp.authority_hints,
+            trust_marks: config_rp.trust_marks
         });
 
         const entity_statement = await jose.JWS.createSign({
