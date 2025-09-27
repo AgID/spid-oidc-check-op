@@ -32,17 +32,27 @@ class TestTokenResponse extends Test {
         }
 
         try {
-            await this.exec();
+            let res = await this.exec();
 
             switch(this.validation) {
                 case "automatic":
-                    test.result = this.setSuccess();
-                    test.message = "SUCCESS";
+                    if(res) {
+                        test.result = this.setSuccess();
+                        test.message = "SUCCESS";
+                    } else {
+                        test.result = this.setWarning();
+                        test.message = "REQUIRES SELF ASSESSMENT";
+                    }
                     break;
 
                 case "self":
-                    test.result = this.setWarning();
-                    test.message = "REQUIRES SELF ASSESSMENT";
+                    if(res) {
+                        test.result = this.setSuccess();
+                        test.message = "SUCCESS";
+                    } else {
+                        test.result = this.setWarning();
+                        test.message = "REQUIRES SELF ASSESSMENT";
+                    }
                     break;
 
                 case "required":
