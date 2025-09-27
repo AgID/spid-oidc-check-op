@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const axios = require('axios');
+const axios = require('axios').default;
 const moment = require('moment');
 const jose = require('node-jose');
 const x509 = require("@peculiar/x509");
