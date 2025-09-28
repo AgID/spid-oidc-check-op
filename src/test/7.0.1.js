@@ -9,12 +9,12 @@ const TestAuthRequest = require('../server/lib/test/TestAuthRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_7_0_0 extends TestAuthRequest {
+class Test_7_0_1 extends TestAuthRequest {
 
     constructor(metadata, authrequest={}) {
         super(metadata, authrequest);
-        this.num = "7.0.0";
-        this.description = "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. After user authentication, IdP show AA selection and asks the user for consent to grant the SP to query the selected AA.";
+        this.num = "7.0.1";
+        this.description = "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. User does not select any AA. The ask to user for consent to grant the SP to query the selected AA is not required.";
         this.validation = "self";
     }
 
@@ -103,4 +103,4 @@ class Test_7_0_0 extends TestAuthRequest {
 
 }
 
-module.exports = Test_7_0_0 
+module.exports = Test_7_0_1
