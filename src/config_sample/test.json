@@ -2331,7 +2331,7 @@
                 "ref": "SPID-QAD-OIDC-OP",
                 "hook": {
                     "authentication-request": [
-                        "7.1.0"
+                        "7.1.1"
                     ],
                     "authentication-response": [
                         "2.4.0",
