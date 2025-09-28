@@ -14,7 +14,7 @@ class Test_2_3_1 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = "2.3.1";
     this.description = "user try to login with credentials not allowed on the requested acr level";
-    this.validation = "required";
+    this.validation = "self";
   }
 
   async exec() {

@@ -1,383 +1,2445 @@
 {
-  "metadata": {
-    "description": "Suite Test Metadata",
-    "cases": {
-      "test-case-metadata-0_old": {
-        "name": "Test Case Metadata base",
-        "description": "Test Case Metadata base.",
-        "ref": "SPID-QAD-OIDC-OP",
-        "hook": {
-          "metadata": [
-            "1.0.0",
-            "1.1.0",
-            "1.1.1",
-            "1.1.2",
-            "1.1.3",
-            "1.3.0",
-            "1.3.1",
-            "1.3.2",
-            "1.3.3",
-            "1.3.4",
-            "1.3.5",
-            "1.3.6",
-            "1.3.7",
-            "1.3.8",
-            "1.3.9",
-            "1.3.10",
-            "1.3.11",
-            "1.3.12",
-            "1.3.13",
-            "1.3.14",
-            "1.3.15",
-            "1.3.16",
-            "1.3.17",
-            "1.3.18",
-            "1.3.19",
-            "1.3.20",
-            "1.3.21",
-            "1.3.22",
-            "1.3.23",
-            "1.3.24",
-            "1.3.25",
-            "1.3.26",
-            "1.3.27",
-            "1.3.28",
-            "1.4.0",
-            "1.4.1",
-            "1.4.2",
-            "1.4.3",
-            "1.4.5",
-            "1.4.6",
-            "1.4.7",
-            "1.4.8",
-            "1.4.9",
-            "1.4.10",
-            "1.4.11",
-            "1.4.12",
-            "1.5.0",
-            "1.5.1",
-            "1.5.2",
-            "1.5.3",
-            "1.5.4",
-            "1.5.5",
-            "1.5.6",
-            "1.5.7",
-            "1.5.8",
-            "1.5.9",
-            "1.6.0",
-            "1.6.1",
-            "1.6.2"
-          ]
+    "metadata": {
+        "description": "Suite Test Metadata",
+        "cases": {
+            "test-case-metadata-0_old": {
+                "name": "Test Case Metadata base",
+                "description": "Test Case Metadata base.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "metadata": [
+                        "1.0.0",
+                        "1.1.0",
+                        "1.1.1",
+                        "1.1.2",
+                        "1.1.3",
+                        "1.3.0",
+                        "1.3.1",
+                        "1.3.2",
+                        "1.3.3",
+                        "1.3.4",
+                        "1.3.5",
+                        "1.3.6",
+                        "1.3.7",
+                        "1.3.8",
+                        "1.3.9",
+                        "1.3.10",
+                        "1.3.11",
+                        "1.3.12",
+                        "1.3.13",
+                        "1.3.14",
+                        "1.3.15",
+                        "1.3.16",
+                        "1.3.17",
+                        "1.3.18",
+                        "1.3.19",
+                        "1.3.20",
+                        "1.3.21",
+                        "1.3.22",
+                        "1.3.23",
+                        "1.3.24",
+                        "1.3.25",
+                        "1.3.26",
+                        "1.3.27",
+                        "1.3.28",
+                        "1.4.0",
+                        "1.4.1",
+                        "1.4.2",
+                        "1.4.3",
+                        "1.4.5",
+                        "1.4.6",
+                        "1.4.7",
+                        "1.4.8",
+                        "1.4.9",
+                        "1.4.10",
+                        "1.4.11",
+                        "1.4.12",
+                        "1.5.0",
+                        "1.5.1",
+                        "1.5.2",
+                        "1.5.3",
+                        "1.5.4",
+                        "1.5.5",
+                        "1.5.6",
+                        "1.5.7",
+                        "1.5.8",
+                        "1.5.9",
+                        "1.6.0",
+                        "1.6.1",
+                        "1.6.2"
+                    ]
+                }
+            },
+            "test-case-metadata-0": {
+                "name": "Test Case OpenID Fed EC",
+                "description": "Test Case OpenID Fed EC",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "metadata": [
+                        "1.0.0",
+                        "1.1.0",
+                        "1.1.1",
+                        "1.1.2",
+                        "1.1.3",
+                        "1.2.0",
+                        "1.2.1",
+                        "1.2.2",
+                        "1.2.3",
+                        "1.2.4",
+                        "1.2.5",
+                        "1.2.6",
+                        "1.2.7",
+                        "1.2.8",
+                        "1.2.9",
+                        "1.2.10",
+                        "1.2.11",
+                        "1.2.12",
+                        "1.2.13",
+                        "1.2.14",
+                        "1.2.15",
+                        "1.2.16",
+                        "1.2.17",
+                        "1.2.18",
+                        "1.2.19",
+                        "1.2.20",
+                        "1.2.21",
+                        "1.2.22",
+                        "1.2.23",
+                        "1.2.24",
+                        "1.2.25",
+                        "1.2.26",
+                        "1.2.27",
+                        "1.2.28",
+                        "1.2.29",
+                        "1.3.0",
+                        "1.3.1",
+                        "1.3.2",
+                        "1.3.3",
+                        "1.3.4",
+                        "1.3.5",
+                        "1.3.6",
+                        "1.3.7",
+                        "1.3.8",
+                        "1.3.9",
+                        "1.3.10",
+                        "1.3.11",
+                        "1.3.12",
+                        "1.3.13",
+                        "1.3.14",
+                        "1.3.15",
+                        "1.3.16",
+                        "1.3.17",
+                        "1.3.18",
+                        "1.3.19",
+                        "1.3.20",
+                        "1.3.21",
+                        "1.3.22",
+                        "1.3.23",
+                        "1.3.24",
+                        "1.3.25",
+                        "1.3.26",
+                        "1.3.27",
+                        "1.3.28",
+                        "1.3.29",
+                        "1.3.30",
+                        "1.3.31",
+                        "1.3.32",
+                        "1.3.33",
+                        "1.3.34",
+                        "1.3.35",
+                        "1.3.36",
+                        "1.3.37",
+                        "1.3.38",
+                        "1.3.39",
+                        "1.3.40",
+                        "1.3.41",
+                        "1.3.42",
+                        "1.3.43",
+                        "1.3.44",
+                        "1.4.0",
+                        "1.4.1",
+                        "1.4.2",
+                        "1.4.3",
+                        "1.4.4",
+                        "1.4.5",
+                        "1.4.6",
+                        "1.4.7",
+                        "1.4.8",
+                        "1.4.9",
+                        "1.4.10",
+                        "1.4.11",
+                        "1.4.12",
+                        "1.5.0",
+                        "1.5.1",
+                        "1.5.2",
+                        "1.5.3",
+                        "1.5.4",
+                        "1.5.5",
+                        "1.5.6",
+                        "1.5.7",
+                        "1.5.8",
+                        "1.5.9",
+                        "1.5.10",
+                        "1.5.11",
+                        "1.5.12",
+                        "1.5.13",
+                        "1.5.14",
+                        "1.5.15",
+                        "1.5.16",
+                        "1.7.0",
+                        "1.7.1",
+                        "1.7.2"
+                    ]
+                }
+            }
         }
-      },
-      "test-case-metadata-0": {
-        "name": "Test Case OpenID Fed EC",
-        "description": "Test Case OpenID Fed EC",
-        "ref": "SPID-QAD-OIDC-OP",
-        "hook": {
-          "metadata": [
-            "1.0.0", 
-            "1.1.0", "1.1.1", "1.1.2", "1.1.3",
-            "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9",
-            "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19",
-            "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29",
-            "1.3.0", "1.3.1", "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.3.6", "1.3.7", "1.3.8", "1.3.9",
-            "1.3.10", "1.3.11", "1.3.12", "1.3.13", "1.3.14", "1.3.15", "1.3.16", "1.3.17", "1.3.18", "1.3.19",
-            "1.3.20", "1.3.21", "1.3.22", "1.3.23", "1.3.24", "1.3.25", "1.3.26", "1.3.27", "1.3.28", "1.3.29",
-            "1.3.30", "1.3.31", "1.3.32", "1.3.33", "1.3.34", "1.3.35", "1.3.36", "1.3.37", "1.3.38", "1.3.39",
-            "1.3.40", "1.3.41", "1.3.42", "1.3.43", "1.3.44",
-            "1.4.0", "1.4.1", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8", "1.4.9",
-            "1.4.10", "1.4.11", "1.4.12",
-            "1.5.0", "1.5.1", "1.5.2", "1.5.3", "1.5.4", "1.5.5", "1.5.6", "1.5.7", "1.5.8", "1.5.9",
-            "1.5.10", "1.5.11", "1.5.12", "1.5.13", "1.5.14", "1.5.15", "1.5.16",
-            "1.7.0", "1.7.1", "1.7.2"
-          ]
-        }
-      }      
-    }
-  },
-  "oidc-core": {
-      "description": "Suite Test Core",
-      "cases": {
-          "test-case-oidc-core-0": {
-              "name": "0 - Test Case OIDC Core base (SPID Level 1)",
-              "description": "Executes the basic OIDC Authorization Code Flow for SPID Level 1.",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["2.0.0"],
-                  "authentication-response": ["2.4.0", "2.4.1", "2.4.2", "2.4.3"],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      "3.2.0", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", 
-                      "3.2.6", "3.2.7", "3.2.8", "3.2.9", "3.2.10",  
-                      "3.2.12", "3.2.13", "3.2.14", "3.2.15", "3.2.16",
-                      "3.3.0", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5",
-                      "3.3.6", "3.3.7", "3.3.8", "3.3.9", "3.3.10", "3.3.11",
-                      "3.3.12", "3.3.13", "3.3.14", "3.3.15", "3.3.16", "3.3.17",
-                      "3.3.18", "3.3.19", "3.3.20", "3.3.21", "3.3.23",
-                      "3.3.24", "3.3.25",
-                      "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", 
-                      "3.4.6", "3.4.7", "3.4.8", "3.4.9", "3.4.10", "3.4.11", 
-                      "3.4.12", "3.4.13", "3.4.14"
-                  ], 
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      "4.2.0", "4.2.1", "4.2.2", 
-                      "4.3.0", "4.3.1", "4.3.2", "4.3.3","4.3.4", "4.3.5", "4.3.6", "4.3.7",
-                      "4.4.0", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6",
-                      "4.4.7", "4.4.8", "4.4.9", "4.4.10", "4.4.11", "4.4.12", "4.4.13",
-                      "4.4.14", "4.4.15", "4.4.16", "4.4.17"
-                  ]
-              }
-          },
-          "test-case-oidc-core-1": {
-              "name": "1 - Test Case OIDC Core base (SPID Level 2)",
-              "description": "Executes the basic OIDC Authorization Code Flow for SPID Level 2.",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["2.0.2"],
-                  "authentication-response": ["2.4.0", "2.4.1", "2.4.2", "2.4.3"],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      "3.2.0", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", 
-                      "3.2.6", "3.2.7", "3.2.8", "3.2.9", "3.2.10",
-                      "3.2.12", "3.2.13", "3.2.14", "3.2.15", "3.2.16",
-                      "3.3.0", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5",
-                      "3.3.6", "3.3.7", "3.3.8", "3.3.9", "3.3.10", "3.3.11",
-                      "3.3.12", "3.3.13", "3.3.14", "3.3.15", "3.3.16", "3.3.17",
-                      "3.3.18", "3.3.19", "3.3.20", "3.3.21", "3.3.23",
-                      "3.3.24", "3.3.25",
-                      "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", 
-                      "3.4.6", "3.4.7", "3.4.8", "3.4.9", "3.4.10", "3.4.11", 
-                      "3.4.12", "3.4.13", "3.4.14"
-                  ], 
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      "4.2.0", "4.2.1", "4.2.2", 
-                      "4.3.0", "4.3.1", "4.3.2", "4.3.3","4.3.4", "4.3.5", "4.3.6", "4.3.7",
-                      "4.4.0", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6",
-                      "4.4.7", "4.4.8", "4.4.9", "4.4.10", "4.4.11", "4.4.12", "4.4.13",
-                      "4.4.14", "4.4.15", "4.4.16", "4.4.17"
-                  ]
-              }
-          },
-          "test-case-oidc-offline-access-0": {
-              "name": "2 - Test Case OIDC Offline Access CU2 (SPID Level 2)",
-              "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 2 and Refresh Token flow for use case CU2 (30 days expiring rotation).",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["2.0.1"],
-                  "authentication-response": ["2.4.0", "2.4.1", "2.4.2", "2.4.3"],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      "3.2.0", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", 
-                      "3.2.6", "3.2.7", "3.2.8", "3.2.9", "3.2.10",
-                      "3.2.12", "3.2.13", "3.2.14", "3.2.15", "3.2.16",
-                      "3.3.0", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5",
-                      "3.3.6", "3.3.7", "3.3.8", "3.3.9", "3.3.10", "3.3.11",
-                      "3.3.12", "3.3.13", "3.3.14", "3.3.15", "3.3.16", "3.3.17",
-                      "3.3.18", "3.3.19", "3.3.20", "3.3.21", "3.3.23",
-                      "3.3.24", "3.3.25",
-                      "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", 
-                      "3.4.6", "3.4.7", "3.4.8", "3.4.9", "3.4.10", "3.4.11", 
-                      "3.4.12", "3.4.13", "3.4.14"
-                  ], 
-                  "refresh-token-request": ["3.0.1"],
-                  "refresh-token-response": ["3.2.11", "3.3.22", "3.3.26", "3.5.0", "3.5.1", "3.5.2",
-                      "3.5.3", "3.5.4", "3.5.5", "3.5.6", "3.5.7", "3.5.8", "3.5.9", "3.5.10",
-                      "3.5.11", "3.5.12", "3.5.13", "3.5.14", "3.5.15"
-                  ],
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      "4.2.0", "4.2.1", "4.2.2", 
-                      "4.3.0", "4.3.1", "4.3.2", "4.3.3","4.3.4", "4.3.5", "4.3.6", "4.3.7",
-                      "4.4.0", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6",
-                      "4.4.7", "4.4.8", "4.4.9", "4.4.10", "4.4.11", "4.4.12", "4.4.13",
-                      "4.4.14", "4.4.15", "4.4.16", "4.4.17"
-                  ]
-              }
-          },
-          "test-case-oidc-offline-access-1": {
-              "name": "3- Test Case OIDC Offline Access CU3 (SPID Level 2)",
-              "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 2 and Refresh Token flow for use case CU3 (30 days renewing rotation).",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["2.0.1"],
-                  "authentication-response": ["2.4.0", "2.4.1", "2.4.2", "2.4.3"],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      "3.2.0", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", 
-                      "3.2.6", "3.2.7", "3.2.8", "3.2.9", "3.2.10",
-                      "3.2.12", "3.2.13", "3.2.14", "3.2.15", "3.2.16",
-                      "3.3.0", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5",
-                      "3.3.6", "3.3.7", "3.3.8", "3.3.9", "3.3.10", "3.3.11",
-                      "3.3.12", "3.3.13", "3.3.14", "3.3.15", "3.3.16", "3.3.17",
-                      "3.3.18", "3.3.19", "3.3.20", "3.3.21", "3.3.23",
-                      "3.3.24", "3.3.25",
-                      "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", 
-                      "3.4.6", "3.4.7", "3.4.8", "3.4.9", "3.4.10", "3.4.11", 
-                      "3.4.12", "3.4.13", "3.4.14"
-                  ], 
-                  "refresh-token-request": ["3.0.1"],
-                  "refresh-token-response": ["3.2.11", "3.3.22", "3.3.26", "3.5.0", "3.5.1", "3.5.2",
-                      "3.5.3", "3.5.4", "3.5.5", "3.5.6", "3.5.7", "3.5.8", "3.5.9", "3.5.10",
-                      "3.5.11", "3.5.12", "3.5.13", "3.5.14", "3.5.16"
-                  ],
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      "4.2.0", "4.2.1", "4.2.2", 
-                      "4.3.0", "4.3.1", "4.3.2", "4.3.3","4.3.4", "4.3.5", "4.3.6", "4.3.7",
-                      "4.4.0", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6",
-                      "4.4.7", "4.4.8", "4.4.9", "4.4.10", "4.4.11", "4.4.12", "4.4.13",
-                      "4.4.14", "4.4.15", "4.4.16", "4.4.17"
-                  ]
-              }
-          },
-          "test-case-oidc-offline-access-2": {
-              "name": "4 - Test Case OIDC Offline Access CU2 (SPID Level 3)",
-              "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 3 and Refresh Token flow for use case CU2 (30 days expiring rotation).",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["2.2.4"],
-                  "authentication-response": ["2.4.0", "2.4.1", "2.4.2", "2.4.3"],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      "3.2.0", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", 
-                      "3.2.6", "3.2.7", "3.2.8", "3.2.9", "3.2.10",
-                      "3.2.12", "3.2.13", "3.2.14", "3.2.15", "3.2.16",
-                      "3.3.0", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5",
-                      "3.3.6", "3.3.7", "3.3.8", "3.3.9", "3.3.10", "3.3.11",
-                      "3.3.12", "3.3.13", "3.3.14", "3.3.15", "3.3.16", "3.3.17",
-                      "3.3.18", "3.3.19", "3.3.20", "3.3.21", "3.3.23",
-                      "3.3.24", "3.3.25",
-                      "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", 
-                      "3.4.6", "3.4.7", "3.4.8", "3.4.9", "3.4.10", "3.4.11", 
-                      "3.4.12", "3.4.13", "3.4.14"
-                  ], 
-                  "refresh-token-request": ["3.0.1"],
-                  "refresh-token-response": ["3.2.11", "3.3.22", "3.3.26", "3.5.0", "3.5.1", "3.5.2",
-                      "3.5.3", "3.5.4", "3.5.5", "3.5.6", "3.5.7", "3.5.8", "3.5.9", "3.5.10",
-                      "3.5.11", "3.5.12", "3.5.13", "3.5.14", "3.5.15"
-                  ],
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      "4.2.0", "4.2.1", "4.2.2", 
-                      "4.3.0", "4.3.1", "4.3.2", "4.3.3","4.3.4", "4.3.5", "4.3.6", "4.3.7",
-                      "4.4.0", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6",
-                      "4.4.7", "4.4.8", "4.4.9", "4.4.10", "4.4.11", "4.4.12", "4.4.13",
-                      "4.4.14", "4.4.15", "4.4.16", "4.4.17"
-                  ]
-              }
-          },
-          "test-case-oidc-offline-access-denied-0": {
-              "name": "5 - Test Case OIDC Offline Access not granted (SPID Level 1)",
-              "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.0",
-              "hook": {
-                  "authentication-request": ["2.0.0"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.33"],
-                  "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
-              }
-          },
-          "test-case-oidc-offline-access-denied-1": {
-              "name": "6 - Test Case OIDC Offline Access not granted (SPID Level 2)",
-              "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.1",
-              "hook": {
-                  "authentication-request": ["2.2.1"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.33"],
-                  "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
-              }
-          },
-          "test-case-oidc-offline-access-denied-2": {
-              "name": "7 - Test Case OIDC Offline Access not granted (SPID Level 3)",
-              "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.2",
-              "hook": {
-                  "authentication-request": ["2.2.2"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.33"],
-                  "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3", "3.9.2"]
-              }
-          },
-          "test-case-oidc-offline-access-denied-3": {
-              "name": "8 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 2)",
-              "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request with invalid grant. Expected authentication request response: invalid_request, expected refresh token response: error 'invalid_request'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.5",
-              "hook": {
-                  "authentication-request": ["2.2.5"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.33"],
-                  "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3"]
-              }
-          },
-          "test-case-oidc-offline-access-denied-4": {
-              "name": "9 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 3)",
-              "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request. Expected refresh token response: error 'invalid_request'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.6",
-              "hook": {
-                  "authentication-request": ["2.2.6"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.33"],
-                  "refresh-token-response": ["3.8.0", "3.8.1", "3.8.2", "3.8.3"]
-              }
-          },
-          "test-case-oidc-offline-access-invalid-request-0": {
-              "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id is not present)",
-              "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.6",
-              "hook": {
-                  "authentication-request": ["2.0.1"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.34"],
-                  "refresh-token-response": ["3.9.3"]
-              }
-          },
-          "test-case-oidc-offline-access-invalid-request-1": {
-              "name": "11 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
-              "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
-              "ref": "SPID-QAD-OIDC-OP #2.2.6",
-              "hook": {
-                  "authentication-request": ["2.0.1"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"], 
-                  "token-response": [], 
-                  "refresh-token-request": ["3.1.35"],
-                  "refresh-token-response": ["3.9.0"]
-              }
-          },
+    },
+    "oidc-core": {
+        "description": "Suite Test Core",
+        "cases": {
+            "test-case-oidc-core-0": {
+                "name": "0 - Test Case OIDC Core base (SPID Level 1)",
+                "description": "Executes the basic OIDC Authorization Code Flow for SPID Level 1.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.0"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-oidc-core-1": {
+                "name": "1 - Test Case OIDC Core base (SPID Level 2)",
+                "description": "Executes the basic OIDC Authorization Code Flow for SPID Level 2.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.2"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-0": {
+                "name": "2 - Test Case OIDC Offline Access CU2 (SPID Level 2)",
+                "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 2 and Refresh Token flow for use case CU2 (30 days expiring rotation).",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.1"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "refresh-token-request": [
+                        "3.0.1"
+                    ],
+                    "refresh-token-response": [
+                        "3.2.11",
+                        "3.3.22",
+                        "3.3.26",
+                        "3.5.0",
+                        "3.5.1",
+                        "3.5.2",
+                        "3.5.3",
+                        "3.5.4",
+                        "3.5.5",
+                        "3.5.6",
+                        "3.5.7",
+                        "3.5.8",
+                        "3.5.9",
+                        "3.5.10",
+                        "3.5.11",
+                        "3.5.12",
+                        "3.5.13",
+                        "3.5.14",
+                        "3.5.15"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-1": {
+                "name": "3- Test Case OIDC Offline Access CU3 (SPID Level 2)",
+                "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 2 and Refresh Token flow for use case CU3 (30 days renewing rotation).",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.1"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "refresh-token-request": [
+                        "3.0.1"
+                    ],
+                    "refresh-token-response": [
+                        "3.2.11",
+                        "3.3.22",
+                        "3.3.26",
+                        "3.5.0",
+                        "3.5.1",
+                        "3.5.2",
+                        "3.5.3",
+                        "3.5.4",
+                        "3.5.5",
+                        "3.5.6",
+                        "3.5.7",
+                        "3.5.8",
+                        "3.5.9",
+                        "3.5.10",
+                        "3.5.11",
+                        "3.5.12",
+                        "3.5.13",
+                        "3.5.14",
+                        "3.5.16"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-2": {
+                "name": "4 - Test Case OIDC Offline Access CU2 (SPID Level 3)",
+                "description": "Executes the OIDC Authorization Code request for offline access and SPID Level 3 and Refresh Token flow for use case CU2 (30 days expiring rotation).",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.4"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "refresh-token-request": [
+                        "3.0.1"
+                    ],
+                    "refresh-token-response": [
+                        "3.2.11",
+                        "3.3.22",
+                        "3.3.26",
+                        "3.5.0",
+                        "3.5.1",
+                        "3.5.2",
+                        "3.5.3",
+                        "3.5.4",
+                        "3.5.5",
+                        "3.5.6",
+                        "3.5.7",
+                        "3.5.8",
+                        "3.5.9",
+                        "3.5.10",
+                        "3.5.11",
+                        "3.5.12",
+                        "3.5.13",
+                        "3.5.14",
+                        "3.5.15"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-denied-0": {
+                "name": "5 - Test Case OIDC Offline Access not granted (SPID Level 1)",
+                "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.0",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.0"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.33"
+                    ],
+                    "refresh-token-response": [
+                        "3.8.0",
+                        "3.8.1",
+                        "3.8.2",
+                        "3.8.3",
+                        "3.9.2"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-denied-1": {
+                "name": "6 - Test Case OIDC Offline Access not granted (SPID Level 2)",
+                "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.1",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.1"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.33"
+                    ],
+                    "refresh-token-response": [
+                        "3.8.0",
+                        "3.8.1",
+                        "3.8.2",
+                        "3.8.3",
+                        "3.9.2"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-denied-2": {
+                "name": "7 - Test Case OIDC Offline Access not granted (SPID Level 3)",
+                "description": "Executes the OIDC Authorization Code request without scope offline access and try refresh token request. Expected refresh token response: error 'invalid_grant'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.2",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.2"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.33"
+                    ],
+                    "refresh-token-response": [
+                        "3.8.0",
+                        "3.8.1",
+                        "3.8.2",
+                        "3.8.3",
+                        "3.9.2"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-denied-3": {
+                "name": "8 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 2)",
+                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request with invalid grant. Expected authentication request response: invalid_request, expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.5",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.5"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.33"
+                    ],
+                    "refresh-token-response": [
+                        "3.8.0",
+                        "3.8.1",
+                        "3.8.2",
+                        "3.8.3"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-denied-4": {
+                "name": "9 - Test Case OIDC Offline Access not granted (SPID Level 1, SPID Level 3)",
+                "description": "Executes the OIDC Authorization Code request with incorrect level order and try refresh token request. Expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.2.6",
+                "hook": {
+                    "authentication-request": [
+                        "2.2.6"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.33"
+                    ],
+                    "refresh-token-response": [
+                        "3.8.0",
+                        "3.8.1",
+                        "3.8.2",
+                        "3.8.3"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-invalid-request-0": {
+                "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id is not present)",
+                "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.1"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.34"
+                    ],
+                    "refresh-token-response": [
+                        "3.9.3"
+                    ]
+                }
+            },
+            "test-case-oidc-offline-access-invalid-request-1": {
+                "name": "11 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
+                "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "2.0.1"
+                    ],
+                    "authentication-response": [],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [],
+                    "refresh-token-request": [
+                        "3.1.35"
+                    ],
+                    "refresh-token-response": [
+                        "3.9.0"
+                    ]
+                }
+            },
 
-          "test-case-attribute-authority-0": {
-              "name": "12 - Attribute Authority Request and Grant Token",
-              "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority.",
-              "ref": "SPID-QAD-OIDC-OP",
-              "hook": {
-                  "authentication-request": ["7.0.0"],
-                  "authentication-response": [],
-                  "token-request": ["3.0.0"],
-                  "token-response": [
-                      
-                  ], 
-                  "userinfo-request": ["4.0.0"],
-                  "userinfo-response": [ 
-                      
-                  ]
-              }
-          }
-      }
-  }
+            "test-case-oidc-wrong-request-1": {
+                "name": "12 - Test Case OIDC Wrong Authentication Request (parameter request is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because parameter request is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.0",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.0"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },
+            "test-case-oidc-wrong-request-2": {
+                "name": "13 - Test Case OIDC Wrong Authentication Request (the value of request is not a valid JWT)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the value of request is not a valid JWT. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.1",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.1"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },
+            "test-case-oidc-wrong-request-3": {
+                "name": "14 - Test Case OIDC Wrong Authentication Request (the signature of the request JWT is not valid)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the signature of the request JWT is not valid. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.2",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.2"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-4": {
+                "name": "15 - Test Case OIDC Wrong Authentication Request (client_id is not present as HTTP parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present as HTTP parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.3",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.3"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },  
+            "test-case-oidc-wrong-request-5": {
+                "name": "16 - Test Case OIDC Wrong Authentication Request (client_id is not present into request parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present into request parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.4",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.4"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },
+            "test-case-oidc-wrong-request-6": {
+                "name": "17 - Test Case OIDC Wrong Authentication Request (the values of client_id are different)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the values of client_id are different. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.5",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.5"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },          
+            "test-case-oidc-wrong-request-7": {
+                "name": "18 - Test Case OIDC Wrong Authentication Request (the value of client_id is not trusted)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the value of client_id is not trusted. Expected error 'invalid_client'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.6",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.6"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            }, 
+            "test-case-oidc-wrong-request-8": {
+                "name": "19 - Test Case OIDC Wrong Authentication Request (response_type is not present as HTTP parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because response_type is not present as HTTP parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.7",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.7"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-9": {
+                "name": "20 - Test Case OIDC Wrong Authentication Request (response_type is not present into request parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because response_type is not present into request parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.8",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.8"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-10": {
+                "name": "21 - Test Case OIDC Wrong Authentication Request (the values of response_type are different)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the values of response_type are different. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.9",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.9"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },                                         
+            "test-case-oidc-wrong-request-11": {
+                "name": "22 - Test Case OIDC Wrong Authentication Request (response_type is different from 'code')",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because response_type is different from 'code'. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.10",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.10"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },
+            "test-case-oidc-wrong-request-12": {
+                "name": "23 - Test Case OIDC Wrong Authentication Request (scope is not present as HTTP parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because scope is not present as HTTP parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.11",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.11"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-13": {
+                "name": "24 - Test Case OIDC Wrong Authentication Request (scope is not present into request parameter)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because scope is not present into request parameter. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.12",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.12"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },    
+            "test-case-oidc-wrong-request-14": {
+                "name": "25 - Test Case OIDC Wrong Authentication Request (the values of scope are different)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the values of scope are different. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.13",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.13"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-15": {
+                "name": "26 - Test Case OIDC Wrong Authentication Request (scope not contains 'openid')",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because scope not contains 'openid'. Expected error 'invalid_scope'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.14",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.14"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },   
+            "test-case-oidc-wrong-request-16": {
+                "name": "27 - Test Case OIDC Wrong Authentication Request (code_challenge is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because code_challenge is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.15",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.15"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },          
+            "test-case-oidc-wrong-request-17": {
+                "name": "28 - Test Case OIDC Wrong Authentication Request (code_challenge_method is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because code_challenge_method is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.16",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.16"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },                                                
+            "test-case-oidc-wrong-request-18": {
+                "name": "29 - Test Case OIDC Wrong Authentication Request (code_challenge_method is different from 'S256')",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because code_challenge_method is different from 'S256'. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.17",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.17"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            }, 
+            "test-case-oidc-wrong-request-19": {
+                "name": "30 - Test Case OIDC Wrong Authentication Request (nonce is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because nonce is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.18",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.18"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"], 
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },     
+            "test-case-oidc-wrong-request-20": {
+                "name": "31 - Test Case OIDC Wrong Authentication Request (nonce length is less than 32 chars)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because nonce length is less than 32 chars. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.19",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.19"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },   
+            "test-case-oidc-wrong-request-21": {
+                "name": "32 - Test Case OIDC Wrong Authentication Request (prompt is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because prompt is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.20",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.20"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },   
+            "test-case-oidc-wrong-request-22": {
+                "name": "33 - Test Case OIDC Wrong Authentication Request (the value of prompt is different from ['consent', 'consent_login'])",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because the value of prompt is different from ['consent', 'consent_login']. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.21",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.21"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },    
+            "test-case-oidc-wrong-request-23": {
+                "name": "34 - Test Case OIDC Wrong Authentication Request (redirect_uri is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not present. Expected error 'error on OP'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.22",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.22"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },     
+            "test-case-oidc-wrong-request-24": {
+                "name": "35 - Test Case OIDC Wrong Authentication Request (redirect_uri is not trusted)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not trusted. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.23",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.23"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-25": {
+                "name": "36 - Test Case OIDC Wrong Authentication Request (acr_values is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because acr_values is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.24",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.24"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },        
+            "test-case-oidc-wrong-request-26": {
+                "name": "37 - Test Case OIDC Wrong Authentication Request (values of acr_values are different from ['https://www.spid.gov.it/SpidL1', 'https://www.spid.gov.it/SpidL2', 'https://www.spid.gov.it/SpidL3'])",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because values of acr_values are different from ['https://www.spid.gov.it/SpidL1', 'https://www.spid.gov.it/SpidL2', 'https://www.spid.gov.it/SpidL3']. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.25",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.25"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },          
+            "test-case-oidc-wrong-request-27": {
+                "name": "38 - Test Case OIDC Wrong Authentication Request (claims is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because claims is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.26",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.26"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-28": {
+                "name": "39 - Test Case OIDC Wrong Authentication Request (claims value is not in the expected form)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because claims value is not in the expected form. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.27",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.27"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-oidc-wrong-request-29": {
+                "name": "40 - Test Case OIDC Wrong Authentication Request (claims are requested into id_token)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because claims are requested into id_token. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.28",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.28"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },    
+            "test-case-oidc-wrong-request-30": {
+                "name": "41 - Test Case OIDC Wrong Authentication Request (requested claims are not valid)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because requested claims are not valid. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.29",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.29"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },    
+            "test-case-oidc-wrong-request-31": {
+                "name": "42 - Test Case OIDC Wrong Authentication Request (state is not present)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because state is not present. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.30",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.30"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },             
+            "test-case-oidc-wrong-request-32": {
+                "name": "43 - Test Case OIDC Wrong Authentication Request (state length is less than 32 chars)",
+                "image": "test-case-invalid-request",
+                "description": "Executes an incorrect OIDC Authorization Code request because state length is less than 32 chars. Expected error 'invalid_request'",
+                "ref": "SPID-QAD-OIDC-OP #2.1.31",
+                "hook": {
+                    "authentication-request": [
+                        "2.1.31"
+                    ],
+                    "authentication-response": ["2.5.0", "2.5.1", "2.5.2", "2.5.3", "2.5.4"],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },                         
+            
+            "test-case-user-interface-1": {
+                "name": "UI1 - User try to login with wrong credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with wrong credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.0"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-2": {
+                "name": "UI2 - User try to login with credentials not allowed on the requested acr level",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with credentials not allowed on the requested acr level. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.1"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-3": {
+                "name": "UI3 - OP MUST show consent view to user ",
+                "image": "test-case-user-interface-3",
+                "description": "Executes a correct OIDC Authorization Code request. OP MUST show consent view to user",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.2"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-4": {
+                "name": "UI4 - User try to login with suspended credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with suspended credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.3"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-5": {
+                "name": "UI5 - User try to login with revoked credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with revoked credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.4"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+
+            "test-case-attribute-authority-0": {
+                "name": "AA1 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. After user authentication, IdP show AA selection and asks the user for consent to grant the SP to query the selected AA.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.0.0"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-1": {
+                "name": "AA2 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint. User does not select any AA.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. User does not select any AA. The ask to user for consent to grant the SP to query the selected AA is not required.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.0.1"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.3.0"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-2": {
+                "name": "AA3 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint. User select at least one AA.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. User select at least one AA. The ask to user for consent to grant the SP to query the selected AA is required to continue.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.0.2"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.0.0",
+                        "8.0.1",
+                        "8.0.2",
+                        "8.0.3",
+                        "8.0.4",
+                        "8.0.5",
+                        "8.1.0",
+                        "8.1.1",
+                        "8.1.2",
+                        "8.1.3",
+                        "8.1.4",
+                        "8.1.5",
+                        "8.1.6",
+                        "8.1.7",
+                        "8.2.0",
+                        "8.2.1",
+                        "8.2.2",
+                        "8.2.3",
+                        "8.2.4",
+                        "8.2.5",
+                        "8.2.6",
+                        "8.2.7",
+                        "8.2.8",
+                        "8.2.9",
+                        "8.2.10",
+                        "8.2.11",
+                        "8.2.12",
+                        "8.2.13",
+                        "8.2.14",
+                        "8.2.15",
+                        "8.2.16",
+                        "8.2.17",
+                        "8.2.18",
+                        "8.2.19",
+                        "8.2.20",
+                        "8.2.21",
+                        "8.2.22",
+                        "8.2.23",
+                        "8.2.24",
+                        "8.2.25",
+                        "8.2.26"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-3": {
+                "name": "AA4 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint. User select all AA.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. User select all AA. The ask to user for consent to grant the SP to query the selected AA is required to continue.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.2.0"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.0.0",
+                        "8.0.1",
+                        "8.0.2",
+                        "8.0.3",
+                        "8.0.4",
+                        "8.0.5",
+                        "8.1.0",
+                        "8.1.1",
+                        "8.1.2",
+                        "8.1.3",
+                        "8.1.4",
+                        "8.1.5",
+                        "8.1.6",
+                        "8.1.7",
+                        "8.2.0",
+                        "8.2.1",
+                        "8.2.2",
+                        "8.2.3",
+                        "8.2.4",
+                        "8.2.5",
+                        "8.2.6",
+                        "8.2.7",
+                        "8.2.8",
+                        "8.2.9",
+                        "8.2.10",
+                        "8.2.11",
+                        "8.2.12",
+                        "8.2.13",
+                        "8.2.14",
+                        "8.2.15",
+                        "8.2.16",
+                        "8.2.17",
+                        "8.2.18",
+                        "8.2.19",
+                        "8.2.20",
+                        "8.2.21",
+                        "8.2.22",
+                        "8.2.23",
+                        "8.2.24",
+                        "8.2.25",
+                        "8.2.26"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-4": {
+                "name": "AA5 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint. User deselect all AA.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is valid. User deselect all AA. The ask to user for consent to grant the SP to query the selected AA is not required.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.2.1"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.3.0"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-5": {
+                "name": "AA6 - The request is correct but authorization_details is malformed.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, authorization_details is not valid.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.1.0"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.3.0"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            },
+            "test-case-attribute-authority-6": {
+                "name": "AA7 - The request is correct but authorization_details contains only one location that is not trusted.",
+                "description": "Executes the basic OIDC Authorization Code Flow for Attribute Authority. The authorization request is correct, prompt=consent login, scope=openid, acr_values=https://www.spid.gov.it/SpidL1, attribute authority location is not trusted.",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": [
+                        "7.1.1"
+                    ],
+                    "authentication-response": [
+                        "2.4.0",
+                        "2.4.1",
+                        "2.4.2",
+                        "2.4.3"
+                    ],
+                    "token-request": [
+                        "3.0.0"
+                    ],
+                    "token-response": [
+                        "3.2.0",
+                        "3.2.1",
+                        "3.2.2",
+                        "3.2.3",
+                        "3.2.4",
+                        "3.2.5",
+                        "3.2.6",
+                        "3.2.7",
+                        "3.2.8",
+                        "3.2.9",
+                        "3.2.10",
+                        "3.2.12",
+                        "3.2.13",
+                        "3.2.14",
+                        "3.2.15",
+                        "3.2.16",
+                        "3.3.0",
+                        "3.3.1",
+                        "3.3.2",
+                        "3.3.3",
+                        "3.3.4",
+                        "3.3.5",
+                        "3.3.6",
+                        "3.3.7",
+                        "3.3.8",
+                        "3.3.9",
+                        "3.3.10",
+                        "3.3.11",
+                        "3.3.12",
+                        "3.3.13",
+                        "3.3.14",
+                        "3.3.15",
+                        "3.3.16",
+                        "3.3.17",
+                        "3.3.18",
+                        "3.3.19",
+                        "3.3.20",
+                        "3.3.21",
+                        "3.3.23",
+                        "3.3.24",
+                        "3.3.25",
+                        "3.4.0",
+                        "3.4.1",
+                        "3.4.2",
+                        "3.4.3",
+                        "3.4.4",
+                        "3.4.5",
+                        "3.4.6",
+                        "3.4.7",
+                        "3.4.8",
+                        "3.4.9",
+                        "3.4.10",
+                        "3.4.11",
+                        "3.4.12",
+                        "3.4.13",
+                        "3.4.14",
+                        "8.3.0"
+                    ],
+                    "userinfo-request": [
+                        "4.0.0"
+                    ],
+                    "userinfo-response": [
+                        "4.2.0",
+                        "4.2.1",
+                        "4.2.2",
+                        "4.3.0",
+                        "4.3.1",
+                        "4.3.2",
+                        "4.3.3",
+                        "4.3.4",
+                        "4.3.5",
+                        "4.3.6",
+                        "4.3.7",
+                        "4.4.0",
+                        "4.4.1",
+                        "4.4.2",
+                        "4.4.3",
+                        "4.4.4",
+                        "4.4.5",
+                        "4.4.6",
+                        "4.4.7",
+                        "4.4.8",
+                        "4.4.9",
+                        "4.4.10",
+                        "4.4.11",
+                        "4.4.12",
+                        "4.4.13",
+                        "4.4.14",
+                        "4.4.15",
+                        "4.4.16",
+                        "4.4.17"
+                    ]
+                }
+            }
+
+
+
+        }
+    }
 }

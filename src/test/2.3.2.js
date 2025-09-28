@@ -14,7 +14,7 @@ class Test_2_3_2 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = "2.3.2";
     this.description = "OP MUST show consent view to user ";
-    this.validation = "required";
+    this.validation = "self";
   }
 
   async exec() {
