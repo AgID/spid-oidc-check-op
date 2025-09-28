@@ -14,7 +14,7 @@ class Test_2_3_3 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = "2.3.3";
     this.description = "user try to login with suspended credentials";
-    this.validation = "required";
+    this.validation = "self";
   }
 
   async exec() {

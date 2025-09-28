@@ -830,7 +830,7 @@
                 "ref": "SPID-QAD-OIDC-OP #2.2.0",
                 "hook": {
                     "authentication-request": [
-                        "2.0.0"
+                        "2.2.0"
                     ],
                     "authentication-response": [],
                     "token-request": [
@@ -950,7 +950,7 @@
             "test-case-oidc-offline-access-invalid-request-0": {
                 "name": "10 - Test Case OIDC Offline Access invalid_request (parameter client_id is not present)",
                 "description": "Executes an incorrect OIDC Authorization Code request because of client_id not present. Expected refresh token response: error 'invalid_request'",
-                "ref": "SPID-QAD-OIDC-OP #2.2.6",
+                "ref": "SPID-QAD-OIDC-OP",
                 "hook": {
                     "authentication-request": [
                         "2.0.1"
@@ -971,7 +971,7 @@
             "test-case-oidc-offline-access-invalid-request-1": {
                 "name": "11 - Test Case OIDC Offline Access invalid_request (parameter client_id invalid)",
                 "description": "Executes an incorrect OIDC Authorization Code request because of invalid client_id. Expected refresh token response: error 'invalid_request'",
-                "ref": "SPID-QAD-OIDC-OP #2.2.6",
+                "ref": "SPID-QAD-OIDC-OP",
                 "hook": {
                     "authentication-request": [
                         "2.0.1"
@@ -1501,7 +1501,78 @@
                     "refresh-token-request": [],
                     "refresh-token-response": []
                 }
-            },                                                                                                                         
+            },                         
+            
+            "test-case-user-interface-1": {
+                "name": "UI1 - User try to login with wrong credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with wrong credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.0"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-2": {
+                "name": "UI2 - User try to login with credentials not allowed on the requested acr level",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with credentials not allowed on the requested acr level. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.1"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-3": {
+                "name": "UI3 - OP MUST show consent view to user ",
+                "image": "test-case-user-interface-3",
+                "description": "Executes a correct OIDC Authorization Code request. OP MUST show consent view to user",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.2"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-4": {
+                "name": "UI4 - User try to login with suspended credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with suspended credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.3"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
+            "test-case-user-interface-5": {
+                "name": "UI5 - User try to login with revoked credentials",
+                "image": "test-case-user-interaction-error",
+                "description": "Executes a correct OIDC Authorization Code request. User try to login with revoked credentials. Access is denied on OP",
+                "ref": "SPID-QAD-OIDC-OP",
+                "hook": {
+                    "authentication-request": ["2.3.4"],
+                    "authentication-response": [],
+                    "token-request": [],
+                    "token-response": [],
+                    "refresh-token-request": [],
+                    "refresh-token-response": []
+                }
+            },      
 
             "test-case-attribute-authority-0": {
                 "name": "AA1 - The request is correct and at least one value of location of the required attribute authority in authorization_details is not empty and is present in the SPID OIDC Registry at the entity listing endpoint.",

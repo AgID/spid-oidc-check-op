@@ -14,7 +14,7 @@ class Test_2_3_4 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = "2.3.4";
     this.description = "user try to login with revoked credentials";
-    this.validation = "required";
+    this.validation = "self";
   }
 
   async exec() {
