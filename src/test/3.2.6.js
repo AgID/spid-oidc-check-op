@@ -1,7 +1,7 @@
 const TestTokenResponse = require('../server/lib/test/TestTokenResponse.js');
 const jwt_decode = require("../server/node_modules/jwt-decode");
 const validator = require('../server/node_modules/validator');
-const axios = require('../server/node_modules/axios');
+const axios = require('../server/node_modules/axios').default;
 const jose = require('../server/node_modules/node-jose');
 
 class Test_3_2_6 extends TestTokenResponse {

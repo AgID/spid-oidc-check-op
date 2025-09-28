@@ -1,5 +1,5 @@
 import React from 'react';
-import BlockUi from 'react-block-ui';
+import { BlockUI } from "ns-react-block-ui";
 import Select from 'react-select';
 import Sticky from 'react-sticky-el';
 import './switches.css';
@@ -30,9 +30,9 @@ function view(me) {
                                 <h4>Description</h4>
                                 <p className="test-description mb-5">{me.state.selected.value.description}</p>
                                 <h4>Sequence Diagram</h4>
-                                <img className="testcase-diagram mb-5" src={"../img/testcase/" + me.state.selected.id + ".svg"} /> 
+                                <img className="testcase-diagram" src={"../img/testcase/" + (me.state.selected.value.image? me.state.selected.value.image : me.state.selected.id) + ".svg"} /> 
 
-                                <h4>Test List</h4>
+                                <h4 className="mt-5">Test List</h4>
                                 {me.state.selected &&
                                     me.state.selected.value &&
                                     me.state.selected.value.hook &&

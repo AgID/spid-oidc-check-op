@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant User
+    participant RP
+    participant OP
+    User->>RP: OP selection
+    RP-->>+User: 
+    User-->>-OP: authentication request
+    OP-->>User: 
+    User-->>OP: authentication challenge error
+    OP-->>+User: 
+    OP->>OP: Show error on OP
