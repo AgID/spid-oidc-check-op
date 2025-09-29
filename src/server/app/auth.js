@@ -19,13 +19,13 @@ module.exports = function(app, checkAuthorisation, authenticator) {
             let user		= req.query.user;
             let password	= req.query.password;
             
-            if((user==config_rp.localloginUser && password==config_rp.localloginPasswordHash)) {
-                let apikey = recLocalLoginSession(req);
+            if((config_rp.locallogin[user] && password==config_rp.locallogin[user])) {
+                let apikey = recLocalLoginSession(req, user);
                 res.status(200).send({ apikey: apikey });
         
             } else {
                 error = {code: 401, msg: "Unauthorized"}
-                console.log("ERROR /auth/local : " + error.msg + " (" + user + " : " + password + ")");
+                console.log("ERROR /login : " + error.msg + " (" + user + " : " + password + ")");
                 res.status(error.code).send(error.msg);
                 return null;				
             }
@@ -36,7 +36,7 @@ module.exports = function(app, checkAuthorisation, authenticator) {
     app.get("/login/assert", (req, res)=> {
 
         // if autoLogin autologin with localloginUser
-        if(config_rp.autoLogin) recLocalLoginSession(req);
+        if(config_rp.autoLogin) recLocalLoginSession(req, Object.keys(config_rp.locallogin)[0]);
 
         if(req.session!=null && req.session.apikey!=null && req.session.apikey!='') {
             res.status(200).send({
@@ -114,11 +114,10 @@ module.exports = function(app, checkAuthorisation, authenticator) {
     });
     
 
-    function recLocalLoginSession(req) {
-        let user = config_rp.localloginUser;
-        let passwordHash = config_rp.localloginPasswordHash;
+    function recLocalLoginSession(req, user) {
+        let passwordHash = config_rp.locallogin[user];
         let apikey = sha256(user + passwordHash).toString();	
-        console.log("SUCCESS /auth/local : APIKEY " + apikey);
+        console.log("SUCCESS /login : APIKEY " + apikey);
         req.session.user = user;
         req.session.apikey = apikey;
         return apikey;
