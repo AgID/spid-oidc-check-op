@@ -35,12 +35,12 @@ class Test_9_2_14 extends TestIntrospectionResponse {
             throw("the parameter active is true but parameter aud is not present");
         }
 
-        if(this.introspectionresponse.data.aud != config_aa.iss) {
+        if(this.introspectionresponse.data.active==true && this.introspectionresponse.data.aud != config_aa.iss) {
             this.notes = this.introspectionresponse.data.aud + " != " + config_aa.iss;
             throw("the value of aud: " + this.introspectionresponse.data.aud + " is not equal to the identifier (URL) of AA: " + config_aa.iss);
         }
 
-        this.notes = this.introspectionresponse.data.aud;
+        this.notes = this.introspectionresponse.data;
         return true;
     }
 

@@ -35,17 +35,17 @@ class Test_9_2_10 extends TestIntrospectionResponse {
             throw("the parameter active is true but parameter act is not present");
         }
 
-        if(this.introspectionresponse.data.act.sub==null || this.introspectionresponse.data.act.sub=='') {
+        if(this.introspectionresponse.data.active==true && (this.introspectionresponse.data.act.sub==null || this.introspectionresponse.data.act.sub=='')) {
             this.notes = this.introspectionresponse.data.act;
             throw("the parameter act is not an object containing claim sub");
         }
 
-        if(this.introspectionresponse.data.act.sub!=config_rp.client_id) {
+        if(this.introspectionresponse.data.active==true && this.introspectionresponse.data.act.sub!=config_rp.client_id) {
             this.notes = this.introspectionresponse.data.act;
             throw("the value of parameter sub inside act is not equal to the identifier of RP");
         }
 
-        this.notes = this.introspectionresponse.data.act;
+        this.notes = this.introspectionresponse.data;
         return true;
     }
 

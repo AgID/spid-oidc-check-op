@@ -35,12 +35,12 @@ class Test_9_2_12 extends TestIntrospectionResponse {
             throw("the parameter active is true but parameter iss is not present");
         }
 
-        if(this.introspectionresponse.data.iss!=this.metadata.configuration.issuer) {
+        if(this.introspectionresponse.data.active==true && this.introspectionresponse.data.iss!=this.metadata.configuration.issuer) {
             this.notes = this.introspectionresponse.data.iss + " != " + this.metadata.configuration.issuer;
             throw("the value of iss is not equal to the identifier of the OP");
         }
 
-        this.notes = this.introspectionresponse.data.iss;
+        this.notes = this.introspectionresponse.data;
         return true;
     }
 

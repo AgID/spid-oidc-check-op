@@ -34,12 +34,12 @@ class Test_9_2_8 extends TestIntrospectionResponse {
             throw("the parameter active is true but parameter sub is not present");
         }
 
-        if(this.var['user'] != this.introspectionresponse.data.sub) {
+        if(this.introspectionresponse.data.active==true && this.var['user'] != this.introspectionresponse.data.sub) {
             this.notes = this.introspectionresponse.data;
             throw("the value of sub: " + this.introspectionresponse.data.sub + " is not equal to the value of lookup of AA: " + this.var['user']);
         }
 
-        this.notes = this.introspectionresponse.data.sub + " == " + this.var['user'];
+        this.notes = this.introspectionresponse.data;
         return true;
     }
 
