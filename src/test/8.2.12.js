@@ -72,7 +72,7 @@ class Test_8_2_12 extends TestTokenResponse {
 
             if(grantTokenInnerSignedTokenPayload.acr != this.authrequest.acr_values) {
                 this.notes = grantTokenInnerSignedTokenPayload.acr + " != " + this.authrequest.acr_values;
-                throws("grant token JWS (Grant Token Inner Signed Token) claim acr is not the same of SPID level used for auth");
+                throw("grant token JWS (Grant Token Inner Signed Token) claim acr is not the same of SPID level used for auth");
             }
         }
 
