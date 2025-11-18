@@ -732,6 +732,11 @@ module.exports = function(app, checkAuthorisation, database) {
                     
                 } catch(error) {
                     console.log("Introspection Response ERROR", error.response.data);
+
+                    // catch introspection error response for error test
+                    introspectionresponse = error.response;
+
+                    /*
                     return res.status(400).json({
                         error: "Introspection Response ERROR",
                         error_message: error.response.data,
@@ -746,6 +751,7 @@ module.exports = function(app, checkAuthorisation, database) {
                         userinforesponse: userinforesponse.data,
                         introspectionrequest: introspectionrequest
                     });
+                    */
                 }
             }
         }
