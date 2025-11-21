@@ -7,17 +7,17 @@ const TestIntrospectionRequest = require('../server/lib/test/TestIntrospectionRe
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_9_1_1 extends TestIntrospectionRequest {
+class Test_9_1_4 extends TestIntrospectionRequest {
 
     constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest);
-        this.num = "9.1.1";
-        this.description = "Introspection Request Wrong - parameter client_assertion is not present";
+        this.num = "9.1.4";
+        this.description = "Introspection Request Wrong - the claim iss in the client_assertion is not present";
         this.validation = "self";
     }
 
     async exec() {
-
+        
         // extract grant tokens from previous tokenresponse
         let grant_tokens = [];
         {
@@ -59,7 +59,7 @@ class Test_9_1_1 extends TestIntrospectionRequest {
         
         // introspect the first grant token
         this.introspectionrequest.client_id = config_rp.client_id;
-        //this.introspectionrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        this.introspectionrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.introspectionrequest.token = grant_tokens[0];
 
         const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));
@@ -74,22 +74,20 @@ class Test_9_1_1 extends TestIntrospectionRequest {
 
         let payload = JSON.stringify({ 
             jti: Utility.getUUID(),
-            iss: this.tokenrequest.client_id,
+            //iss: this.tokenrequest.client_id,     // REMOVED
             aud: this.metadata.configuration.token_endpoint,
             iat: iat.unix(),
             exp: exp.unix(),
             sub: this.tokenrequest.client_id
         });
 
-        /* REMOVED
         this.introspectionrequest.client_assertion = await jose.JWS.createSign({
             format: 'compact',
             alg: 'RS256',
             fields: {...header}
-        }, key).update(payload).final();
-        */
+        }, key).update(payload).final();        
     }
 
 }
 
-module.exports = Test_9_1_1 
+module.exports = Test_9_1_4

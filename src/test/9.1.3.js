@@ -7,12 +7,12 @@ const TestIntrospectionRequest = require('../server/lib/test/TestIntrospectionRe
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_9_1_1 extends TestIntrospectionRequest {
+class Test_9_1_3 extends TestIntrospectionRequest {
 
     constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest);
-        this.num = "9.1.1";
-        this.description = "Introspection Request Wrong - parameter client_assertion is not present";
+        this.num = "9.1.3";
+        this.description = "Introspection Request Wrong - the signature of client_assertion JWT is not valid";
         this.validation = "self";
     }
 
@@ -62,7 +62,7 @@ class Test_9_1_1 extends TestIntrospectionRequest {
         //this.introspectionrequest.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         this.introspectionrequest.token = grant_tokens[0];
 
-        const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-sig.key'));
+        const config_key = fs.readFileSync(path.resolve(__dirname, '../config/spid-oidc-check-op-enc.key'));        // wrong/fake private key
         const keystore = jose.JWK.createKeyStore();
 
         let key = await keystore.add(config_key, 'pem');
@@ -81,15 +81,13 @@ class Test_9_1_1 extends TestIntrospectionRequest {
             sub: this.tokenrequest.client_id
         });
 
-        /* REMOVED
         this.introspectionrequest.client_assertion = await jose.JWS.createSign({
             format: 'compact',
             alg: 'RS256',
             fields: {...header}
-        }, key).update(payload).final();
-        */
+        }, key).update(payload).final();        
     }
 
 }
 
-module.exports = Test_9_1_1 
+module.exports = Test_9_1_3

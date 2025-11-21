@@ -7,12 +7,12 @@ const TestIntrospectionRequest = require('../server/lib/test/TestIntrospectionRe
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
 
-class Test_9_1_1 extends TestIntrospectionRequest {
+class Test_9_1_2 extends TestIntrospectionRequest {
 
     constructor(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest) {
         super(metadata, authrequest, authresponse, tokenrequest, tokenresponse, userinforequest, userinforesponse, introspectionrequest);
-        this.num = "9.1.1";
-        this.description = "Introspection Request Wrong - parameter client_assertion is not present";
+        this.num = "9.1.2";
+        this.description = "Introspection Request Wrong - the value of client_assertion is not a valid JWT";
         this.validation = "self";
     }
 
@@ -72,24 +72,16 @@ class Test_9_1_1 extends TestIntrospectionRequest {
         let iat = moment();
         let exp = iat.clone().add(15, 'm');
 
-        let payload = JSON.stringify({ 
+        this.introspectionrequest.client_assertion = { 
             jti: Utility.getUUID(),
             iss: this.tokenrequest.client_id,
             aud: this.metadata.configuration.token_endpoint,
             iat: iat.unix(),
             exp: exp.unix(),
             sub: this.tokenrequest.client_id
-        });
-
-        /* REMOVED
-        this.introspectionrequest.client_assertion = await jose.JWS.createSign({
-            format: 'compact',
-            alg: 'RS256',
-            fields: {...header}
-        }, key).update(payload).final();
-        */
+        };
     }
 
 }
 
-module.exports = Test_9_1_1 
+module.exports = Test_9_1_2

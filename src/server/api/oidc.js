@@ -719,14 +719,29 @@ module.exports = function(app, checkAuthorisation, database) {
                 });
 
                 // send introspection request
-                console.log("Introspection Request", introspectionrequest);
+                let method = test.var['method'] ?? 'post';
+                let url = metadata.configuration.introspection_endpoint;
+                console.log("Introspection Request", {
+                    method,
+                    url,
+                    ...introspectionrequest
+                });
 
                 try {
+                    introspectionresponse = await axios({
+                        method,
+                        url,
+                        data: qs.stringify(introspectionrequest), 
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+                    });
+
+                    /*
                     introspectionresponse = await axios.post(
                         metadata.configuration.introspection_endpoint, 
                         qs.stringify(introspectionrequest), 
                         {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
                     );
+                    */
 
                     console.log("Introspection Response", introspectionresponse.data);
                     
