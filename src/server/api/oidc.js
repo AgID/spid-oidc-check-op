@@ -545,13 +545,28 @@ module.exports = function(app, checkAuthorisation, database) {
                 });
 
                 // send userinfo request
-                console.log("Userinfo Request", userinforequest);
+                let method = test.var['method'] ?? 'get';
+                let url = metadata.configuration.userinfo_endpoint;
+                console.log("Userinfo Request", {
+                    method,
+                    url,
+                    ...userinforequest
+                });
+
 
                 try {
+                    userinforesponse = await axios({
+                        method,
+                        url,
+                        headers: userinforequest
+                    });
+                    
+                    /*
                     userinforesponse = await axios.get(
                         metadata.configuration.userinfo_endpoint, 
                         {headers: userinforequest}
                     );
+                    */
 
                     console.log("Userinfo Response", userinforesponse.data);
                     
@@ -648,6 +663,195 @@ module.exports = function(app, checkAuthorisation, database) {
             console.log(error);
         }
 
+        let introspectionrequest = {};
+        let introspectionresponse = {};
+
+        { // introspection request
+            let hook = "introspection-request";
+
+            let tests = config_test[testsuite].cases[testcase].hook[hook]; 
+            let testcase_name = config_test[testsuite].cases[testcase].name;
+            let testcase_description = config_test[testsuite].cases[testcase].description;
+            let testcase_referements = config_test[testsuite].cases[testcase].ref;
+            console.log("Test case name: " + testcase_name);
+            console.log("Referements: " + testcase_referements);
+            console.log("Test list to be executed: ", tests);
+
+            if(tests!=null) {
+
+                let test = null;
+                for(let t in tests) {
+                    let TestIntrospectionRequestClass = require("../../test/" + tests[t]);
+                    test = new TestIntrospectionRequestClass(metadata, authrequest, authresponse, tokenrequest, actualtokenresponse, userinforequest, introspectionrequest);
+                    if(test.hook==hook) {
+                        introspectionrequest = await test.getIntrospectionRequest();
+
+                        // save request
+                        //database.saveRequest(authrequest.state, user, store_type, testsuite, testcase, authrequest);
+
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
+                    }
+                }
+
+                // save log to store before send
+                database.setLastLog(user, external_code, store_type, testsuite, {
+                    details: {
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest,
+                        refreshtokenresponse: actualtokenresponse.data,
+                        userinforequest: userinforequest,
+                        userinforesponse: userinforesponse.data,
+                        introspectionrequest: introspectionrequest,
+                        report: report,
+                        report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                    }
+                });
+
+                // send introspection request
+                let method = test.var['method'] ?? 'post';
+                let url = metadata.configuration.introspection_endpoint;
+                console.log("Introspection Request", {
+                    method,
+                    url,
+                    ...introspectionrequest
+                });
+
+                try {
+                    introspectionresponse = await axios({
+                        method,
+                        url,
+                        data: qs.stringify(introspectionrequest), 
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+                    });
+
+                    /*
+                    introspectionresponse = await axios.post(
+                        metadata.configuration.introspection_endpoint, 
+                        qs.stringify(introspectionrequest), 
+                        {headers: { 'Content-Type': 'application/x-www-form-urlencoded'}}
+                    );
+                    */
+
+                    console.log("Introspection Response", introspectionresponse.data);
+                    
+                } catch(error) {
+                    console.log("Introspection Response ERROR", error.response.data);
+
+                    // catch introspection error response for error test
+                    introspectionresponse = error.response;
+
+                    /*
+                    return res.status(400).json({
+                        error: "Introspection Response ERROR",
+                        error_message: error.response.data,
+                        metadata: metadata,
+                        authrequest: authrequest,
+                        authresponse: authresponse,
+                        tokenrequest: tokenrequest,
+                        tokenresponse: tokenresponse.data,
+                        refreshtokenrequest: refreshtokenrequest,
+                        refreshtokenresponse: actualtokenresponse.data,
+                        userinforequest: userinforequest,
+                        userinforesponse: userinforesponse.data,
+                        introspectionrequest: introspectionrequest
+                    });
+                    */
+                }
+            }
+        }
+
+        {   // introspection response
+            let hook = "introspection-response";
+
+            // save log to store before exec test
+            database.setLastLog(user, external_code, store_type, testsuite, {
+                details: {
+                    metadata: metadata,
+                    authrequest: authrequest,
+                    authresponse: authresponse,
+                    tokenrequest: tokenrequest,
+                    tokenresponse: tokenresponse.data,
+                    refreshtokenrequest: refreshtokenrequest,
+                    refreshtokenresponse: actualtokenresponse.data,
+                    userinforequest: userinforequest,
+                    userinforesponse: userinforesponse.data,
+                    introspectionrequest: introspectionrequest,
+                    introspectionresponse: introspectionresponse.data,
+                    report: report,
+                    report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
+                }
+            });
+
+            let tests = config_test[testsuite].cases[testcase].hook[hook]; 
+            let testcase_name = config_test[testsuite].cases[testcase].name;
+            let testcase_description = config_test[testsuite].cases[testcase].description;
+            let testcase_referements = config_test[testsuite].cases[testcase].ref;
+            console.log("Test case name: " + testcase_name);
+            console.log("Referements: " + testcase_referements);
+            console.log("Test list to be executed: ", tests);
+
+            if(tests!=null) {
+                for(let t in tests) {
+                    let TestIntrospectionResponseClass = require("../../test/" + tests[t]);
+                    test = new TestIntrospectionResponseClass(metadata, authrequest, authresponse, tokenrequest, actualtokenresponse, userinforequest, userinforesponse, introspectionrequest, introspectionresponse);
+                    test.setVar('user', user);
+                    if(test.hook==hook) {
+                        result = await test.getResult();
+
+                        switch(test.validation) {
+                            case 'automatic':
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'self': 
+                                switch(result.result) {
+                                    case 'success': num_success++; break;
+                                    case 'failure': num_failure++; break;
+                                }
+                            break;
+                            case 'required': num_warning++; break;
+                        }
+                        
+                        // save single test to store
+                        database.setTest(user, external_code, store_type, testsuite, testcase, hook, result);
+
+                        console.log(result);
+                        report.push(result);
+                    }
+                }
+            }
+        }
+
+
+
         let summary_result = "";
         if(num_failure>0) {
             summary_result = "failure";
@@ -677,6 +881,8 @@ module.exports = function(app, checkAuthorisation, database) {
                 userinforequest: userinforequest,
                 userinforesponse: userinforesponse.data,
                 userinfo: userinfo_data,
+                introspectionrequest: introspectionrequest,
+                introspectionresponse: introspectionresponse.data,
                 report: report,
                 report_datetime: moment().format("YYYY-MM-DD HH:mm:ss")
             }

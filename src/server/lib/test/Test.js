@@ -1,6 +1,9 @@
 const moment = require('moment');
 
 class Test {
+    constructor() {
+        this.var = {};
+    }
 
     exec() {
         if(!this.hook) throw new Error("Test must have a hook");
@@ -14,6 +17,8 @@ class Test {
     setSuccess() { this.result = "success"; return this.result; }
     setWarning() { this.result = "warning"; return this.result; }
     setFailure() { this.result = "failure"; return this.result; }
+
+    setVar(key, val) { this.var[key] = val; }
 }
 
 module.exports = Test 
