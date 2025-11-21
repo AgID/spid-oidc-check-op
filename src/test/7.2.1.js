@@ -8,6 +8,7 @@ const pkceChallenge = require("../server/node_modules/pkce-challenge").default;
 const TestAuthRequest = require('../server/lib/test/TestAuthRequest.js');
 const Utility = require('../server/lib/utils.js');
 const config_rp = require('../config/rp.json');
+const config_aa = require('../config/aa.json');
 
 class Test_7_2_1 extends TestAuthRequest {
 
@@ -46,7 +47,7 @@ class Test_7_2_1 extends TestAuthRequest {
             {
                 "type": "https://spid.gov.it/attribute-authority/required-aa",
                 "locations": [
-                    "https://validator-test.spid.gov.it/oidc/op/attribute-authority"
+                    config_aa.iss
                 ]
             }
         ]; 

@@ -39,7 +39,7 @@ class Test_8_1_0 extends TestTokenResponse {
                 throw("grant token is not a valid JWE");
             }
 
-            const config_prv_aa_key = fs.readFileSync(path.resolve(__dirname, '../config/attribute-authority-private-enc.key'));
+            const config_prv_aa_key = fs.readFileSync(path.resolve(__dirname, '../config/attribute-authority-enc.key'));
             const keystore = jose.JWK.createKeyStore();
             const prv_key = await keystore.add(config_prv_aa_key, 'pem');
             let jwe = await jose.JWE.createDecrypt(prv_key).decrypt(grant_token);
