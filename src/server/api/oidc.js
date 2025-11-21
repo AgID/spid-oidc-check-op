@@ -545,13 +545,28 @@ module.exports = function(app, checkAuthorisation, database) {
                 });
 
                 // send userinfo request
-                console.log("Userinfo Request", userinforequest);
+                let method = test.var['method'] ?? 'get';
+                let url = metadata.configuration.userinfo_endpoint;
+                console.log("Userinfo Request", {
+                    method,
+                    url,
+                    ...userinforequest
+                });
+
 
                 try {
+                    userinforesponse = await axios({
+                        method,
+                        url,
+                        headers: userinforequest
+                    });
+                    
+                    /*
                     userinforesponse = await axios.get(
                         metadata.configuration.userinfo_endpoint, 
                         {headers: userinforequest}
                     );
+                    */
 
                     console.log("Userinfo Response", userinforesponse.data);
                     
