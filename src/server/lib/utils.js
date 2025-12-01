@@ -35,8 +35,8 @@ class Utils {
     }
 
     static getUUID() {
-        // NCName type (https://github.com/italia/spid-saml-check/issues/14)
-        return "_" + UUID.generate();
+        let uuid = UUID.generate();
+        return uuid.replaceAll('-', '');
     }
 
     static getNonce() {
