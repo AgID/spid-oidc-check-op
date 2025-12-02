@@ -6,7 +6,7 @@ class Test_1_2_14 extends TestMetadata {
     super(metadata);
     this.num = '1.2.14';
     this.description =
-      "The authority_hints MUST contain 'https://registry.spid.gov.it'";
+      "The authority_hints MUST contain 'https://registry.spid.gov.it' and 'https://registry-test.spid.gov.it'";
     this.validation = 'automatic';
   }
 
@@ -17,9 +17,17 @@ class Test_1_2_14 extends TestMetadata {
       return false;
     }
     
-    this.notes = jwt_decode(this.metadata.entity_statement).authority_hints;
-    if (!this.notes.includes('https://registry.spid.gov.it'))
-      throw "'https://registry.spid.gov.it' is not present in authority_hints";
+    let authority_hints = jwt_decode(this.metadata.entity_statement).authority_hints;
+    this.notes = authority_hints;
+
+    if(!(authority_hints.includes('https://registry.spid.gov.it') && authority_hints.includes('https://registry-test.spid.gov.it'))) {
+      if(!authority_hints.includes('https://registry.spid.gov.it')) {
+        throw "'https://registry.spid.gov.it' is not present in authority_hints";
+      }
+      if(!authority_hints.includes('https://registry-test.spid.gov.it')) {
+        throw "'https://registry-test.spid.gov.it' is not present in authority_hints";
+      }      
+    }
 
     return true;
   }
