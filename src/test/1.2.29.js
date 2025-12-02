@@ -4,6 +4,7 @@ const validator = require("../server/node_modules/validator");
 const axios = require("../server/node_modules/axios").default;
 const jose = require("../server/node_modules/node-jose");
 const fs = require("fs");
+const config_rp = require('../config/rp.json');
 const private_key = fs.readFileSync(
   __dirname + "/../config/spid-oidc-check-op-enc.key",
   "utf8"
@@ -28,7 +29,7 @@ class Test_1_2_29 extends TestMetadata {
     let registry_jwks = null;
 
     // get jwk from registry
-    let registry_entity_statement = (await axios.get('https://registry.spid.gov.it/.well-known/openid-federation')).data;
+    let registry_entity_statement = (await axios.get(config_rp.trust_anchor + '/.well-known/openid-federation')).data;
     let registry_config = jwt_decode(registry_entity_statement);
 
     registry_jwks = registry_config.jwks;
@@ -45,7 +46,7 @@ class Test_1_2_29 extends TestMetadata {
     let entity_statement = jwt_decode(this.metadata.entity_statement);
 
     for(let tm of entity_statement.trust_marks) {
-      if(tm.id=='https://registry.spid.gov.it/openid_provider/') {
+      if(tm.id==config_rp.trust_anchor + '/openid_provider/private/') {
 
         let result = await jose.JWS.createVerify(keystore).verify(tm.trust_mark)
         this.notes = result;

@@ -15,6 +15,7 @@
 	},
 	"autoLogin": true,
 
+	"trust_anchor": "https://registry-test.spid.gov.it",
 	"authority_hints": [
 		"https://registry.spid.gov.it"
 	],

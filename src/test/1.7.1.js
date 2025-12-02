@@ -1,12 +1,13 @@
 const TestMetadata = require('../server/lib/test/TestMetadata.js');
 const jwt_decode = require('../server/node_modules/jwt-decode');
 const validator = require('../server/node_modules/validator');
+const config_rp = require('../config/rp.json');
 
 class Test_1_7_1 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
     this.num = '1.7.1';
-    this.description = 'The value of claim sub inside the TM with role OP MUST be equal to the value of claim sub into EC';
+    this.description = 'The value of claim sub inside the TM with role OP private MUST be equal to the value of claim sub into EC';
     this.validation = 'automatic';
   }
 
@@ -32,7 +33,7 @@ class Test_1_7_1 extends TestMetadata {
     let tm_jwt = null;
 
     for(let ec_tm of entity_statement.trust_marks) {
-      if (ec_tm.id=='https://registry.spid.gov.it/openid_provider/') tm_jwt = ec_tm.trust_mark;
+      if (ec_tm.id==config_rp.trust_anchor + '/openid_provider/private/') tm_jwt = ec_tm.trust_mark;
     }
 
     if(tm_jwt==null) {
