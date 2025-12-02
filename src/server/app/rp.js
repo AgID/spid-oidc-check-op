@@ -71,6 +71,7 @@ module.exports = function(app, checkAuthorisation) {
         const thumbprint = await key.thumbprint('SHA-256');
 
         const header = {
+            typ: 'entity-statement+jwt',
             kid: base64url.encode(thumbprint),
             //x5c: [x5c.toString("base64")]
         }
