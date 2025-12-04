@@ -54,9 +54,8 @@ class Test_2_1_1 extends TestAuthRequest {
     let thumbprint = await key.thumbprint('SHA-256');
 
     let header = {
-      //remove kid for create an invalid jwt
-      //kid: base64url.encode(thumbprint),
-      //x5c: [x5c.toString('base64')],
+      kid: base64url.encode(thumbprint),
+      x5c: [x5c.toString('base64')],
     };
 
     let iat = moment();
@@ -84,14 +83,16 @@ class Test_2_1_1 extends TestAuthRequest {
     this.authrequest.request = await jose.JWS.createSign(
       {
         format: 'compact',
-        //remove alg for create an invalid jwt
-        //alg: 'RS256',
+        alg: 'RS256',
         fields: { ...header },
       },
       key
     )
       .update(payload)
       .final();
+
+    // invalid request
+    this.authrequest.request = this.authrequest.request.substring(0, this.authrequest.request.length-5); 
 
     let authorization_endpoint =
       this.metadata.configuration.authorization_endpoint;
