@@ -263,6 +263,7 @@ module.exports = function(app, checkAuthorisation, database) {
         let thumbprint = await key.thumbprint('SHA-256');
 
         let header = {
+            typ: 'entity-statement+jwt',
             kid: base64url.encode(thumbprint),
             x5c: [x5c.toString("base64")]
         }
@@ -272,31 +273,21 @@ module.exports = function(app, checkAuthorisation, database) {
         let iss = config_aa.iss;
         let jwks = await makeAAJwks();
 
-        let payload = JSON.stringify({ 
+        let payload = { 
             jti: Utility.getUUID(),
             iss: iss,
             sub: iss,
             iat: iat.unix(),
             exp: exp.unix(),
             jwks: jwks,
-            trust_marks: [],
-            authority_hints: ['registry.spid.gov.it'],
-            metadata: {
-                oauth_authorization_server: {
-                    issuer: iss,
-                    token_endpoint: config_aa.iss + '/token',
-                    jwks: jwks
-                },
-                oauth_resource: {
-                    logo_uri: config_server['host'] + "/img/logo2.svg",
-                    resource: config_aa.iss + '/v1/validation'
-                },
-                federation_entity: {
-                    homepage_uri: config_aa.iss,
-                    organization_name: "SPID OIDC Validator Attribute Authority",                    
-                }
-            }
-        });
+            trust_marks: config_aa.trust_marks,
+            authority_hints: config_aa.authority_hints,
+            metadata: config_aa.metadata
+        };
+
+        payload["metadata"]["oauth_authorization_server"]["jwks"] = jwks;
+
+        payload = JSON.stringify(payload);
 
         let entity_configuration = await jose.JWS.createSign({
             format: 'compact',

@@ -96,6 +96,8 @@ module.exports = function(app, checkAuthorisation, database) {
 
         // retrieve request
         let request = database.getRequest(state);
+        if(!request) return res.status(400).send("Request not found - If you are testing testcase 43 or 44, please check the request querystring on the URL");
+
         let authrequest = request.authrequest;
         console.log("Saved Request", request);
 
