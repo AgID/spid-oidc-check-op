@@ -1,5 +1,40 @@
 {
 	"enabled": true,
 	"basepath": "",
-	"iss": "http://localhost:8084/attribute-authority"
+	"iss": "http://localhost:8084/attribute-authority",
+
+	"trust_marks": [
+		{
+			"id": "https://registry-test.spid.gov.it/oauth_resource/public/",
+			"trust_mark": "eyJhbGciOiJSUzI1NiIsInR5cCI6InRydXN0LW1hcmsrand0Iiwia2lkIjoiYTgzY2IwMjNlZGM3MTlmNjFhYzQ2YjA5Y2FiMDIwNjc5ZmVjYmNlODNhOTUwNjgwZWM4ODA1NTNkMGUzZTU5OCJ9.eyJpc3MiOiJodHRwczovL3JlZ2lzdHJ5LXRlc3Quc3BpZC5nb3YuaXQiLCJzdWIiOiJodHRwczovL3ZhbGlkYXRvci10ZXN0LnNwaWQuZ292Lml0L29pZGMvb3AvYXR0cmlidXRlLWF1dGhvcml0eSIsImlkIjoiaHR0cHM6Ly9yZWdpc3RyeS10ZXN0LnNwaWQuZ292Lml0L29hdXRoX3Jlc291cmNlL3B1YmxpYy8iLCJpYXQiOjE3NjQ4Mzk5OTQsImxvZ29fdXJpIjoiaHR0cHM6Ly9yZWdpc3RyeS10ZXN0LnNwaWQuZ292Lml0L3N0YXRpYy9sb2dvLXNwaWQucG5nIiwiZXhwIjoxNzk2Mzc1OTk0LCJyZWYiOiJodHRwczovL3JlZ2lzdHJ5LXRlc3Quc3BpZC5nb3YuaXQvc3RhdGljL29hdXRoX3Jlc291cmNlL3B1YmxpYyIsIm9yZ2FuaXphdGlvbl90eXBlIjoicHVibGljIiwib3JnYW5pemF0aW9uX25hbWUiOiJTUElEIE9JREMgVmFsaWRhdG9yIEF0dHJpYnV0ZSBBdXRob3JpdHkiLCJpZF9jb2RlIjp7ImlwYV9jb2RlIjoiYWdpZCJ9LCJlbWFpbCI6InNwaWQudGVjaEBhZ2lkLmdvdi5pdCIsImZlZGVyYXRpb25fdXJsIjoiaHR0cHM6Ly92YWxpZGF0b3ItdGVzdC5zcGlkLmdvdi5pdC9vaWRjL29wL2F0dHJpYnV0ZS1hdXRob3JpdHkvLndlbGwta25vd24vb3BlbmlkLWZlZGVyYXRpb24iLCJlbnRpdHlfcm9sZSI6Im9hdXRoX3Jlc291cmNlIiwicHJvZmlsZSI6InB1YmxpYyJ9.DuVxxQmyFnPh2LaQBkgoRewVNfaVUVmKT73ScX_YVs9oxY76AchEfzJqDuaJVNKB1gmE9f0Go79KiF-v-XW-wnGRLrNH9pBLzNbICYGa-dTpr7gFMHxBizjA1FgEoDO4iJ-2R8fEw4cv69LUf5FT4W1DfoBH-1Ue7EyexNO3Fag056YAZzYROLQPGRCXoP7oYRnpS1eFN-u71gjtPaMc65QsYGBeBo1jJXCwoiLHTWm74Vl0W81P7PXKhctww3KwBMOLhV_ADb2VaTQiw-3nct84kZh4G4qTmvwJsrJG8uVML1ZQETUJSKAoi41tXOYYpUol0djcvLHuZVf9WlmKZg"
+		}
+	],
+	"authority_hints": ["https://registry-test.spid.gov.it", "https://registry.spid.gov.it"],
+	"metadata": {
+		"oauth_authorization_server": {
+			"issuer": "https://validator-test.spid.gov.it/oidc/op/attribute-authority",
+			"token_endpoint": "https://validator-test.spid.gov.it/oidc/op/attribute-authority/token",
+			"scopes_supported": [ "openid" ],
+			"response_types_supported": [ "code" ],
+			"grant_types_supported": ["authorization_code" ],
+			"token_endpoint_auth_methods_supported": [ "private_key_jwt" ],
+			"token_endpoint_auth_signing_alg_values_supported": [ "RS256" ],
+			"op_policy_uri": "https://www.agid.gov.it/it/privacy-policy",
+			"op_tos_uri": "https://www.agid.gov.it/it/note-legali",
+			"dpop_signing_alg_values_supported" : [ "RS256" ]
+		},
+		"oauth_resource": {
+			"logo_uri": "https://validator-test.spid.gov.it/oidc/op/img/logo2.svg",
+			"resource": "https://validator-test.spid.gov.it/oidc/op/attribute-authority/v1/validation"
+		},
+		"federation_entity": {
+			"homepage_uri": "https://validator-test.spid.gov.it/oidc/op/attribute-authority",
+			"organization_name": "SPID OIDC Validator Attribute Authority",
+			"policy_uri": "https://www.agid.gov.it/it/privacy-policy",
+			"logo_uri": "https://registry.spid.gov.it/apidoc/spid-logo.svg",
+			"contacts": [ "spid.tech@agid.gov.it" ],
+			"federation_trust_mark_status_endpoint": "https://registry-test.spid.gov.it/oidc/trust_mark_status",
+			"federation_resolve_endpoint": "https://registry-test.spid.gov.it/oidc/resolve"
+		}
+	}	
 }
