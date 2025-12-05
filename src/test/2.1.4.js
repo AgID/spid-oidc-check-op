@@ -14,7 +14,7 @@ class Test_2_1_4 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.4';
     this.description =
-      'Wrong Authentication Request: client_id is not present into request parameter';
+      'Wrong Authentication Request: client_id is not present into request parameter. Expected: Error on OP.';
     this.validation = 'required';
   }
 

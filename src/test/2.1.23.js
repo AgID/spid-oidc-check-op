@@ -14,7 +14,7 @@ class Test_2_1_23 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.23';
     this.description =
-      'Wrong Authentication Request: redirect_uri is not trusted';
+      'Wrong Authentication Request: redirect_uri is not trusted. Expected: Error on OP.';
     this.validation = 'required';
   }
 

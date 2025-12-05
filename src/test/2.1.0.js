@@ -14,7 +14,7 @@ class Test_2_1_0 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.0';
     this.description =
-      'Wrong Authentication Request: parameter request is not present';
+      'Wrong Authentication Request: parameter request is not present. Expected: Error on OP.';
     this.validation = 'required';
   }
 

@@ -14,7 +14,7 @@ class Test_2_1_5 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.5';
     this.description =
-      'Wrong Authentication Request: the values of client_id are different';
+      'Wrong Authentication Request: the values of client_id are different. Expected: Error on OP.';
     this.validation = 'required';
   }
 
