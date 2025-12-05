@@ -14,7 +14,7 @@ class Test_2_1_1 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.1';
     this.description =
-      'Wrong Authentication Request: the value of request is not a valid JWT';
+      'Wrong Authentication Request: the value of request is not a valid JWT. Expected: Error on OP.';
     this.validation = 'required';
   }
 

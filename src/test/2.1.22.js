@@ -14,7 +14,7 @@ class Test_2_1_22 extends TestAuthRequest {
     super(metadata, authrequest);
     this.num = '2.1.22';
     this.description =
-      'Wrong Authentication Request: redirect_uri is not present';
+      'Wrong Authentication Request: redirect_uri is not present. Expected: Error on OP.';
     this.validation = 'required';
   }
 
