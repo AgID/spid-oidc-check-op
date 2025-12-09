@@ -570,10 +570,18 @@ module.exports = function(app, checkAuthorisation, database) {
                     );
                     */
 
-                    console.log("Userinfo Response", userinforesponse.data);
+                    console.log("Userinfo Response", {
+                        status: userinforesponse.status,
+                        header: userinforesponse.header,
+                        data: userinforesponse.data
+                    });
                     
                 } catch(error) {
                     console.log("Userinfo Request ERROR", error.response.data);
+
+                    userinforesponse = error.response;
+
+                    /* let check error response by tests
                     return res.status(400).json({
                         error: "Userinfo Request ERROR",
                         error_message: error.response.data,
@@ -586,6 +594,7 @@ module.exports = function(app, checkAuthorisation, database) {
                         refreshtokenresponse: actualtokenresponse.data,
                         userinforequest: userinforequest
                     });
+                    */
                 }
             }
         }
