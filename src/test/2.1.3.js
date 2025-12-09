@@ -15,7 +15,7 @@ class Test_2_1_3 extends TestAuthRequest {
     this.num = '2.1.3';
     this.description =
       'Wrong Authentication Request: client_id is not present as HTTP parameter. Expected: Error on OP.';
-    this.validation = 'required ';
+    this.validation = 'self';
   }
 
   async exec() {
