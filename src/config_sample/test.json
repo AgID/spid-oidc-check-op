@@ -1012,19 +1012,14 @@
             },
             "test-case-oidc-wrong-request-1": {
                 "name": "13 - Test Case OIDC Wrong Authentication Request (parameter request is not present)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because parameter request is not present. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because parameter request is not present. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.0",
                 "hook": {
                     "authentication-request": [
                         "2.1.0"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1034,19 +1029,14 @@
             },
             "test-case-oidc-wrong-request-2": {
                 "name": "14 - Test Case OIDC Wrong Authentication Request (the value of request is not a valid JWT)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because the value of request is not a valid JWT. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because the value of request is not a valid JWT. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.1",
                 "hook": {
                     "authentication-request": [
                         "2.1.1"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1056,19 +1046,14 @@
             },
             "test-case-oidc-wrong-request-3": {
                 "name": "15 - Test Case OIDC Wrong Authentication Request (the signature of the request JWT is not valid)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because the signature of the request JWT is not valid. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because the signature of the request JWT is not valid. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.2",
                 "hook": {
                     "authentication-request": [
                         "2.1.2"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1078,19 +1063,14 @@
             },
             "test-case-oidc-wrong-request-4": {
                 "name": "16 - Test Case OIDC Wrong Authentication Request (client_id is not present as HTTP parameter)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present as HTTP parameter. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present as HTTP parameter. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.3",
                 "hook": {
                     "authentication-request": [
                         "2.1.3"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1100,19 +1080,14 @@
             },
             "test-case-oidc-wrong-request-5": {
                 "name": "17 - Test Case OIDC Wrong Authentication Request (client_id is not present into request parameter)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present into request parameter. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because client_id is not present into request parameter. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.4",
                 "hook": {
                     "authentication-request": [
                         "2.1.4"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1122,19 +1097,14 @@
             },
             "test-case-oidc-wrong-request-6": {
                 "name": "18 - Test Case OIDC Wrong Authentication Request (the values of client_id are different)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because the values of client_id are different. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because the values of client_id are different. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.5",
                 "hook": {
                     "authentication-request": [
                         "2.1.5"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1144,19 +1114,14 @@
             },
             "test-case-oidc-wrong-request-7": {
                 "name": "19 - Test Case OIDC Wrong Authentication Request (the value of client_id is not trusted)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because the value of client_id is not trusted. Expected error 'invalid_client'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because the value of client_id is not trusted. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.6",
                 "hook": {
                     "authentication-request": [
                         "2.1.6"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1496,19 +1461,14 @@
             },
             "test-case-oidc-wrong-request-23": {
                 "name": "35 - Test Case OIDC Wrong Authentication Request (redirect_uri is not present)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not present. Expected error 'error on OP'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not present. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.22",
                 "hook": {
                     "authentication-request": [
                         "2.1.22"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],
@@ -1518,19 +1478,14 @@
             },
             "test-case-oidc-wrong-request-24": {
                 "name": "36 - Test Case OIDC Wrong Authentication Request (redirect_uri is not trusted)",
-                "image": "test-case-invalid-request",
-                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not trusted. Expected error 'invalid_request'",
+                "image": "test-case-invalid-request-error-on-op",
+                "description": "Executes an incorrect OIDC Authorization Code request because redirect_uri is not trusted. Expected error is Error on OP",
                 "ref": "SPID-QAD-OIDC-OP #2.1.23",
                 "hook": {
                     "authentication-request": [
                         "2.1.23"
                     ],
                     "authentication-response": [
-                        "2.5.0",
-                        "2.5.1",
-                        "2.5.2",
-                        "2.5.3",
-                        "2.5.4"
                     ],
                     "token-request": [],
                     "token-response": [],

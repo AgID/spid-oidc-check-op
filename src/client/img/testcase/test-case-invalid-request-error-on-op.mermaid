@@ -1,0 +1,8 @@
+sequenceDiagram
+    participant User
+    participant RP
+    participant OP
+    User->>RP: OP selection
+    RP-->>+User: 
+    User-->>-OP: invalid authentication request
+    OP-->>+User: show Error on OP
