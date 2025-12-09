@@ -31,6 +31,14 @@ module.exports = function(app, checkAuthorisation) {
         res.status(200).json(jwks);
     }); 
 
+    // get entity configuration (OIDC FEDERATION) for untrusted RP
+    app.get("/untrusted/.well-known/openid-federation", async function (req, res) {
+        let entity_statement = await makeUntrustedEntityStatement();
+        res.set('Content-Type', 'application/entity-statement+jwt');
+        res.status(200).send(entity_statement);
+    });
+
+
     async function makeMetadata() {
         let basepath = config_server.basepath;
         if(!basepath.endsWith('/')) basepath += '/';
@@ -87,9 +95,9 @@ module.exports = function(app, checkAuthorisation) {
             jwks: await makeJwks(),
             metadata: {
                 "federation_entity": {
-                    "homepage_uri": "https://" + config_rp.client_id,
-                    "policy_uri": "https://" + config_rp.client_id + "/policy",
-                    "logo_uri": "https://" + config_rp.client_id + "/img/logo.svg",
+                    "homepage_uri": config_rp.client_id,
+                    "policy_uri": config_rp.client_id + "/policy",
+                    "logo_uri": config_rp.client_id + "/img/logo.svg",
                     "contacts": "spid.tech@agid.gov.it",
                     "federation_resolve_endpoint": null,
                     "organization_name": organization_name,
@@ -108,6 +116,84 @@ module.exports = function(app, checkAuthorisation) {
 
         return entity_statement;
     }
+
+    async function makeUntrustedMetadata() {
+        let basepath = config_server.basepath;
+        if(!basepath.endsWith('/')) basepath += '/';
+
+        const client_id = config_rp.client_id + '/untrusted';
+        const redirect_uris = [ config_rp.redirect_uri ];
+        const jwks_uri_host = (client_id.substring(-1)=='/')? client_id.substring(0, client_id.length-1) : client_id;
+        const jwks_uri = jwks_uri_host + basepath + "certs";
+        const jwks = await makeJwks();
+        const response_types = ["code"];
+        const grant_types = ["authorization_code", "refresh_token"];
+        const client_name = "Agenzia per l'Italia Digitale";
+
+        return {
+            client_id: client_id,
+            redirect_uris: redirect_uris,
+            jwks: jwks,
+            jwks_uri: jwks_uri,
+            response_types: response_types,
+            grant_types: grant_types,
+            client_name: client_name,
+            id_token_signed_response_alg: "RS256",                    // RS256 | RS512
+            userinfo_signed_response_alg: "RS256",                    // RS256 | RS512
+            userinfo_encrypted_response_alg: "RSA-OAEP",              // RSA-OAEP | RSA-OAEP-256
+            userinfo_encrypted_response_enc: "A128CBC-HS256",         // A128CBC-HS256 | A256CBC-HS512
+            token_endpoint_auth_method: "private_key_jwt",            // private_key_jwt
+            client_registration_types: ["automatic"]                  // automatic
+
+        };
+    }
+
+    async function makeUntrustedEntityStatement() {
+        const config_key = fs.readFileSync(path.resolve(__dirname, '../../config/spid-oidc-check-op-sig.key'));
+        const organization_name = "Agenzia per l'Italia Digitale UNTRUSTED";
+        const keystore = jose.JWK.createKeyStore();
+        
+        const key = await keystore.add(config_key, 'pem');
+        const thumbprint = await key.thumbprint('SHA-256');
+
+        const header = {
+            typ: 'entity-statement+jwt',
+            kid: base64url.encode(thumbprint),
+            //x5c: [x5c.toString("base64")]
+        }
+ 
+        const iat = moment();
+        const exp = iat.clone().add(1, 'years')
+
+        const payload = JSON.stringify({ 
+            iss: config_rp.client_id + '/untrusted',
+            sub: config_rp.client_id + '/untrusted',
+            iat: iat.unix(),
+            exp: exp.unix(),
+            jwks: await makeJwks(),
+            metadata: {
+                "federation_entity": {
+                    "homepage_uri": config_rp.client_id + '/untrusted',
+                    "policy_uri": config_rp.client_id + "/policy",
+                    "logo_uri": config_rp.client_id + "/img/logo.svg",
+                    "contacts": "spid.tech@agid.gov.it",
+                    "federation_resolve_endpoint": null,
+                    "organization_name": organization_name,
+                },
+                "openid_relying_party": await makeUntrustedMetadata(),
+            },
+            authority_hints: config_rp.authority_hints,
+            trust_marks: config_rp.trust_marks
+        });
+
+        const entity_statement = await jose.JWS.createSign({
+            format: 'compact',
+            alg: 'RS256',
+            fields: {...header}
+        }, key).update(payload).final();
+
+        return entity_statement;
+    }    
 
     async function makeJwks() {
         const crt_sig = fs.readFileSync(path.resolve(__dirname, '../../config/spid-oidc-check-op-sig.crt'));
