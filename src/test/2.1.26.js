@@ -13,7 +13,7 @@ class Test_2_1_26 extends TestAuthRequest {
   constructor(metadata, authrequest = {}) {
     super(metadata, authrequest);
     this.num = '2.1.26';
-    this.description = 'Wrong Authentication Request: claim is not present';
+    this.description = 'Wrong Authentication Request: claims is not present';
     this.validation = 'required';
   }
 

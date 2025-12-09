@@ -95,11 +95,11 @@ class Test_2_1_3 extends TestAuthRequest {
       this.metadata.configuration.authorization_endpoint;
     this.authrequest.url =
       authorization_endpoint +
-      '&response_type=' +
+      '?response_type=' +
       this.authrequest.response_type +
       '&scope=' +
       this.authrequest.scope +
-      '&request' +
+      '&request=' +
       this.authrequest.request;
   }
 }
