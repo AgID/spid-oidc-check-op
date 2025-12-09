@@ -82,7 +82,7 @@ class Test_2_1_2 extends TestAuthRequest {
 
     this.authrequest.request = await jose.JWS.createSign(
       {
-        format: '',
+        format: 'compact',
         alg: 'RS256',
         fields: { ...header },
       },
@@ -101,7 +101,7 @@ class Test_2_1_2 extends TestAuthRequest {
       this.authrequest.response_type +
       '&scope=' +
       this.authrequest.scope +
-      '&request' +
+      '&request=' +
       this.authrequest.request;
   }
 }
