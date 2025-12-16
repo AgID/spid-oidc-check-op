@@ -53,10 +53,8 @@ class Test_8_2_17 extends TestTokenResponse {
                 throw("grant token JWE payload is not a valid JWS (Grant Token Inner Signed Token)");
             }
 
-            // TODO: grab public key from idp metadata in config store
-            const config_pub_idp_key = fs.readFileSync(path.resolve(__dirname, '../config/idp-public-sig.crt'));
-            
-            const pub_crt = await keystore.add(config_pub_idp_key, 'pem');
+            // TODO: verify signature with all keys, not only the first
+            const pub_crt = await keystore.add(this.metadata.configuration.jwks.keys[0]);
             let jws = await jose.JWS.createVerify(pub_crt).verify(grantTokenInnerSignedToken);
 
             let grantTokenInnerSignedTokenPayload = JSON.parse(jws.payload.toString());
