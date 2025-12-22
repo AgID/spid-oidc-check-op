@@ -75,7 +75,7 @@ class Test_9_1_7 extends TestIntrospectionRequest {
         let payload = JSON.stringify({ 
             jti: Utility.getUUID(),
             iss: this.tokenrequest.client_id,
-            aud: this.metadata.configuration.token_endpoint,
+            aud: this.metadata.configuration.introspection_endpoint,
             iat: iat.unix(),
             exp: exp.unix(),
             sub: 'different_from_iss'
