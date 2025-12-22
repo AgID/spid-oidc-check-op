@@ -75,7 +75,7 @@ class Test_9_1_2 extends TestIntrospectionRequest {
         this.introspectionrequest.client_assertion = { 
             jti: Utility.getUUID(),
             iss: this.tokenrequest.client_id,
-            aud: this.metadata.configuration.token_endpoint,
+            aud: this.metadata.configuration.introspection_endpoint,
             iat: iat.unix(),
             exp: exp.unix(),
             sub: this.tokenrequest.client_id
