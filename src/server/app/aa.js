@@ -297,7 +297,7 @@ module.exports = function(app, checkAuthorisation, database) {
 
 
 
-        res.set("Content-Type", "application/jwt");
+        res.set("Content-Type", "application/entity-statement+jwt");
         res.status(200).send(entity_configuration);
     });
 
