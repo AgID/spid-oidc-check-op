@@ -242,6 +242,11 @@ module.exports = function(app, checkAuthorisation, database) {
                         "type": "http",
                         "scheme": "Bearer",
                         "bearerFormat": "JWT"
+                    },
+                    "UserConsent": {
+                        "type": "openIdConnect",
+                        "openIdConnectUrl": config_aa.iss + "/.well-known/openid-federation",
+                        "description": "Questa sezione esplicita il riferimento all'URL di configurazione di OIDC relativo al provider. Deve contenere le informazioni indicate in: https://openid.net/specs/openid-connect-discovery-1_0.html"
                     }
                 }
             }
