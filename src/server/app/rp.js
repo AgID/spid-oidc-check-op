@@ -20,9 +20,15 @@ module.exports = function(app, checkAuthorisation) {
 
     // get entity configuration (OIDC FEDERATION)
     app.get("/.well-known/openid-federation", async function (req, res) {
-        let entity_statement = await makeEntityStatement();
-        res.set('Content-Type', 'application/entity-statement+jwt');
-        res.status(200).send(entity_statement);
+        let json = req.query.output=='json';
+        let entity_statement = await makeEntityStatement(json);
+
+        if(json) {
+            res.status(200).json(entity_statement);
+        } else {
+            res.set('Content-Type', 'application/entity-statement+jwt');
+            res.status(200).send(entity_statement);
+        }
     });
 
     // get certs
@@ -46,7 +52,7 @@ module.exports = function(app, checkAuthorisation) {
         const client_id = config_rp.client_id;
         const redirect_uris = [ config_rp.redirect_uri ];
         const jwks_uri_host = (client_id.substring(-1)=='/')? client_id.substring(0, client_id.length-1) : client_id;
-        const jwks_uri = jwks_uri_host + basepath + "certs";
+        const jwks_uri = jwks_uri_host + "/certs";
         const jwks = await makeJwks();
         const response_types = ["code"];
         const grant_types = ["authorization_code", "refresh_token"];
@@ -70,7 +76,7 @@ module.exports = function(app, checkAuthorisation) {
         };
     }
 
-    async function makeEntityStatement() {
+    async function makeEntityStatement(json=false) {
         const config_key = fs.readFileSync(path.resolve(__dirname, '../../config/spid-oidc-check-op-sig.key'));
         const organization_name = "Agenzia per l'Italia Digitale";
         const keystore = jose.JWK.createKeyStore();
@@ -87,7 +93,7 @@ module.exports = function(app, checkAuthorisation) {
         const iat = moment();
         const exp = iat.clone().add(1, 'years')
 
-        const payload = JSON.stringify({ 
+        const payload = { 
             iss: config_rp.client_id,
             sub: config_rp.client_id,
             iat: iat.unix(),
@@ -106,15 +112,15 @@ module.exports = function(app, checkAuthorisation) {
             },
             authority_hints: config_rp.authority_hints,
             trust_marks: config_rp.trust_marks
-        });
+        };
 
         const entity_statement = await jose.JWS.createSign({
             format: 'compact',
             alg: 'RS256',
             fields: {...header}
-        }, key).update(payload).final();
+        }, key).update(JSON.stringify(payload)).final();
 
-        return entity_statement;
+        return json?payload : entity_statement;
     }
 
     async function makeUntrustedMetadata() {
@@ -124,7 +130,7 @@ module.exports = function(app, checkAuthorisation) {
         const client_id = config_rp.client_id + '/untrusted';
         const redirect_uris = [ config_rp.redirect_uri ];
         const jwks_uri_host = (client_id.substring(-1)=='/')? client_id.substring(0, client_id.length-1) : client_id;
-        const jwks_uri = jwks_uri_host + basepath + "certs";
+        const jwks_uri = jwks_uri_host + "/certs";
         const jwks = await makeJwks();
         const response_types = ["code"];
         const grant_types = ["authorization_code", "refresh_token"];
