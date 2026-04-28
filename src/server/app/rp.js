@@ -146,7 +146,7 @@ module.exports = function(app, checkAuthorisation) {
             client_name: client_name,
             id_token_signed_response_alg: "RS256",                    // RS256 | RS512
             userinfo_signed_response_alg: "RS256",                    // RS256 | RS512
-            userinfo_encrypted_response_alg: "RSA-OAEP",              // RSA-OAEP | RSA-OAEP-256
+            userinfo_encrypted_response_alg: "RSA-OAEP-256",          // RSA-OAEP | RSA-OAEP-256
             userinfo_encrypted_response_enc: "A128CBC-HS256",         // A128CBC-HS256 | A256CBC-HS512
             token_endpoint_auth_method: "private_key_jwt",            // private_key_jwt
             client_registration_types: ["automatic"]                  // automatic
