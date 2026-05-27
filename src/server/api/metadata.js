@@ -147,6 +147,7 @@ module.exports = function(app, checkAuthorisation, database) {
                 
                 let decoded_entity_statement = jwt_decode(entity_statement);
                 let configuration = decoded_entity_statement['metadata']['openid_provider'];
+                let jwks = decoded_entity_statement['jwks'];
                 
                 if(!validator.isJSON(JSON.stringify(configuration), 
                     { allow_primitives: true })) {
@@ -158,7 +159,8 @@ module.exports = function(app, checkAuthorisation, database) {
                     url: url,
                     type: 'federation',
                     entity_statement: entity_statement,
-                    configuration: configuration
+                    configuration: configuration,
+                    jwks: jwks
                 };
     
                 database.setMetadata(user, external_code, store_type, metadata);
