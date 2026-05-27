@@ -13,7 +13,7 @@ class Test_1_2_4 extends TestMetadata {
   constructor(metadata) {
     super(metadata);
     this.num = "1.2.4";
-    this.description = "The signature of the JWS document MUST be valid";
+    this.description = "The signature of the JWS document MUST be valid and verifiable with entity statement root jwks";
     this.validation = "automatic";
   }
 
@@ -32,7 +32,8 @@ class Test_1_2_4 extends TestMetadata {
       throw "returned document is not a valid JWT";
     }
 
-    let jwks = this.metadata.configuration.jwks;
+    let jwks = this.metadata.jwks;
+    this.notes = jwks;
 
     if (jwks.keys == null || jwks.keys == "") {
 
